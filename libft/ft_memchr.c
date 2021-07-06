@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 15:27:20 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/06/30 18:12:15 by hyjeong          ###   ########.fr       */
+/*   Updated: 2021/07/06 17:40:50 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memchr(const void *ptr, int c, size_t num)
 	unsigned char	find;
 	unsigned int	i;
 
-	tmp_ptr = (unsigned char*)ptr;
+	tmp_ptr = (unsigned char *)ptr;
 	find = (unsigned char)c;
 	i = 0;
 	while (i < num)

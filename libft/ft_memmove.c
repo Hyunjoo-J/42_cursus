@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 15:23:07 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/06/30 18:10:54 by hyjeong          ###   ########.fr       */
+/*   Updated: 2021/07/06 20:29:19 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*ft_memmove(void *dst, const void *src, size_t num)
 	{
 		while (i++ < num)
 		{
-			tmp_dst[i] = tmp_src[i];
+			tmp_dst[i - 1] = tmp_src[i - 1];
 		}
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 20:59:38 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/05 20:59:38 by hyjeong          ###   ########.fr       */
+/*   Updated: 2021/07/06 17:48:14 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strndup(char *src, int n)
 
 	if (!src || n <= 0)
 		return (0);
-	copy = (char*)malloc(sizeof(char) * (n + 1));
+	copy = (char *)malloc(sizeof(char) * (n + 1));
 	if (!copy)
 		return (0);
 	i = 0;
@@ -32,51 +32,52 @@ char	*ft_strndup(char *src, int n)
 	return (copy);
 }
 
-size_t  word(char const *s, char c)
+size_t	word(char const *s, char c)
 {
-    size_t  count;
-    size_t  i;
+	size_t	count;
+	size_t	i;
 
-    i = 0;
-    count = 0;
-    while(s[i])
-    {
-        if (s[i] != c)
-        {
-            while(s[i] != c && s[i])
-                i++;
-            count++;
-        }
-        else
-            i++;
-    }
-    return (count);
+	i = 0;
+	count = 0;
+	while (s[i])
+	{
+		if (s[i] != c)
+		{
+			while (s[i] != c && s[i])
+				i++;
+			count++;
+		}
+		else
+			i++;
+	}
+	return (count);
 }
+
 char	**ft_split(char const *s, char c)
 {
-    char            **ret;
-    unsigned int    i;
-    unsigned int    j;
-    unsigned int    k;
+	char			**ret;
+	unsigned int	i;
+	unsigned int	j;
+	unsigned int	k;
 
-    if (!s)
-        return (0);
-    if(!(ret = (char **)malloc(sizeof(char*) * (word(s, c) + 1))))
-        return (0);
-    i = 0;
-    j = 0;
-    while (s[j] && i < ft_strlen(s))
-    {
-        k = 0;
-        if (s[j] != c)
-        {
-            while (s[j + k] != c && s[j + k])
+	if (!s)
+		return (0);
+	ret = (char **)malloc(sizeof(char *) * (word(s, c) + 1));
+	if (!ret)
+		return (0);
+	i = 0;
+	j = 0;
+	while (s[j] && i < ft_strlen(s))
+	{
+		k = 0;
+		if (s[j] != c)
+		{
+			while (s[j + k] != c && s[j + k])
 				k++;
-			ret[i] = ft_strndup((char*)s + j, k);
-			i++;
-        }
-        j += k + 1;
-    }
-    ret[i] = 0;
-    return (ret);
+			ret[i++] = ft_strndup((char *)s + j, k);
+		}
+		j += k + 1;
+	}
+	ret[i] = 0;
+	return (ret);
 }

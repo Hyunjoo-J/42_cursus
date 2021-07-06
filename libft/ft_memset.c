@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 14:29:56 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/06/30 18:02:17 by hyjeong          ###   ########.fr       */
+/*   Updated: 2021/07/06 17:41:23 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memset(void *ptr, int value, size_t num)
 {
-	unsigned char 	*temp;
+	unsigned char	*temp;
 	size_t			i;
 
 	temp = ptr;

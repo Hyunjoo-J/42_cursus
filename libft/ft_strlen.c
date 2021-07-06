@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:54:23 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/06/21 15:09:12 by hyjeong          ###   ########.fr       */
+/*   Updated: 2021/07/06 17:06:03 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 size_t	ft_strlen(const char *str)
 {
-	int count;
+	size_t	i;
 
-	count = 0;
-	while (str[count])
-	{
-		count++;
-	}
-	return (count);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
