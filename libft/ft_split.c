@@ -6,78 +6,69 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 20:59:38 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/06 17:48:14 by hyjeong          ###   ########.fr       */
+/*   Updated: 2021/07/07 19:07:20 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strndup(char *src, int n)
+static	unsigned int	ft_isincluded(char const *s, char c)
 {
-	int		i;
-	char	*copy;
+	unsigned int	i;
+	unsigned int	count;
 
-	if (!src || n <= 0)
+	if (s == 0)
 		return (0);
-	copy = (char *)malloc(sizeof(char) * (n + 1));
-	if (!copy)
-		return (0);
-	i = 0;
-	while (i < n)
-	{
-		copy[i] = src[i];
-		i++;
-	}
-	copy[i] = 0;
-	return (copy);
-}
-
-size_t	word(char const *s, char c)
-{
-	size_t	count;
-	size_t	i;
-
-	i = 0;
+	i = -1;
 	count = 0;
-	while (s[i])
+	while (s[++i] != '\0')
 	{
-		if (s[i] != c)
-		{
-			while (s[i] != c && s[i])
-				i++;
+		if (s[i] == c)
 			count++;
-		}
-		else
-			i++;
 	}
 	return (count);
 }
 
+static	char	**ft_free(char ***result, unsigned int count)
+{
+	unsigned int	i;
+
+	if (*result == 0)
+		return (0);
+	i = count;
+	while (i != 0)
+	{
+		free((*result)[--i]);
+	}
+	free(*result);
+	return (0);
+}
+
 char	**ft_split(char const *s, char c)
 {
-	char			**ret;
+	char			**result;
 	unsigned int	i;
+	unsigned int	count;
 	unsigned int	j;
-	unsigned int	k;
 
-	if (!s)
-		return (0);
-	ret = (char **)malloc(sizeof(char *) * (word(s, c) + 1));
-	if (!ret)
-		return (0);
-	i = 0;
-	j = 0;
-	while (s[j] && i < ft_strlen(s))
+	result = malloc(sizeof(char *) * (ft_isincluded(s, c) + 2));
+	if (result == 0 || s == 0)
+		 return (ft_free(&result, 2));
+	i = -1;
+	count = 0;
+	while (s[++i] != '\0')
 	{
-		k = 0;
-		if (s[j] != c)
+		j = i;
+		while (s[i] != c && s[i] != '\0')
+			i++;
+		if (j != i)
 		{
-			while (s[j + k] != c && s[j + k])
-				k++;
-			ret[i++] = ft_strndup((char *)s + j, k);
+			result[count] = ft_substr(s, j, (i--) - j);
+			if (result[count] == 0)
+				return (ft_free(&result, count));
+			count++;
 		}
-		j += k + 1;
 	}
-	ret[i] = 0;
-	return (ret);
+	result[count] = 0;
+	return (result);
 }

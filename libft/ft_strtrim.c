@@ -6,51 +6,30 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 16:06:54 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/06 17:00:44 by hyjeong          ###   ########.fr       */
+/*   Updated: 2021/07/07 17:26:37 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	in_set(char c, char const *set)
-{
-	size_t	i;
-
-	i = 0;
-	while (set[i])
-	{
-		if (set[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*new;
-	size_t	start;
-	size_t	end;
-	size_t	i;
+	size_t	front;
+	size_t	rear;
+	char	*str;
 
-	if (!s1 || !set)
-		return ((char *)s1);
-	start = 0;
-	while (s1[start] && in_set(s1[start], set))
-		start++;
-	end = ft_strlen(s1) - 1;
-	while (end > start && in_set(s1[end], set))
-		end--;
-	new = (char *)malloc(sizeof(char) * (end - start + 2));
-	if (!new)
-		return (0);
-	i = 0;
-	while (start <= end)
+	str = 0;
+	if (s1 != 0 && set != 0)
 	{
-		new[i] = s1[start];
-		i++;
-		start++;
+		front = 0;
+		rear = ft_strlen(s1);
+		while (s1[front] && ft_strchr(set, s1[front]))
+			front++;
+		while (s1[rear - 1] && ft_strchr(set, s1[rear - 1]) && rear > front)
+			rear--;
+		str = (char *)malloc(sizeof(char) * (rear - front + 1));
+		if (str)
+			ft_strlcpy(str, &s1[front], rear - front + 1);
 	}
-	new[i] = 0;
-	return (new);
+	return (str);
 }

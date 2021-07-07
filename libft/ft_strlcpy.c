@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:57:33 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/06/30 17:53:59 by hyjeong          ###   ########.fr       */
+/*   Updated: 2021/07/07 16:37:34 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,21 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t len)
 {
-	size_t	src_len;
-	size_t	i;
+	unsigned int	i;
 
-	src_len = 0;
-	while (src[src_len] != '\0')
-	{
-		src_len++;
-	}
-	if (len == 0)
-	{
-		return (src_len);
-	}
 	i = 0;
-	while (src[i] != '\0' && i < (len - 1))
+	if (!dst || !src)
+		return (0);
+	if (len > 0)
 	{
-		dst[i] = src[i];
-		i++;
+		while (--len && src[i])
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	dst[i] = '\0';
-	return (src_len);
+	while (src[i])
+		i++;
+	return (i);
 }

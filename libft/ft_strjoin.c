@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:46:53 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/06 20:18:51 by hyjeong          ###   ########.fr       */
+/*   Updated: 2021/07/07 18:35:34 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,27 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*new;
-	size_t	s1_len;
-	size_t	s2_len;
+	char			*result;
+	unsigned int	i;
+	unsigned int	j;
 
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	new = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
-	if (new == 0)
-		return (NULL);
-	ft_memcpy(new, s1, s1_len);
-	ft_memcpy(new + s1_len, s2, s2_len);
-	new[s1_len + s2_len] = '\0';
-	return (new);
+	if (s1 == 0 || s2 == 0)
+		return (0);
+	i = 0;
+	j = 0;
+	while (s1[i] != '\0')
+		i++;
+	while (s2[j] != '\0')
+		j++;
+	result = malloc(sizeof(char) * (i + j + 1));
+	if (result == 0)
+		return (0);
+	i = -1;
+	j = -1;
+	while (s1[++i] != '\0')
+		result[i] = s1[i];
+	while (s2[++j] != '\0')
+		result[i++] = s2[j];
+	result[i] = '\0';
+	return (result);
 }
