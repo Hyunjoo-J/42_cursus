@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 20:59:38 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/07 19:07:20 by hyjeong          ###   ########.fr       */
+/*   Updated: 2021/07/09 15:43:38 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,21 @@
 
 static	unsigned int	ft_isincluded(char const *s, char c)
 {
-	unsigned int	i;
-	unsigned int	count;
+	unsigned int	cnt;
 
-	if (s == 0)
-		return (0);
-	i = -1;
-	count = 0;
-	while (s[++i] != '\0')
+	cnt = 0;
+	while (*s)
 	{
-		if (s[i] == c)
-			count++;
+		if (*s != c)
+		{
+			++cnt;
+			while (*s && *s != c)
+				++s;
+		}
+		else
+			++s;
 	}
-	return (count);
+	return (cnt);
 }
 
 static	char	**ft_free(char ***result, unsigned int count)
@@ -51,7 +53,9 @@ char	**ft_split(char const *s, char c)
 	unsigned int	count;
 	unsigned int	j;
 
-	result = malloc(sizeof(char *) * (ft_isincluded(s, c) + 2));
+	if (s == 0)
+		return (0);
+	result = malloc(sizeof(char *) * (ft_isincluded(s, c) + 1));
 	if (result == 0 || s == 0)
 		 return (ft_free(&result, 2));
 	i = -1;
@@ -64,8 +68,6 @@ char	**ft_split(char const *s, char c)
 		if (j != i)
 		{
 			result[count] = ft_substr(s, j, (i--) - j);
-			if (result[count] == 0)
-				return (ft_free(&result, count));
 			count++;
 		}
 	}
