@@ -51,7 +51,7 @@ char	*ft_itoa(int n)
 	len--;
 	while (len >= 0)
 	{
-		res[len] = '0' + abs(n % 10);
+		res[len] = '0' + ft_abs(n % 10);
 		n = ft_abs(n / 10);
 		len--;
 	}

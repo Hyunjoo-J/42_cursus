@@ -56,7 +56,7 @@ char	**ft_split(char const *s, char c)
 	if (s == 0)
 		return (0);
 	result = malloc(sizeof(char *) * (ft_isincluded(s, c) + 1));
-	if (result == 0 || s == 0)
+	if (result == 0)
 		 return (ft_free(&result, 2));
 	i = -1;
 	count = 0;
