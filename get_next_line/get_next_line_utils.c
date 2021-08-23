@@ -12,82 +12,90 @@
 
 #include "get_next_line.h"
 
-int	ft_strlen(const char *str)
+size_t	ft_strlen(char const *s)
 {
-	int	len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
-
-char	*ft_strdup(char *src)
-{
-	char	*temp;
-	int		i;
+	size_t	i;
 
 	i = 0;
-	temp = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1));
-	if (temp == NULL)
-		return(NULL);
-	while(src[i])
-	{
-		temp[i] = src[i];
+	while (s && *(s + i) != '\0')
 		i++;
-	}
-	temp[i] = '\0';
-	return (temp);
+	return (i);
 }
+
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*new;
-	int		s1_len;
-	int		s2_len;
+	char	*str;
 	int		i;
+	int		j;
 
-	if (!*s1 || !*s2)
+	if (!s2)
 		return (NULL);
-	i = 0;
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	new = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
-	if (new == 0)
-		return (0);
-	i = 0;
-	while (i < s1_len)
+	str = malloc(sizeof(char) * (ft_strlen(s1) + find_newline(s2) + 1 + 1));
+	if (!str)
+		return (NULL);
+	i = ft_strlen(s1);
+	j = 0;
+	ft_memcpy(str, s1, i);
+	while (*(s2 + j) != '\0')
 	{
-		new[i] = s1[i];
-		i++;
+		*(str + i + j) = *(s2 + j);
+		j++;
+		if (*(s2 + j - 1) == '\n')
+			break ;
 	}
-	while (i < s1_len + s2_len)
-	{
-		new[i] = s2[i - s1_len];
-		i++;
-	}
-	new[i] = 0;
-	return (new);
+	*(str + i + j) = '\0';
+	free((void *)s1);
+	return (str);
 }
 
-char	*ft_strchr(const char *str, int character)
+void		*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	char	find;
-	int		i;
+	size_t			i;
+	unsigned char	*ptr_src;
+	unsigned char	*ptr_dest;
 
-	find = (unsigned int)character;
 	i = 0;
-	while (str[i])
+	ptr_src = (unsigned char *)src;
+	ptr_dest = (unsigned char *)dest;
+	if (ptr_src == ptr_dest)
+		return (NULL);
+	while (i < n)
 	{
-		if (str[i] == find)
-		{
-			return ((char *)str + i);
-		}
+		*(ptr_dest + i) = *(ptr_src + i);
 		i++;
 	}
-	if (str[i] == find)
+	return (dest);
+}
+
+size_t		find_newline(char const *str)
+{
+	size_t	i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i] != '\0')
 	{
-		return ((char *)str + i);
+		if (str[i] == '\n')
+			return (i);
+		i++;
+	}
+	return (i);
+}
+
+int			find_end(char *str)
+{
+	int	i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '\n')
+			return (1);
+		i++;
 	}
 	return (0);
 }

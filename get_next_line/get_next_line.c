@@ -12,58 +12,76 @@
 
 #include "get_next_line.h"
 
-void join_line(char **line, char *buf, int *r)
+char		*ft_free(char **line)
 {
-	static char	*re;
-	char		*temp;
+	free(*line);
+	return (NULL);
+}
 
-	if (re)
+void		ft_cut(char str[], size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (n < BUFFER_SIZE)
 	{
-		*line = ft_strdup(re);
-		free(re);
-		re = NULL;
+		str[i] = str[n];
+		n++;
+		i++;
 	}
-	else if(!*line)
-		*line = ft_strdup("");
-	if (*buf && *r > 0)
+	while (i <BUFFER_SIZE)
 	{
-		temp = *line;
-		*line = ft_strjoin(temp, buf);
-		free(temp);
-	}
-	temp = ft_strchr(*line, '\n');
-	if (temp)
-	{
-		re = ft_strdup(temp + 1);
-		*(temp++) = '\0';
-		*r = 0;
+		str[i] = 0;
+		i++;
 	}
 }
 
-char	*get_next_line(int fd)
+char		*ft_return(char buffer[], char **line, int byte)
 {
-	char	*buf;
-	char	*line;
-	int		r;
-
-	buf = (char *)malloc(BUFFER_SIZE + 1);
-	line = NULL;
-	r = read(fd, buf, 0);
-	if (r > 0 && buf)
+	if (find_newline(buffer) != ft_strlen(buffer))
 	{
-		r = 1;
-		while (r > 0)
+		ft_cut(buffer, find_newline(buffer) + 1);
+		if (find_end(*line) || ft_strlen(*line))
+			return (*line);
+	}
+	else if (find_newline(buffer) == ft_strlen(buffer))
+	{
+		while (byte < BUFFER_SIZE)
 		{
-			r = read(fd, buf, BUFFER_SIZE);
-			buf[r] = 0;
-			join_line(&line, buf, &r);
+			buffer[byte] = 0;
+			byte++;
 		}
+		if (find_end(*line) || ft_strlen(*line))
+			return (*line);
 	}
-	if (line && !*line)
+	return (ft_free(line));
+}
+
+char		*get_next_line(int fd)
+{
+	int				byte;
+	char			*line;
+	static char		buffer[BUFFER_SIZE + 1];
+
+	if (fd < 0 || fd >FOPEN_MAX || BUFFER_SIZE <= 0)
+		return (NULL);
+	line = ft_strjoin(NULL, buffer);
+	if (!line)
+		return (ft_free(&line));
+	if (find_newline(buffer) != ft_strlen(buffer))
+		return (ft_return(buffer, &line, 0));
+	byte = BUFFER_SIZE;
+	while (byte == BUFFER_SIZE && !find_end(buffer))
 	{
-		free(line);
-		line = NULL;
+		byte = read(fd, buffer, BUFFER_SIZE);
+		if (byte < 0)
+			return (ft_free(&line));
+		buffer[byte] = 0;
+		line = ft_strjoin(line, buffer);
+		if (!line)
+			return (ft_free(&line));
+		if (byte == BUFFER_SIZE)
+			byte = find_newline(buffer);
 	}
-	free(buf);
-	return(line);
+	return (ft_return(buffer, &line, 0));
 }

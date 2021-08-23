@@ -15,16 +15,20 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <fcntl.h>
+# include <stdio.h>
 
-#ifdef BUFFER_SIZE
-# define BUFFER_SIZE 5000
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 30
 #endif
 
-int		ft_strlen(const char *str);
-char	*ft_strdup(char *src);
+size_t	ft_strlen(char const *s);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *s, int c);
+int		find_end(char *str);
+size_t	find_newline(char const *str);
+char	*ft_free(char **line);
+void	ft_cut(char str[], size_t n);
+char	*ft_return(char buffer[], char **line, int byte);
 char	*get_next_line(int fd);
 
 #endif
