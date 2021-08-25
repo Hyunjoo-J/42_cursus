@@ -12,13 +12,13 @@
 
 #include "get_next_line.h"
 
-char		*ft_free(char **line)
+char	*ft_free(char **line)
 {
 	free(*line);
 	return (NULL);
 }
 
-void		ft_cut(char str[], size_t n)
+void	ft_cut(char str[], size_t n)
 {
 	size_t	i;
 
@@ -29,14 +29,14 @@ void		ft_cut(char str[], size_t n)
 		n++;
 		i++;
 	}
-	while (i <BUFFER_SIZE)
+	while (i < BUFFER_SIZE)
 	{
 		str[i] = 0;
 		i++;
 	}
 }
 
-char		*ft_return(char buffer[], char **line, int byte)
+char	*ft_return(char buffer[], char **line, int byte)
 {
 	if (find_newline(buffer) != ft_strlen(buffer))
 	{
@@ -57,13 +57,13 @@ char		*ft_return(char buffer[], char **line, int byte)
 	return (ft_free(line));
 }
 
-char		*get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	int				byte;
 	char			*line;
 	static char		buffer[BUFFER_SIZE + 1];
 
-	if (fd < 0 || fd >FOPEN_MAX || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd > FOPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
 	line = ft_strjoin(NULL, buffer);
 	if (!line)

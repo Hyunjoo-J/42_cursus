@@ -17,9 +17,9 @@
 # include <unistd.h>
 # include <stdio.h>
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 30
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 30
+# endif
 
 size_t	ft_strlen(char const *s);
 void	*ft_memcpy(void *dest, const void *src, size_t n);

@@ -22,7 +22,6 @@ size_t	ft_strlen(char const *s)
 	return (i);
 }
 
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
@@ -49,7 +48,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-void		*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t			i;
 	unsigned char	*ptr_src;
@@ -68,7 +67,7 @@ void		*ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-size_t		find_newline(char const *str)
+size_t	find_newline(char const *str)
 {
 	size_t	i;
 
@@ -84,7 +83,7 @@ size_t		find_newline(char const *str)
 	return (i);
 }
 
-int			find_end(char *str)
+int	find_end(char *str)
 {
 	int	i;
 
