@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 18:59:52 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/09/09 19:27:02 by hyjeong          ###   ########.fr       */
+/*   Updated: 2021/09/09 19:59:55 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*get_next_line(int fd)
 	byte = BUFFER_SIZE;
 	while (byte == BUFFER_SIZE && !find_end(buffer[fd]))
 	{
-		byte = read(fd, buffer, BUFFER_SIZE);
+		byte = read(fd, buffer[fd], BUFFER_SIZE);
 		if (byte < 0)
 			return (ft_free(&line));
 		buffer[fd][byte] = 0;
