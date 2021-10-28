@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 23:37:15 by hyunjoo           #+#    #+#             */
-/*   Updated: 2021/10/25 01:26:21 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2021/10/28 04:00:36 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static void	reset_flag(t_flag *flag)
 	flag->zero = 0;
 	flag->wspace = 0;
 	flag->sharp = 0;
-	flag->dig = 0;
-	flag->pres = 0;
-	flag->var_pres = 0;
-	flag->var_width = 0;
+	flag->dig = 0;//너비 플래그가 몇인지
+	flag->pre = 0;//정밀도 플래그가 몇인지
+	flag->var_pre = 0;//정밀도 플래그가 있는지
+	flag->var_width = 0;//너비 플래그가 있는지
 	flag->space = 0;
 	flag->dot = 0;
 }
@@ -38,7 +38,7 @@ static void	set_dot(char *s, t_flag *flag)
 	{
 		flag->dot = 1;
 		while(ft_isdigit(dot[i + 1]))
-			(flag->pres) = (flag->pres) * 10 + (dot[++i] - 48);
+			(flag->pre) = (flag->pre) * 10 + (dot[++i] - 48);
 	}
 	i = 0;
 	while (s[i] && !ft_isdigit(s[i]) && (s[i] != '.'))//dot앞에 있는 플래그들 확인 숫자가 나오거나 dot이 나오면 멈춤
@@ -64,10 +64,10 @@ void	set_flag(char *s, t_flag *flag)
 		else if (*s == ' ' && (flag->plus) == 0)
 			flag->wspace = 0;
 		else if (*s == '*' && *(s - 1) == '.')
-			flag->var_pres = 1;
+			flag->var_pre = 1;
 		else if ((*s == '*') && (!(flag->dig)))
 			flag->var_width = 1;
-		else if ((*s == '0') && (!(flag->dig)) && (!(flag->pres)))
+		else if ((*s == '0') && (!(flag->dig)) && (!(flag->pre)))
 			flag->zero = 1;
 		s++;
 	}

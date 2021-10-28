@@ -6,11 +6,37 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 21:49:58 by hyunjoo           #+#    #+#             */
-/*   Updated: 2021/10/25 01:26:24 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2021/10/28 04:03:29 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	write_con(t_flag *f, va_list *ap, int *len, char s)
+{
+	if (f->var_width == 1)
+		(f->dig) = va_arg(*ap, int);
+	if (f->var_pre == 1)
+		(f->pre) = va_arg(*ap, int);
+	if (s == 's')
+		write_s();
+	else if (s == 'c')
+		write_c();
+	else if (s == 'p')
+		write_p();
+	else if (s == 'd')
+		wirte_d();
+	else if (s == 'i')
+		write_i();
+	else if (s == 'u')
+		write_u();
+	else if (s == 'x')
+		write_x();
+	else if (s == 'X')
+		write_X();
+	else
+	return (0);
+}
 
 int	ft_format(const char *s, int i, int *len, va_list *ap)
 {
@@ -29,7 +55,9 @@ int	ft_format(const char *s, int i, int *len, va_list *ap)
 	while (j--)
 		flag[j] = s[j];
 	i = i + j + 1; //위의 예시 그대로에서 d까지 읽고 그 다음 문자를 확인하기 위함
-	set_flag(flag, &f);
+	set_flag(flag, &f);//기본적인 플래그 세팅
+	write_con(&f, &ap, &len, s);//함수 이름
+	//그 다음 출력
 	return (i);
 }
 
