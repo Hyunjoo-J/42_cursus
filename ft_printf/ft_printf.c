@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 21:49:58 by hyunjoo           #+#    #+#             */
-/*   Updated: 2021/10/28 04:03:29 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2021/10/30 03:09:30 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,20 @@ int	write_con(t_flag *f, va_list *ap, int *len, char s)
 		(f->dig) = va_arg(*ap, int);
 	if (f->var_pre == 1)
 		(f->pre) = va_arg(*ap, int);
-	if (s == 's')
-		write_s();
+	else if (s == 's')
+		write_s(va_arg(*ap, char *), &f, &len);
 	else if (s == 'c')
-		write_c();
+		return (write_c(va_arg(*ap, int), &f, &len));
 	else if (s == 'p')
-		write_p();
-	else if (s == 'd')
-		wirte_d();
-	else if (s == 'i')
-		write_i();
+		write_p(((unsigned long)va_arg(*ap, void *)), &f, &len);
+	else if (s == 'd' || s == 'i')
+		wirte_d(va_arg(*ap, int), &f, &len);
 	else if (s == 'u')
-		write_u();
-	else if (s == 'x')
-		write_x();
-	else if (s == 'X')
-		write_X();
+		write_u(va_arg(*ap, unsigned int), &f, &len);
+	else if (s == 'x' || s == 'X')
+		write_x(va_arg(*ap, unsigned int), &f, &len);
 	else
+		return (write_c(s, &f, &len));
 	return (0);
 }
 

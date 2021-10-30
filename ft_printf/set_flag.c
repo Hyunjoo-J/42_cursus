@@ -6,12 +6,26 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 23:37:15 by hyunjoo           #+#    #+#             */
-/*   Updated: 2021/10/28 04:00:36 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2021/10/30 21:04:59 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 //여기서는 flag값들을 세팅하는데 그침
+void	ft_bchar(void *dest, char c, size_t len)
+{
+	size_t	i;
+	unsigned char	*ptr;
+
+	i = 0;
+	ptr = dest;
+	while (i < len)
+	{
+		ptr[i] = c;
+		i++;
+	}
+}
+
 static void	reset_flag(t_flag *flag)
 {
 	flag->minus = 0;
