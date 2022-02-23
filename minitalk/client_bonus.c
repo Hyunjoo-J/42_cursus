@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 02:44:58 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/02/24 02:46:02 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/02/24 02:59:14 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int main(int argc, char **argv)
 			usleep(50);
 		}
 		argv[2]++;
+		if (len == 0)
+			ft_putstr_fd("Message arrived successfully!\n", 1);
 	}
 	return (0);
 }
