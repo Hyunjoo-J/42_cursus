@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.h                                           :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 21:49:05 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/02/23 05:20:20 by hyunjoo          ###   ########.fr       */
+/*   Created: 2022/02/23 19:15:46 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/02/23 19:17:48 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLIENT_H
-# define CLIENT_H
+#ifndef MINITALK_H
+# define MINITALK_H
 # include <unistd.h>
 # include <signal.h>
 # include <stdlib.h>

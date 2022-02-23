@@ -5,14 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 21:30:53 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/02/23 05:20:16 by hyunjoo          ###   ########.fr       */
+/*   Created: 2022/02/23 19:17:04 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/02/23 19:17:47 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+
 #include "server.h"
 
-void	handler()
+void	handler(int signo, siginfo_t *info, void *context)
 {
 }
 
