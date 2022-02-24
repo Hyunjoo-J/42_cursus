@@ -6,12 +6,12 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 19:15:46 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/02/24 21:04:17 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/02/25 03:27:16 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef SERVER_H
+# define SERVER_H
 # include <unistd.h>
 # include <signal.h>
 # include <sys/types.h>

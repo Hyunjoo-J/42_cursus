@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 19:17:04 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/02/24 21:03:04 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/02/25 03:25:41 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	handler(int signo, siginfo_t *info, void *context)
 		g_sig.bit = 0b10000000;
 		g_sig.symbol = 0;
 	}
-	usleep(50);
+	usleep(10);
 	kill(info->si_pid, SIGUSR1);
 }
 
