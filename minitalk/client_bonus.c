@@ -6,16 +6,15 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 02:44:58 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/02/24 20:31:12 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/02/25 03:26:16 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "client_bonus.h"
 
 void	handler(int num)
 {
 	(void) num;
-	g_sig.bit >>= 1;
 }
 
 struct sigaction	init(unsigned long int *len, char **argv)
@@ -26,44 +25,47 @@ struct sigaction	init(unsigned long int *len, char **argv)
 	sigemptyset(&act.sa_mask);
 	act.sa_flags = 0;
 	act.sa_handler = &handler;
-	g_sig.pid = ft_atoi(argv[1]);
 	return (act);
 }
 
-void	error_check(int argc, char **argv)
+int	error_check(int argc)
 {
 	if (argc != 3)
 	{
 		ft_putstr_fd("usage : ./client <server pid> \"<message>\"\n", 1);
 		exit (0);
 	}
-	if (99 > ft_atoi(argv[1]) && ft_atoi(argv[1]) > 99998)
-	{
-		ft_putstr_fd("Wrong pid range!", 1);
-		exit (0);
-	}
-	return ;
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	struct sigaction	act;
 	unsigned long int	len;
+	unsigned int		bit;
+	int					i;
 
-	error_check(argc, (void *)&argv);
 	act = init(&len, argv);
 	sigaction(SIGUSR1, &act, 0);
+	len = ft_strlen(argv[2]) + 1;
+	error_check(argc);
 	while (len--)
 	{
-		g_sig.bit = 0b10000000;
-		while (g_sig.bit)
+		i = 0;
+		bit = 0b10000000;
+		while (i++ < 8)
 		{
-			if (*argv[2] & g_sig.bit)
-				kill(g_sig.pid, SIGUSR1);
+			if (*argv[2] & bit)
+			{
+				kill(ft_atoi(argv[1]), SIGUSR1);
+			}
 			else
-				kill(g_sig.pid, SIGUSR2);
+			{
+				kill(ft_atoi(argv[1]), SIGUSR2);
+			}
+			bit >>= 1;
 			pause();
-			usleep(50);
+			usleep(10);
 		}
 		argv[2]++;
 		if (len == 0)
