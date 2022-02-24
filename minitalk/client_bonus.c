@@ -6,11 +6,11 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 02:44:58 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/02/25 03:26:16 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/02/25 04:12:27 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "client_bonus.h"
+#include "client.h"
 
 void	handler(int num)
 {
@@ -38,6 +38,14 @@ int	error_check(int argc)
 	return (0);
 }
 
+void send(char *argv, unsigned int bit, int pid)
+{
+	if (*argv & bit)
+		kill(pid, SIGUSR1);
+	else
+		kill(pid, SIGUSR2);
+}
+
 int	main(int argc, char **argv)
 {
 	struct sigaction	act;
@@ -55,14 +63,7 @@ int	main(int argc, char **argv)
 		bit = 0b10000000;
 		while (i++ < 8)
 		{
-			if (*argv[2] & bit)
-			{
-				kill(ft_atoi(argv[1]), SIGUSR1);
-			}
-			else
-			{
-				kill(ft_atoi(argv[1]), SIGUSR2);
-			}
+			send(argv[2], bit, ft_atoi(argv[1]));
 			bit >>= 1;
 			pause();
 			usleep(10);
