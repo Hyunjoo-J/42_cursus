@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 02:44:58 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/02/25 04:12:27 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/02/25 04:15:32 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	error_check(int argc)
 	return (0);
 }
 
-void send(char *argv, unsigned int bit, int pid)
+void	send(char *argv, unsigned int bit, int pid)
 {
 	if (*argv & bit)
 		kill(pid, SIGUSR1);

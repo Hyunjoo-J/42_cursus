@@ -6,12 +6,12 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 02:45:49 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/02/25 03:27:01 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/02/25 04:17:10 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SEVER_BONUS_H
-# define SEVER_BONUS_H
+#ifndef SERVER_BONUS_H
+# define SERVER_BONUS_H
 # include <unistd.h>
 # include <signal.h>
 # include <sys/types.h>
