@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 02:45:00 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/02/24 02:46:10 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/02/24 20:18:25 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	handler(int signo, siginfo_t *info, void *context)
 	kill(info->si_pid, SIGUSR1);
 }
 
-int main()
+int	main(void)
 {
 	struct sigaction	act;
 
@@ -48,6 +48,6 @@ int main()
 	ft_putstr_fd("Server pid : ", 1);
 	ft_putnbr_fd(getpid(), 1);
 	write(1, "\n", 1);
-	while(1)
+	while (1)
 		pause();
 }

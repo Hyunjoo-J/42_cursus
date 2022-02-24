@@ -6,11 +6,11 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 19:17:04 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/02/24 02:39:22 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/02/24 21:03:04 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "server.h"
 
 void	handler(int signo, siginfo_t *info, void *context)
 {
@@ -28,15 +28,16 @@ void	handler(int signo, siginfo_t *info, void *context)
 		g_sig.symbol = 0;
 	}
 	usleep(50);
-	kill(info->si_pid, SIGUSR1);//si_pid : 시그널을 보낸 프로세스의 pid, 즉, client의 pid, 노션 추가 정리 필요
+	kill(info->si_pid, SIGUSR1);
 }
 
-int main()
+int	main(void)
 {
 	struct sigaction	act;
 
 	g_sig.bit = 0b10000000;
 	g_sig.symbol = 0;
+	g_sig.pid = getpid();
 	sigemptyset(&act.sa_mask);
 	act.sa_flags = SA_SIGINFO;
 	act.sa_sigaction = &handler;
@@ -46,8 +47,8 @@ int main()
 		return (0);
 	}
 	ft_putstr_fd("Server pid : ", 1);
-	ft_putnbr_fd(getpid(), 1);
+	ft_putnbr_fd(g_sig.pid, 1);
 	write(1, "\n", 1);
-	while(1)
+	while (1)
 		pause();
 }

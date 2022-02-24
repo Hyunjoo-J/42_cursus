@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 02:44:58 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/02/24 02:59:14 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/02/24 20:31:12 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,27 @@ struct sigaction	init(unsigned long int *len, char **argv)
 	return (act);
 }
 
-int main(int argc, char **argv)
+void	error_check(int argc, char **argv)
+{
+	if (argc != 3)
+	{
+		ft_putstr_fd("usage : ./client <server pid> \"<message>\"\n", 1);
+		exit (0);
+	}
+	if (99 > ft_atoi(argv[1]) && ft_atoi(argv[1]) > 99998)
+	{
+		ft_putstr_fd("Wrong pid range!", 1);
+		exit (0);
+	}
+	return ;
+}
+
+int	main(int argc, char **argv)
 {
 	struct sigaction	act;
 	unsigned long int	len;
 
-	if (argc != 3)
-	{
-		ft_putstr_fd("usage : ./client <server pid> <message>\n", 1);
-		return (0);
-	}
-	else if (99 > ft_atoi(argv[1]) && ft_atoi(argv[1]) > 99998)
-	{
-		ft_putstr_fd("Wrong pid range!", 1);
-		return(0);
-	}
+	error_check(argc, (void *)&argv);
 	act = init(&len, argv);
 	sigaction(SIGUSR1, &act, 0);
 	while (len--)

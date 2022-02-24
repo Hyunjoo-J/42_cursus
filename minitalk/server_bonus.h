@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   server_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 15:16:36 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/02/24 20:03:45 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/02/24 02:45:49 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/02/24 21:05:11 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef MINITALK_BONUS_H
+# define MINITALK_BONUS_H
+# include <unistd.h>
+# include <signal.h>
+# include <sys/types.h>
+# include <stdlib.h>
+# include "libft/libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+typedef struct s_sig
 {
-	unsigned char	*tmp;
-	unsigned char	*str;
-	size_t			i;
+	char			symbol;
+	unsigned int	bit;
+	pid_t			pid;
+}	t_sig;
+t_sig	g_sig;
 
-	tmp = (unsigned char *)dst;
-	str = (unsigned char *)src;
-	i = 0;
-	while (i < n)
-	{
-		tmp[i] = str[i];
-		if (str[i] == (unsigned char)c)
-			return ((void *)dst + i + 1);
-		i++;
-	}
-	return (0);
-}
+#endif
