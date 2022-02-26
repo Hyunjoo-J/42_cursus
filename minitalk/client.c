@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 19:17:33 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/02/25 04:15:15 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/02/26 22:32:56 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ struct sigaction	init(unsigned long int *len, char **argv)
 {
 	struct sigaction	act;
 
-	*len = (ft_strlen(argv[2]) + 1);
 	sigemptyset(&act.sa_mask);
 	act.sa_flags = 0;
 	act.sa_handler = &handler;
@@ -55,8 +54,8 @@ int	main(int argc, char **argv)
 
 	act = init(&len, argv);
 	sigaction(SIGUSR1, &act, 0);
-	len = ft_strlen(argv[2]) + 1;
 	error_check(argc);
+	len = ft_strlen(argv[2]) + 1;
 	while (len--)
 	{
 		i = 0;
