@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 17:14:36 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/18 17:14:42 by hyjeong          ###   ########.fr       */
+/*   Created: 2021/07/06 18:34:51 by hyjeong           #+#    #+#             */
+/*   Updated: 2021/07/06 18:35:02 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	draw_map()
+t_list	*ft_lstlast(t_list *lst)
 {
-
-}
-
-int	draw_init(t_scene *scene)
-{
-
-}
-
-int	draw(t_scene *scene)
-{
-
+	if (!lst)
+		return (0);
+	while (lst->next != 0)
+		lst = lst->next;
+	return (lst);
 }

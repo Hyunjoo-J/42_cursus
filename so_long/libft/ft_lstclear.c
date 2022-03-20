@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 17:14:36 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/18 17:14:42 by hyjeong          ###   ########.fr       */
+/*   Created: 2021/07/06 18:35:36 by hyjeong           #+#    #+#             */
+/*   Updated: 2021/07/06 18:35:51 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	draw_map()
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
+	t_list	*tmp;
 
-}
-
-int	draw_init(t_scene *scene)
-{
-
-}
-
-int	draw(t_scene *scene)
-{
-
+	if (!lst || !del)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = tmp;
+	}
 }

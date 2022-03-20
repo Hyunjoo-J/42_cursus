@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 17:14:36 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/18 17:14:42 by hyjeong          ###   ########.fr       */
+/*   Created: 2021/07/06 18:04:19 by hyjeong           #+#    #+#             */
+/*   Updated: 2021/07/06 18:05:34 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	draw_map()
+void	ft_putstr_fd(char *s, int fd)
 {
-
-}
-
-int	draw_init(t_scene *scene)
-{
-
-}
-
-int	draw(t_scene *scene)
-{
-
+	if (!s || fd < 0)
+		return ;
+	write(fd, s, ft_strlen(s));
 }

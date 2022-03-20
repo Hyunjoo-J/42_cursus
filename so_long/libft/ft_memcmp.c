@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 17:14:36 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/18 17:14:42 by hyjeong          ###   ########.fr       */
+/*   Created: 2021/06/30 15:28:50 by hyjeong           #+#    #+#             */
+/*   Updated: 2021/07/06 17:41:02 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	draw_map()
+int	ft_memcmp(const void *s1, const void *s2, size_t num)
 {
+	unsigned char	*temp_s1;
+	unsigned char	*temp_s2;
+	unsigned int	i;
 
-}
-
-int	draw_init(t_scene *scene)
-{
-
-}
-
-int	draw(t_scene *scene)
-{
-
+	temp_s1 = (unsigned char *)s1;
+	temp_s2 = (unsigned char *)s2;
+	i = 0;
+	while (i < num)
+	{
+		if (temp_s1[i] != temp_s2[i])
+			return (temp_s1[i] - temp_s2[i]);
+		i++;
+	}
+	return (0);
 }

@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 17:14:36 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/18 17:14:42 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/18 18:25:12 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/18 21:26:43 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	draw_map()
+int check_ext(char *file, char *ext)//지도 형식이 맞게 들어 왔는지 확인
 {
+	int	i;
 
-}
-
-int	draw_init(t_scene *scene)
-{
-
-}
-
-int	draw(t_scene *scene)
-{
-
+	i = 0;
+	while (file[i] != 0)//길이 재서 뒤에서 3글자만 확인
+		i++;
+	if (i > 3 && !ft_strncmp(&(file[i - 4]), ext, 4))
+		return (0);
+	else
+		return (-1);
 }

@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/18 17:14:36 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/18 17:14:42 by hyjeong          ###   ########.fr       */
+/*   Created: 2021/06/21 14:36:40 by hyjeong           #+#    #+#             */
+/*   Updated: 2021/07/07 17:24:34 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	draw_map()
+char	*ft_strchr(const char *str, int character)
 {
+	char	find;
+	int		i;
 
-}
-
-int	draw_init(t_scene *scene)
-{
-
-}
-
-int	draw(t_scene *scene)
-{
-
+	find = (unsigned int)character;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == find)
+		{
+			return ((char *)str + i);
+		}
+		i++;
+	}
+	if (str[i] == find)
+	{
+		return ((char *)str + i);
+	}
+	return (0);
 }
