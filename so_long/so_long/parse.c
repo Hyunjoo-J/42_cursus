@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 17:45:01 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/20 22:00:20 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/03/22 19:03:34 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,45 @@ void	fill_map(t_scene *scene, char *line)
 		scene->map[scene->map_height - 1][i] = line[i];
 }
 
-int	update_map(t_scene *scene, int i, int j, char typ)
+int	update_scene(t_scene *scene, int i, int j, char typ)
 {
 	if (typ == 'P' && scene->pos_x == -1)
 	{
+		scene->pos_y = i;
+		scene->pos_x = j;
+		scene->map[i][j] = '0';
 	}
+	else if (typ == 'C')
+		scene->num_item++;
+	else if (typ == 'E')
+		scene->num_exit++;
+	else if (typ != '1' && typ != '0')
+		return (-1)
+	return (0);
 }
 
 int	check_map(t_scene *scene)
 {
+	int i;
+	int j;
 
+	i = -1;
+	while (++i < scene->map_height)
+	{
+		j = -1;
+		while (++j < scene->map_width)
+		{
+			if (((i == 0 || i == (scene->map_height - 1) || j == 0 ||\
+			j == (scene->map_width - 1)) && scene->map[i][j] != '1') ||\
+			(scene->map[i][j] == 'P' && scene->pos_x != -1))
+				return (-1);
+			if (update_scene(scene, i, j, scene->map[i][j]))
+				return (-1)
+		}
+	}
+	if (scene->num_item == 0|| scene->num_exit == 0)
+		return (-1);
+	return (0);
 }
 
 int	parse_map(char *file, t_scene *scene)

@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:14:47 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/18 18:26:31 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/03/22 21:43:56 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,19 @@ int	init_scene(t_scene *scene)
 
 int	init_mlx(t_scene *scene)
 {
-	if (scene->mlx = mlx_init() == 0)
+	if ((scene->mlx = mlx_init()) == 0)
 		return (-1);
-	if (scene->mlx_win = mlx_new_window)
+	if ((scene->mlx_win = mlx_new_window(scene->mlx,\
+	scene->map_width * TS, scene->map_height * TS, "SO LONG")) == 0)
+		return (-1);
+	if ((scene->img.img = mlx_new_image(scene->mlx,\
+	scene->map_width * TS, scene->map_height * TS)) == 0)
+		return (-1);
+	scene->img.data = (int *)mlx_get_data_addr(scene->img.img,\
+	&scene->img.bpp, &scene->img.size_l, &scene->img.endian);
+	if (fill_image(scene))
+		retrun (-1);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -45,6 +55,6 @@ int	main(int argc, char **argv)
 		ft_putendl_fd("Error : mlx initialization failed", 1);
 	else
 	{
-		draw();
+		draw_init(&scene);
 	}
 }

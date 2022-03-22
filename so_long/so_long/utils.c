@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:25:12 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/18 21:26:43 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/03/22 22:12:15 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,32 @@ int check_ext(char *file, char *ext)//지도 형식이 맞게 들어 왔는지 �
 		return (0);
 	else
 		return (-1);
+}
+
+int	initialize_images(t_scene *scene)
+{
+	int	i;
+
+	scene->wall_img.img = 0;
+	scene->item_img.img = 0;
+	scene->exit_img.img = 0;
+	scene->floor_img.img = 0;
+	i = -1;
+	while (++i < 6)
+	{
+		scene->player_img[i].img = 0;
+		scene->enemy_img[i].img = 0;
+	}
+	return (0);
+}
+
+int	fill_image(t_scene *scene)
+{
+	int	i;
+	int	j;
+	char	p_file[14];
+	char	e_file[14];
+
+	initialize_images(scene);
+	ts = TS;
 }
