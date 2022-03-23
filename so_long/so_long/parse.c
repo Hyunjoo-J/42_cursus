@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 17:45:01 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/23 15:48:43 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/03/23 19:21:02 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	check_map(t_scene *scene)
 			(scene->map[i][j] == 'P' && scene->pos_x != -1))
 				return (-1);
 			if (update_scene(scene, i, j, scene->map[i][j]))
-				return (-1)
+				return (-1);
 		}
 	}
 	if (scene->num_item == 0|| scene->num_exit == 0)
@@ -94,6 +94,7 @@ int	parse_map(char *file, t_scene *scene)
 {
 	int	fd;
 	int	ret;
+	char	*line;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)

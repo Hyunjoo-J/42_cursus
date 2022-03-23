@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:14:49 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/23 15:48:20 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/03/23 19:16:39 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,21 @@ typedef struct	s_scene
 	t_img	exit_img;
 	t_img	floor_img;
 }	t_scene;
+
+int	get_next_line(int fd, char **line);
+
+int check_ext(char *file, char *ext);
+int	malloc_error(char **list, int i);
+int	fill_image(t_scene *scene);
+
+int	parse_map(char *file, t_scene *scene);
+
+int	draw(t_scene *scene);
+int	draw_init(t_scene *scene);
+
+int	close_scene(t_scene *scene);
+int	press_key(int keycode, t_scene *scene);
+
+void	destroy_scene(t_scene *scene);
+
 #endif
