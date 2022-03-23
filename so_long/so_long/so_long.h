@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:14:49 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/18 21:28:18 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/03/23 15:48:20 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 # define TS 64
 
-typedef sturct	s_img
+typedef struct	s_img
 {
 	void	*img;
 	int	*data;
@@ -37,7 +37,7 @@ typedef sturct	s_img
 	int endian;
 }	t_img;
 
-typedef sturct	s_scene
+typedef struct	s_scene
 {
 	int	map_width;
 	int	map_height;

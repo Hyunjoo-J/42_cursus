@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 17:45:01 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/22 19:03:34 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/03/23 15:48:43 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	fill_map(t_scene *scene, char *line)
 	int	i;
 
 	i = -1;
-	while (++i < scene-<map_width)
+	while (++i < scene->map_width)
 		scene->map[scene->map_height - 1][i] = line[i];
 }
 
@@ -62,7 +62,7 @@ int	update_scene(t_scene *scene, int i, int j, char typ)
 	else if (typ == 'E')
 		scene->num_exit++;
 	else if (typ != '1' && typ != '0')
-		return (-1)
+		return (-1);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 18:25:12 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/22 22:12:58 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/03/23 16:25:07 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ int check_ext(char *file, char *ext)//지도 형식이 맞게 들어 왔는지 �
 		return (0);
 	else
 		return (-1);
+}
+
+int	malloc_error(char **list, int i)
+{
+	while (--i >= 0)
+		free(list[i]);
+	free(list);
+	return (-1);
 }
 
 int	initialize_images(t_scene *scene)
@@ -45,10 +53,28 @@ int	initialize_images(t_scene *scene)
 int	fill_image(t_scene *scene)
 {
 	int	i;
-	int	j;
+	int	ts;
 	char	p_file[14];
 	char	e_file[14];
 
 	initialize_images(scene);
 	ts = TS;
+	scene->wall_img.img = mlx_xpm_file_to_image(scene->mlx, WP, &ts, &ts);
+	scene->item_img.img = mlx_xpm_file_to_image(scene->mlx, IP, &ts, &ts);
+	scene->exit_img.img = mlx_xpm_file_to_image(scene->mlx, EP, &ts, &ts);
+	scene->floor_img.img = mlx_xpm_file_to_image(scene->mlx, FP, &ts, &ts);
+	if (!scene->wall_img.img || !scene->item_img.img ||\
+	!scene->exit_img.img || !scene->floor_img.img)
+		return (-1);
+	i = -1;
+	ft_strlcpy(p_file, "asset/p/.xpm", 14);
+	while (++i < 6 && (++p_file[8]) < '6' && (++e_file[8]) < '6')
+	{
+		scene->player_img[i].img = mlx_xpm_file_to_image(scene->mlx,\
+		p_file, &ts, &ts);
+		if (!scene->player_img[i].img)
+			return (-1);
+	}
+	get_img_addr(scene);
+	return (0);
 }

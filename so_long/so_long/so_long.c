@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:14:47 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/22 21:43:56 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/03/23 17:39:02 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,35 @@ int	init_mlx(t_scene *scene)
 	return (0);
 }
 
+void	destroy_scene(t_scene *scene)
+{
+	int	i;
+
+	i = -1;
+	while (scene->map != 0 && ++i < scene->map_height)
+		free(scene->map[i]);
+	if (scene->map != 0)
+		free(scene->map);
+	if (scene->mlx != 0 && scene->mlx_win != 0)
+		mlx_destroy_window(scene->mlx, scene->mlx_win);
+	if (scene->mlx != 0 && scene->wall_img.img != 0)
+		mlx_destroy_image(scene->mlx, scene->wall_img.img);
+	if (scene->mlx != 0 && scene->item_img.img != 0)
+		mlx_destroy_image(scene->mlx, scene->item_img.img);
+	if (scene->mlx != 0 && scene->exit_img.img != 0)
+		mlx_destroy_image(scene->mlx, scene->exit_img.img);
+	if (scene->mlx != 0 && scene->floor_img.img != 0)
+		mlx_destroy_image(scene->mlx, scene->floor_img.img);
+	i = -1;
+	while (scene->mlx != 0 && ++i < 6)
+	{
+		if (scene->player_img[i].img != 0)
+			mlx_destroy_image(scene->mlx, scene->player_img[i].img);
+		if (scene->enemy_img[i].img != 0)
+			mlx_destroy_image(scene->mlx, scene->enemy_img[i].img);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_scene scene;
@@ -56,5 +85,11 @@ int	main(int argc, char **argv)
 	else
 	{
 		draw_init(&scene);
+		mlx_hook(scene.mlx_win, 2, 1L << 0, press_key, &scene);
+		mlx_loop_hook(scene.mlx, &draw, &scene);
+		mlx_hook(scene.mlx_win, 17, 1L << 5, close_scene, &scene);
+		mlx_look(scene.mlx);
 	}
+	destroy_scene(&scene);
+	exit(0);
 }

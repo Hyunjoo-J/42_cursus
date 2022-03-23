@@ -70,6 +70,16 @@ int	ft_return_until_eof(char **mem, char **line)
 	return (0);
 }
 
+void	ft_util(char *buf, int cur_read, char *mem, char *temp)
+{
+	buf[cur_read] = '\0';
+	temp = mem;
+	mem = ft_strjoin(mem, buf);
+	if (temp != 0)
+		free(temp);
+	return ;
+}
+
 int	get_next_line(int fd, char **line)
 {
 	static char		*mem;
@@ -80,19 +90,19 @@ int	get_next_line(int fd, char **line)
 
 	if (fd < 0 || line == 0 || BUFFER_SIZE <= 0)
 		return (-1);
-	if (mem != 0 && (new_idx = ft_newline(mem)) > 0)
+	new_idx = ft_newline(mem);
+	if (mem != 0 && new_idx > 0)
 		return (ft_return_until_new(&(mem), line, (unsigned int)new_idx));
-	while ((cur_read = read(fd, buf, BUFFER_SIZE)) >= 0)
+	cur_read = read(fd, buf, BUFFER_SIZE);
+	while (cur_read >= 0)
 	{
-		buf[cur_read] = '\0';
-		temp = mem;
-		mem = ft_strjoin(mem, buf);
-		if (temp != 0)
-			free(temp);
-		if (mem != 0 && (new_idx = ft_newline(buf)) > 0)
+		ft_util(&buf, cur_read, &mem, &temp);
+		new_idx = ft_newline(buf);
+		if (mem != 0 && new_idx > 0)
 			return (ft_return_until_new(&(mem), line, (unsigned int)new_idx));
 		if (mem == 0 || cur_read == 0)
 			break ;
+		cur_read = read(fd, buf, BUFFER_SIZE);
 	}
 	if (cur_read < 0 || mem == 0)
 		return (-1);
