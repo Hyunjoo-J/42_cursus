@@ -6,11 +6,11 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:14:47 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/23 17:39:02 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/03/23 20:51:31 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 int	init_scene(t_scene *scene)
 {
@@ -39,7 +39,7 @@ int	init_mlx(t_scene *scene)
 	scene->img.data = (int *)mlx_get_data_addr(scene->img.img,\
 	&scene->img.bpp, &scene->img.size_l, &scene->img.endian);
 	if (fill_image(scene))
-		retrun (-1);
+		return (-1);
 	return (0);
 }
 
@@ -78,7 +78,7 @@ int	main(int argc, char **argv)
 
 	if (init_scene(&scene))
 		ft_putendl_fd("Error : initialization failed", 1);
-	else if (argc != 2 || check_ext(argv[1], "ber") || parse_map(argv[1], &scene))
+	else if ((argc != 2) || check_ext(argv[1], ".ber") || parse_map(argv[1], &scene))
 		ft_putendl_fd("Error : invalid input", 1);
 	else if (init_mlx(&scene))
 		ft_putendl_fd("Error : mlx initialization failed", 1);
@@ -88,7 +88,7 @@ int	main(int argc, char **argv)
 		mlx_hook(scene.mlx_win, 2, 1L << 0, press_key, &scene);
 		mlx_loop_hook(scene.mlx, &draw, &scene);
 		mlx_hook(scene.mlx_win, 17, 1L << 5, close_scene, &scene);
-		mlx_look(scene.mlx);
+		mlx_loop(scene.mlx);
 	}
 	destroy_scene(&scene);
 	exit(0);

@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:14:49 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/23 19:16:39 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/03/23 21:18:49 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 
 # define BUFFER_SIZE 32
 
-# define WP "asset/wall.xpm"
-# define IP "asset/item.xpm"
-# define EP "asset/exit.xpm"
-# define FP "asset/fllor.xpm"
+# define WP "assets/wall.xpm"
+# define IP "assets/item.xpm"
+# define EP "assets/exit.xpm"
+# define FP "assets/floor.xpm"
 
 # define TS 64
 
@@ -57,6 +57,15 @@ typedef struct	s_scene
 	t_img	exit_img;
 	t_img	floor_img;
 }	t_scene;
+
+typedef struct s_gnl
+{
+	char			*temp;
+	char			buf[BUFFER_SIZE + 1];
+	int				cur_read;
+	int				new_idx;
+}	t_gnl;
+
 
 int	get_next_line(int fd, char **line);
 

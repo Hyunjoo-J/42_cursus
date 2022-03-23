@@ -6,11 +6,11 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 17:14:36 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/23 17:43:56 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/03/23 20:52:15 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 void	draw_tile(t_scene *scene, int y, int x, t_img data)
 {

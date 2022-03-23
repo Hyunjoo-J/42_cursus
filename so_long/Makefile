@@ -6,24 +6,24 @@
 #    By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 19:23:44 by hyjeong           #+#    #+#              #
-#    Updated: 2022/03/23 19:47:51 by hyjeong          ###   ########.fr        #
+#    Updated: 2022/03/23 20:07:13 by hyjeong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = so_long
+NAME=so_long
 
-IDIR = include/
+IDIR=include/
 
-SDIR = src/
-SRCS = so_long.c draw.c get_next_line.c key.c parse.c utils.c
-SRCS_DIR = $(addprefix $(SDIR), $(SRCS))
+SDIR=src/
+SRCS=so_long.c draw.c get_next_line.c key.c parse.c util.c
+SRCS_DIR=$(addprefix $(SDIR), $(SRCS))
 
-OBJS = $(SRCS_DIR:.c=.o)
+OBJS=$(SRCS_DIR:.c=.o)
 
-LIBFT = libft.a
-LIBMLX = libmlx.a
+LIBFT=libft.a
+LIBMLX=libmlx.a
 
-FLAGS = I$(IDIR) -Wall -Wextra -Werror
+FLAGS=-I$(IDIR) -Wall -Wextra -Werror
 
 all: $(NAME)
 

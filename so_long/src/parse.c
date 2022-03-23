@@ -6,16 +6,16 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 17:45:01 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/23 19:21:02 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/03/23 20:52:17 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
-int	increase_map(t_scene *scene)
+int		increase_map(t_scene *scene)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	**temp;
 
 	temp = malloc(sizeof(char *) * (scene->map_height + 1));
@@ -37,7 +37,7 @@ int	increase_map(t_scene *scene)
 	free(scene->map);
 	scene->map = temp;
 	scene->map_height += 1;
-	retrun (0);
+	return (0);
 }
 
 void	fill_map(t_scene *scene, char *line)
@@ -49,7 +49,7 @@ void	fill_map(t_scene *scene, char *line)
 		scene->map[scene->map_height - 1][i] = line[i];
 }
 
-int	update_scene(t_scene *scene, int i, int j, char typ)
+int		update_scene(t_scene *scene, int i, int j, char typ)
 {
 	if (typ == 'P' && scene->pos_x == -1)
 	{
@@ -66,10 +66,10 @@ int	update_scene(t_scene *scene, int i, int j, char typ)
 	return (0);
 }
 
-int	check_map(t_scene *scene)
+int		check_map(t_scene *scene)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (++i < scene->map_height)
@@ -85,19 +85,18 @@ int	check_map(t_scene *scene)
 				return (-1);
 		}
 	}
-	if (scene->num_item == 0|| scene->num_exit == 0)
+	if (scene->num_item == 0 || scene->num_exit == 0)
 		return (-1);
 	return (0);
 }
 
-int	parse_map(char *file, t_scene *scene)
+int		parse_map(char *file, t_scene *scene)
 {
-	int	fd;
-	int	ret;
+	int		fd;
+	int		ret;
 	char	*line;
 
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
+	if ((fd = open(file, O_RDONLY)) < 0)
 		return (-1);
 	while ((ret = get_next_line(fd, &line)) >= 0)
 	{
@@ -117,3 +116,4 @@ int	parse_map(char *file, t_scene *scene)
 		return (-1);
 	return (0);
 }
+

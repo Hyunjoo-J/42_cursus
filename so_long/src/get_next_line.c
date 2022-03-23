@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 int	ft_newline(char *buf)
 {
@@ -70,41 +70,33 @@ int	ft_return_until_eof(char **mem, char **line)
 	return (0);
 }
 
-void	ft_util(char *buf, int cur_read, char *mem, char *temp)
-{
-	buf[cur_read] = '\0';
-	temp = mem;
-	mem = ft_strjoin(mem, buf);
-	if (temp != 0)
-		free(temp);
-	return ;
-}
-
 int	get_next_line(int fd, char **line)
 {
 	static char		*mem;
-	char			*temp;
-	char			buf[BUFFER_SIZE + 1];
-	int				cur_read;
-	int				new_idx;
+	t_gnl	gnl;
 
 	if (fd < 0 || line == 0 || BUFFER_SIZE <= 0)
 		return (-1);
-	new_idx = ft_newline(mem);
-	if (mem != 0 && new_idx > 0)
-		return (ft_return_until_new(&(mem), line, (unsigned int)new_idx));
-	cur_read = read(fd, buf, BUFFER_SIZE);
-	while (cur_read >= 0)
+	gnl.new_idx = ft_newline(mem);
+	gnl.temp = 0;
+	if (mem != 0 && gnl.new_idx > 0)
+		return (ft_return_until_new(&(mem), line, (unsigned int)gnl.new_idx));
+	gnl.cur_read = read(fd, gnl.buf, BUFFER_SIZE);
+	while (gnl.cur_read >= 0)
 	{
-		ft_util(&buf, cur_read, &mem, &temp);
-		new_idx = ft_newline(buf);
-		if (mem != 0 && new_idx > 0)
-			return (ft_return_until_new(&(mem), line, (unsigned int)new_idx));
-		if (mem == 0 || cur_read == 0)
+		gnl.buf[gnl.cur_read] = '\0';
+		gnl.temp = mem;
+		mem = ft_strjoin(mem, gnl.buf);
+		if (gnl.temp != 0)
+			free(gnl.temp);
+		gnl.new_idx = ft_newline(gnl.buf);
+		if (mem != 0 && gnl.new_idx > 0)
+			return (ft_return_until_new(&(mem), line, (unsigned int)gnl.new_idx));
+		if (mem == 0 || gnl.cur_read == 0)
 			break ;
-		cur_read = read(fd, buf, BUFFER_SIZE);
+		gnl.cur_read = read(fd, gnl.buf, BUFFER_SIZE);
 	}
-	if (cur_read < 0 || mem == 0)
+	if (gnl.cur_read < 0 || mem == 0)
 		return (-1);
 	return (ft_return_until_eof(&(mem), line));
 }
