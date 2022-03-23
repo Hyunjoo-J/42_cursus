@@ -6,11 +6,10 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:27:16 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/23 21:07:34 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/03/23 21:34:17 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx/mlx.h"
 #include "../include/so_long.h"
 
 int	close_scene(t_scene *scene)
