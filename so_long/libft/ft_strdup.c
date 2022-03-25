@@ -5,33 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 18:13:10 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/06/30 18:18:07 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:47:08 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:47:09 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
-char	*ft_strdup(const char *str)
+char	*ft_strdup(const char *s1)
 {
 	int		i;
-	int		len;
-	char	*new;
+	char	*copy;
 
 	i = 0;
-	len = 0;
-	while (str[len])
-	{
-		len++;
-	}
-	new = (char *)malloc(sizeof(char) * (len + 1));
-	if (!(new))
+	while (s1[i])
+		i++;
+	copy = malloc(sizeof(char) * (i + 1));
+	if (copy == NULL)
 		return (NULL);
-	while (str[i])
+	i = 0;
+	while (s1[i])
 	{
-		new[i] = str[i];
+		copy[i] = s1[i];
 		i++;
 	}
-	new[i] = '\0';
-	return (new);
+	copy[i] = '\0';
+	return (copy);
 }

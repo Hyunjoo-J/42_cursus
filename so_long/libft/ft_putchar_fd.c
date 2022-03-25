@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/06 18:03:16 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/06 18:03:50 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:46:26 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:46:27 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
 void	ft_putchar_fd(char c, int fd)
 {

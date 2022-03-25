@@ -5,15 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 16:29:31 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/07 19:52:21 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:48:12 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:48:13 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
-		return (c - 'a' + 'A');
+	{
+		return (c -= 32);
+	}
 	else
 		return (c);
 }

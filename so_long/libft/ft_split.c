@@ -5,72 +5,98 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/05 20:59:38 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/09 15:43:38 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:46:47 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:46:48 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	unsigned int	ft_isincluded(char const *s, char c)
+static int	ft_wordnbr(char *s, char c)
 {
-	unsigned int	cnt;
+	int	i;
+	int	nbr;
+	int	count;
 
-	cnt = 0;
-	while (*s)
+	i = 0;
+	nbr = 0;
+	count = 0;
+	while (s[i])
 	{
-		if (*s != c)
+		if (s[i] != c)
+			count++;
+		else if (count > 0)
 		{
-			++cnt;
-			while (*s && *s != c)
-				++s;
+			nbr++;
+			count = 0;
 		}
-		else
-			++s;
+		if (!s[i + 1] && count > 0)
+			nbr++;
+		i++;
 	}
-	return (cnt);
+	return (nbr);
 }
 
-static	char	**ft_free(char ***result, unsigned int count)
+static char	*ft_fillword(char *s, char *tab, int i, int wordsize)
 {
-	unsigned int	i;
+	int	k;
 
-	if (*result == 0)
-		return (0);
-	i = count;
-	while (i != 0)
+	k = 0;
+	tab = ft_calloc(sizeof(char), wordsize + 1);
+	if (!tab)
+		return (NULL);
+	while (k < wordsize)
 	{
-		free((*result)[--i]);
+		tab[k] = s[i - wordsize + k];
+		k++;
 	}
-	free(*result);
-	return (0);
+	return (tab);
+}
+
+static char	**ft_filltab(char *s, char c, char **tab)
+{
+	int	i;
+	int	j;
+	int	wordsize;
+
+	i = -1;
+	j = 0;
+	wordsize = 0;
+	while (s[++i])
+	{
+		if ((s[i] != c))
+			wordsize++;
+		else if (wordsize > 0)
+		{
+			tab[j] = ft_fillword(s, tab[j], i, wordsize);
+			if (tab[j++] == NULL)
+				return (NULL);
+			wordsize = 0;
+		}
+		if (!s[i + 1] && wordsize > 0)
+			tab[j] = ft_fillword(s, tab[j], i + 1, wordsize);
+		if (!s[i + 1] && wordsize > 0 && tab[j] == NULL)
+			return (NULL);
+	}
+	return (tab);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char			**result;
-	unsigned int	i;
-	unsigned int	count;
-	unsigned int	j;
+	char	**tab;
 
-	if (s == 0)
-		return (0);
-	result = malloc(sizeof(char *) * (ft_isincluded(s, c) + 1));
-	if (result == 0)
-		 return (ft_free(&result, 2));
-	i = -1;
-	count = 0;
-	while (s[++i] != '\0')
+	if (s == NULL)
+		return (NULL);
+	tab = ft_calloc(sizeof(char *), ft_wordnbr((char *)s, c) + 1);
+	if (!tab)
+		return (NULL);
+	tab = ft_filltab((char *)s, c, tab);
+	if (!tab)
 	{
-		j = i;
-		while (s[i] != c && s[i] != '\0')
-			i++;
-		if (j != i)
-		{
-			result[count] = ft_substr(s, j, (i--) - j);
-			count++;
-		}
+		while (*tab)
+			free(*tab++);
+		free(tab);
+		return (NULL);
 	}
-	result[count] = 0;
-	return (result);
+	return (tab);
 }

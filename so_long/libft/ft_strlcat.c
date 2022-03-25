@@ -5,30 +5,37 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/21 14:07:55 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/06/30 17:57:22 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:47:24 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:47:25 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t len)
+size_t	ft_strlcat(char *dest, const char *src, size_t dstsize)
 {
-	size_t	dst_len;
-	size_t	result;
 	size_t	i;
+	size_t	j;
+	size_t	src_size;
+	size_t	dest_size;
 
-	dst_len = ft_strlen(dst);
-	result = ft_strlen(src);
 	i = 0;
-	if (len <= dst_len)
-		return (result + len);
-	while (src[i] && i < (len - dst_len - 1))
+	j = 0;
+	src_size = ft_strlen(src);
+	dest_size = ft_strlen(dest);
+	if (dstsize == 0 || dstsize < dest_size)
+		return (src_size + dstsize);
+	if (src_size == 0)
+		return (dest_size);
+	while (dest[i])
 	{
-		dst[dst_len + i] = src[i];
 		i++;
 	}
-	dst[dst_len + i] = 0;
-	result += dst_len;
-	return (result);
+	while (src[j] && dest_size + j < dstsize - 1)
+	{
+		dest[dest_size + j] = src[j];
+		j++;
+	}
+	dest[dest_size + j] = '\0';
+	return (src_size + dest_size);
 }

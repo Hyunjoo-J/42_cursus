@@ -5,36 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/05 15:46:53 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/07 18:35:34 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:47:18 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:47:20 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char			*result;
-	unsigned int	i;
-	unsigned int	j;
+	char	*str;
+	int		i;
 
-	if (s1 == 0 || s2 == 0)
-		return (0);
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
 	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
-		i++;
-	while (s2[j] != '\0')
-		j++;
-	result = malloc(sizeof(char) * (i + j + 1));
-	if (result == 0)
-		return (0);
-	i = -1;
-	j = -1;
-	while (s1[++i] != '\0')
-		result[i] = s1[i];
-	while (s2[++j] != '\0')
-		result[i++] = s2[j];
-	result[i] = '\0';
-	return (result);
+	str = malloc(sizeof(char) * (ft_strlen((char *)s1)
+				+ ft_strlen((char *)s2) + 1));
+	if (!str)
+		return (NULL);
+	while (*s1)
+		str[i++] = *s1++;
+	while (*s2)
+		str[i++] = *s2++;
+	str[i] = '\0';
+	free(s1);
+	return (str);
 }

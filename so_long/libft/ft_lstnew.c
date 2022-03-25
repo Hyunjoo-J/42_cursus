@@ -5,21 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/06 18:18:14 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/07 19:02:39 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:45:28 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:45:29 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew(long content)
 {
-	t_list	*new;
+	t_list	*newlist;
 
-	new = malloc(sizeof(t_list));
-	if (new == 0)
-		return (0);
-	new->content = content;
-	new->next = 0;
-	return (new);
+	newlist = malloc(sizeof(t_list));
+	if (!newlist)
+		return (NULL);
+	newlist->content = content;
+	newlist->higher = 0;
+	newlist->wait = 0;
+	newlist->next = NULL;
+	return (newlist);
 }

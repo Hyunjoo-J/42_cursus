@@ -5,37 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 15:23:07 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/06 20:29:19 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:45:51 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:45:53 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
-void	*ft_memmove(void *dst, const void *src, size_t num)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*tmp_dst;
-	unsigned char	*tmp_src;
-	unsigned int	i;
+	size_t	i;
 
-	if (!dst && !src)
-		return (dst);
-	tmp_dst = (unsigned char *)dst;
-	tmp_src = (unsigned char *)src;
 	i = 0;
-	if (dst < src)
+	if (dst == NULL && src == NULL && len != 0)
+		return (NULL);
+	if (((char *)&dst)[0] < ((char *)&src)[0])
 	{
-		while (i++ < num)
+		while (i < len)
 		{
-			tmp_dst[i - 1] = tmp_src[i - 1];
+			((char *)dst)[i] = ((char *)src)[i];
+			i++;
 		}
 	}
 	else
 	{
-		while (i < num)
+		while (len > 0)
 		{
-			tmp_dst[num - 1 - i] = tmp_src[num - 1 - i];
-			i++;
+			((char *)dst)[len - 1] = ((char *)src)[len - 1];
+			len--;
 		}
 	}
 	return (dst);

@@ -5,19 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/06 18:33:44 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/06 18:34:05 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:45:03 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:45:05 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	if (!lst || !new)
-		return ;
-	if (*lst == 0)
-		*lst = new;
+	t_list	*last;
+
+	if (!*alst)
+		*alst = new;
 	else
-		(ft_lstlast(*lst))->next = new;
+	{
+		last = ft_lstlast(*alst);
+		last->next = new;
+	}
 }

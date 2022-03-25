@@ -5,36 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 18:21:40 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/06 20:22:48 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:48:02 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:48:03 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *str, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*ret;
-	size_t	t;
-	size_t	slen;
+	char	*str;
+	size_t	i;
 
-	t = 0;
-	slen = 0;
-	if (str == NULL)
+	if (s == NULL)
 		return (NULL);
-	slen = ft_strlen(str);
-	if (slen < start)
-		return (ft_strdup(""));
-	if (start + len > slen)
-		len = slen - start;
-	ret = (char *)malloc(sizeof(char) * (len + 1));
-	if (ret == 0)
-		return (NULL);
-	while (t < len && start + t < slen)
+	if (start >= ft_strlen(s))
+		return (ft_calloc(1, 1));
+	if (ft_strlen(s + start) < len)
+		return (ft_strdup(s + start));
+	str = ft_calloc(sizeof(char), len + 1);
+	if (!str)
+		return (0);
+	i = 0;
+	while (i < len)
 	{
-		ret[t] = str[start + t];
-		t++;
+		str[i] = s[start + i];
+		i++;
 	}
-	ret[t] = '\0';
-	return (ret);
+	str[i] = '\0';
+	return (str);
 }

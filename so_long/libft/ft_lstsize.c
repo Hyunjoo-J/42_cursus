@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/06 18:34:19 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/06 18:34:42 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:45:32 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:45:33 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	size_t	size;
+	int		size;
+	t_list	*temp;
 
 	size = 0;
-	while (lst)
+	temp = lst;
+	while (temp)
 	{
-		lst = lst->next;
+		temp = temp->next;
 		size++;
 	}
 	return (size);

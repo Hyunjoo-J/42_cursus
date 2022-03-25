@@ -5,23 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 14:59:03 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/07 16:43:17 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:44:19 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:44:20 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *ptr, size_t num)
+void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*temp;
-	size_t			i;
-
-	temp = ptr;
-	i = 0;
-	while (i < num)
-	{
-		temp[i] = 0;
-		i++;
-	}
+	ft_memset(s, 0, n);
 }

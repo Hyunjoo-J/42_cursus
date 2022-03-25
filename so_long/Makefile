@@ -5,45 +5,81 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/03/23 19:23:44 by hyjeong           #+#    #+#              #
-#    Updated: 2022/03/23 21:49:09 by hyjeong          ###   ########.fr        #
+#    Created: 2022/03/25 18:06:32 by hyjeong           #+#    #+#              #
+#    Updated: 2022/03/25 18:06:34 by hyjeong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=so_long
+NAME = so_long
 
-IDIR=include/
+LIB = ./libft/libft.a
 
-SDIR=src/
-SRCS=so_long.c draw.c get_next_line.c key.c parse.c util.c
-SRCS_DIR=$(addprefix $(SDIR), $(SRCS))
+LIBMLX = ./mlx/libmlx.a
 
-OBJS=$(SRCS_DIR:.c=.o)
+SRCS =	./SRCS/so_long.c				\
+		./SRCS/get_next_line.c			\
+		./SRCS/get_next_line_utils.c	\
+		./SRCS/create_map.c				\
+		./SRCS/check_map.c				\
+		./SRCS/control_map_data.c		\
+		./SRCS/map_info.c				\
+		./SRCS/init_img.c				\
+		./SRCS/game.c					\
+		./SRCS/moves.c					\
+		./SRCS/print_map.c
 
-LIBFT=libft.a
-LIBMLX=libmlx.a
+SRCS_BONUS = 	./SRCS_BONUS/so_long_bonus.c					\
+				./SRCS_BONUS/get_next_line_bonus.c				\
+				./SRCS_BONUS/get_next_line_utils_bonus.c		\
+				./SRCS_BONUS/create_map_bonus.c					\
+				./SRCS_BONUS/check_map_bonus.c					\
+				./SRCS_BONUS/control_map_data_bonus.c			\
+				./SRCS_BONUS/map_info_bonus.c					\
+				./SRCS_BONUS/init_img_bonus.c					\
+				./SRCS_BONUS/game_bonus.c						\
+				./SRCS_BONUS/moves_bonus.c						\
+				./SRCS_BONUS/change_anim_bonus.c				\
+				./SRCS_BONUS/print_map_bonus.c					\
+				./SRCS_BONUS/enemies_bonus.c
 
-FLAGS=-I$(IDIR) -Wall -Wextra -Werror
+HDRS = 	./so_long.h
 
-all: $(NAME)
+OBJS = $(SRCS:.c=.o)
 
-%.o: %.c
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
-$(NAME): $(SRCS_DIR) include/so_long.h
-	make all -C minilibx
-	make all -C libft
-	mv minilibx/$(LIBMLX) .
-	mv libft/$(LIBFT) .
-	gcc $(FLAGS) -framework OpenGL -framework AppKit $(SRCS_DIR) -o $(NAME) -lm -L. $(LIBMLX) $(LIBFT)
+CC = gcc
+
+CFLAGS = -Wall -Wextra -Werror
+
+%.o : %.c $(HDRS)
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+
+all: libft minilibx $(NAME)
+
+libft:
+	make -C ./libft
+
+minilibx:
+	make -C ./mlx
+
+$(NAME): $(OBJS) $(LIBMLX) $(LIB)
+		$(CC) $(OBJS) $(LIB) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+
+bonus: libft minilibx $(OBJS_BONUS)
+		$(CC) $(OBJS_BONUS) $(LIB) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
-	rm -f $(OBJS)
-	make clean -C minilibx
-	make clean -C libft
+		rm -rf $(OBJS)
+		rm -rf $(OBJS_BONUS)
+		make clean -C ./libft
+		make clean -C ./mlx
 
-fclean: clean
-	rm -f $(NAME)
-	rm -f $(LIBMLX)
-	rm -f $(LIBFT)
+fclean:	clean
+		rm -rf $(NAME)
+		rm -rf $(LIB)
+		rm -rf $(LIBMLX)
 
-re: fclean all
+re:		fclean all
+
+.PHONY:	all clean fclean re minilibx libft

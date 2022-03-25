@@ -5,26 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 15:28:50 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/06 17:41:02 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:45:42 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:45:44 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
-int	ft_memcmp(const void *s1, const void *s2, size_t num)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	*temp_s1;
-	unsigned char	*temp_s2;
-	unsigned int	i;
+	size_t				i;
+	const unsigned char	*buff1;
+	const unsigned char	*buff2;
 
-	temp_s1 = (unsigned char *)s1;
-	temp_s2 = (unsigned char *)s2;
 	i = 0;
-	while (i < num)
+	buff1 = s1;
+	buff2 = s2;
+	while (i < n)
 	{
-		if (temp_s1[i] != temp_s2[i])
-			return (temp_s1[i] - temp_s2[i]);
+		if (buff1[i] != buff2[i])
+			return (buff1[i] - buff2[i]);
 		i++;
 	}
 	return (0);

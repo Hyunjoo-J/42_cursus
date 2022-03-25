@@ -5,57 +5,59 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/06 17:53:09 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/07 19:53:27 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:44:57 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:48:06 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	get_len(int n)
+char	*ft_fillstr(char *str, int n, int wordsize)
 {
-	int	len;
+	long int	nbr;
 
-	len = 0;
-	if (n <= 0)
-		len = 1;
-	while (n != 0)
+	nbr = n;
+	if (nbr < 0)
 	{
-		n = n / 10;
-		len++;
+		str[0] = '-';
+		nbr *= -1;
 	}
-	return (len);
-}
-
-int	ft_abs(long n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
+	str[wordsize] = '\0';
+	wordsize--;
+	if (nbr == 0)
+		str[wordsize] = '0';
+	while (nbr > 0)
+	{
+		str[wordsize] = nbr % 10 + '0';
+		nbr /= 10;
+		wordsize--;
+	}
+	return (str);
 }
 
 char	*ft_itoa(int n)
 {
-	int		len;
-	int		sign;
-	char	*res;
+	int			i;
+	int			wordsize;
+	char		*str;
+	long int	nbr;
 
-	sign = 1;
-	if (n < 0)
-		sign = -1;
-	len = get_len(n);
-	res = (char *)malloc(sizeof(char) * (len + 1));
-	if (!res)
-		return (0);
-	res[len] = 0;
-	len--;
-	while (len >= 0)
+	i = 0;
+	wordsize = 0;
+	nbr = n;
+	if (nbr <= 0)
 	{
-		res[len] = '0' + ft_abs(n % 10);
-		n = ft_abs(n / 10);
-		len--;
+		nbr *= -1;
+		wordsize++;
 	}
-	if (sign == -1)
-		res[0] = '-';
-	return (res);
+	while (nbr > 0)
+	{
+		nbr /= 10;
+		wordsize++;
+	}
+	str = malloc(sizeof(char) * (wordsize + 1));
+	if (!str)
+		return (NULL);
+	str = ft_fillstr(str, n, wordsize);
+	return (str);
 }

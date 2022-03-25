@@ -5,27 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 15:27:20 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/06 17:40:50 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:45:37 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:45:38 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *ptr, int c, size_t num)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*tmp_ptr;
-	unsigned char	find;
-	unsigned int	i;
+	size_t	i;
 
-	tmp_ptr = (unsigned char *)ptr;
-	find = (unsigned char)c;
 	i = 0;
-	while (i < num)
+	while (i < n)
 	{
-		if (tmp_ptr[i] == find)
-			return (&tmp_ptr[i]);
+		if (((unsigned char *)s)[i] == (unsigned char)c)
+			return (&((unsigned char *)s)[i]);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

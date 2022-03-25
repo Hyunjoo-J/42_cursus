@@ -5,77 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/30 15:54:02 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/07/07 19:27:48 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/25 18:44:13 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/25 18:44:14 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	ft_isspace(char s)
+#include "libft.h"
+
+long int	ft_atoi(const char *str)
 {
-	if ((s >= 9 && s <= 13) || s == ' ')
-		return (1);
-	return (0);
-}
+	int						i;
+	int						sign;
+	unsigned long long int	number;
 
-static int	isnum(char s)
-{
-	if (s >= '0' && s <= '9')
-		return (1);
-	return (0);
-}
-
-static int	issign(char s)
-{
-	if (s == '+' || s == '-')
-		return (1);
-	return (0);
-}
-
-static long long int	calnum(char *str, int sign)
-{
-	long long int	num;
-	int				digit;
-
-	digit = 0;
-	num = 0;
-	while (isnum(*str))
-	{
-		num = num * 10;
-		num += (*str - '0');
-		str++;
-		digit++;
-		if (num < 0 || digit == 19)
-		{
-			if (sign > 0)
-				return (-1);
-			else
-				return (0);
-		}
-	}
-	return (num);
-}
-
-int	ft_atoi(char *s)
-{
-	int				sign;
-	int				cnt;
-	long long int	num;
-	int				digit;
-
+	i = 0;
 	sign = 1;
-	cnt = 0;
-	num = 0;
-	digit = 0;
-	while (ft_isspace(*s))
-		s++;
-	while (issign(*s))
+	number = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (*s++ == '-')
+		if (str[i] == '-')
 			sign *= -1;
-		cnt++;
+		i++;
 	}
-	if (cnt > 1)
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		number *= 10;
+		number += str[i++] - 48;
+	}
+	if (number > 9223372036854775807 && sign == 1)
+		return (-1);
+	if (number > 9223372036854775807 && sign == -1)
 		return (0);
-	num = calnum((char *)s, sign);
-	return (num * sign);
+	return (number * sign);
 }
