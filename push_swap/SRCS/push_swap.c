@@ -6,12 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 00:37:01 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/03/31 00:37:05 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/04/04 05:17:58 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int argc, char **argv)
-{
-  t_stack *a;
-  t_stack *b;
-}
