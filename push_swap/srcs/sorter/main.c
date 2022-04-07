@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:19:50 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/04/07 19:46:21 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/04/07 20:41:36 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,15 @@ int	main(int argc, char **argv)
 	if (argc >= 2)
 	{
 		red_args = read_args(argc, argv, mem);
+		if (is_empty_stack(mem->a))
+			error(mem, 1, NULL, NULL);
+		if (is_sorted_stack(mem->a))
+			free_all(mem, NULL, NULL);
+		if (red_args <= 5)
+			small_cases(mem->a, mem->, mem);
+		else
+			algorithm(mem);
 	}
+	error(mem, 0, NULL, NULL);
+	return (0);
 }
