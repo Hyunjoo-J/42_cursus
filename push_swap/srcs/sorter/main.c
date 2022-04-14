@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:19:50 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/04/08 03:00:17 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/04/14 19:57:03 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	algorithm(t_mem *mem)
 {
-	
+
 }
 
 int	main(int argc, char **argv)
