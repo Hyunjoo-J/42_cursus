@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils0.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 20:53:35 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/04/08 03:28:03 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/04/14 20:57:46 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,31 @@ t_mem	*init_mem(void)
 	t_mem	*mem;
 	t_stack	*a;
 	t_stack	*b;
-	
+
 	mem = (t_mem *)malloc(sizeof(t_mem));
 	a = (t_stack *)malloc(sizeof(t_stack));
 	b = (t_stack *)malloc(sizeof(t_stack));
 	if (!mem || !a || !b)
 		exit (EXIT_FAILURE);
+	a->first = NULL;
+	b->first = NULL;
+	mem->action_count = 0;
+	mem->a = a;
+	mem->b = b;
+	return (mem);
+}
+
+t_mem	*init_mem(void)
+{
+	t_mem	*mem;
+	t_stack	*a;
+	t_stack	*b;
+
+	mem = (t_mem *)malloc(sizeof(t_mem));
+	a = (t_stack *)malloc(sizeof(t_stack));
+	b = (t_stack *)malloc(sizeof(t_stack));
+	if (!mem || !a || !b)
+		exit(EXIT_FAILURE);
 	a->first = NULL;
 	b->first = NULL;
 	mem->action_count = 0;
