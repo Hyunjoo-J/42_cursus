@@ -6,14 +6,14 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 18:20:09 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/04/07 19:28:31 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/04/14 20:08:22 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SORTER_H
 # define SORTER_H
 
-# include "common.h"
+# include "../common/common.h"
 
 void			algorithm(t_mem *mem);
 t_params		init_params(t_mem *mem);
