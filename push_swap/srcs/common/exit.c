@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/08 02:58:07 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/04/08 03:07:04 by hyunjoo          ###   ########.fr       */
+/*   Created: 2022/04/16 17:03:57 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/04/16 17:03:59 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	free_all(t_mem *mem, int *min_a, int *min_b)
 		free(min_b);
 		min_b = NULL;
 	}
-	exit (EXIT_FAILURE);
+	exit (EXIT_SUCCESS);
 }
 
 void	error(t_mem *mem, int print_option, int *min_a, int *min_b)

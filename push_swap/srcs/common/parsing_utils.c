@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/08 03:15:11 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/04/08 03:21:21 by hyunjoo          ###   ########.fr       */
+/*   Created: 2022/04/16 17:03:46 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/04/16 17:03:50 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ long	push_atoi(char *str, t_mem *mem)
 		error(mem, 1, NULL, NULL);
 	while (ft_isdigit(str[i]))
 		result = result * 10 + (str[i++] - '0');
-	if (str[i] && !(ft_digit(str[i])) && str[i] != ' ')
+	if (str[i] && !(ft_isdigit(str[i])) && str[i] != ' ')
 		error(mem, 1, NULL, NULL);
 	return (result * sign);
 }

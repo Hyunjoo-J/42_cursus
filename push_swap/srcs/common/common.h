@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 18:19:15 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/04/07 19:21:25 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/04/16 17:04:04 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/04/16 17:04:08 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,41 +20,41 @@
 # include <stdbool.h>
 # include <limits.h>
 
-typedef struct  s_s_element
+typedef struct s_s_element
 {
-	int	value;
-	bool	keep;
+	int					value;
+	bool				keep;
 	struct s_s_element	*initial_position;
-	int	t_i;
-	struct s_s_element *next;
-}t_s_elem;
+	int					t_i;
+	struct s_s_element	*next;
+}						t_s_elem;
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	t_s_elem	*first;
-}t_stack;
+}				t_stack;
 
-typedef struct	s_mem
+typedef struct s_mem
 {
 	t_stack	*a;
 	t_stack	*b;
-	int	max;
-	int	action_count;
-	int	maxsize;
-}t_mem;
+	int		max;
+	int		action_count;
+	int		maxsize;
+}			t_mem;
 
-typedef struct	s_params
+typedef struct s_params
 {
 	t_s_elem	*elem;
 	t_s_elem	*best;
-	int	c_for_a;
-	int	c_for_b;
-	int	min_move;
-	int	total;
-	int	action_b;
-	int	min_a;
-	int	min_b;
-}t_params;
+	int			c_for_a;
+	int			c_for_b;
+	int			min_move;
+	int			total;
+	int			action_b;
+	int			min_a;
+	int			min_b;
+}				t_params;
 
 int			stack_length(t_stack *sta);
 bool		is_empty_stack(t_stack *sta);

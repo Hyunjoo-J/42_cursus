@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 18:19:50 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/04/14 20:45:32 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/04/16 17:06:33 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/04/16 17:06:39 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	main(int argc, char **argv)
 {
 	t_mem	*mem;
 	int		red_args;
+
+	mem = init_mem();
 	if (argc >= 2)
 	{
 		red_args = read_args(argc, argv, mem);
