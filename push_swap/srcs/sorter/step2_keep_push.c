@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 17:05:13 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/04/16 17:05:34 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/04/16 17:43:46 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ t_s_elem	*get_max_keep(t_stack *stack)
 		cur = largest_keep_a(elem, stack, false);
 		if (cur > max_keep)
 		{
-			 max_keep = cur;
-			 max = elem;
+			max_keep = cur;
+			max = elem;
 		}
 		elem = elem->next;
 	}
