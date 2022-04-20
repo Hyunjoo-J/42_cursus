@@ -1,14 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utlis.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 17:59:19 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/03/25 17:59:37 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/03/26 17:06:51 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/03/26 17:07:40 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../so_long.h"
 
 char	*ft_fill_str(char *str, char *s1, char*s2)
 {
@@ -39,7 +41,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	if (!str)
 	{
 		free(s1);
-		return (0);
+		return (NULL);
 	}
 	str = ft_fill_str(str, s1, s2);
 	free(s1);

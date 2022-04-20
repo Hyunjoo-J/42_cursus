@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_helper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 04:31:29 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/04/20 04:31:31 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/04/20 17:31:03 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ void	le_three_sort_b(t_stack *a, t_stack *b, int count, t_order *ords)
 		print_and_do(a, b, ft_split("pa", ' '), ords);
 	else if (count == 3)
 	{
-		if (get_value(b, 0) < get_value(b, 2) &&\
+		if (get_value(b, 0) < get_value(b, 2) && \
 		get_value(b, 2) < get_value(b, 1))
 			print_and_do(a, b, ft_split("sb pa sb pa", ' '), ords);
-		else if (get_value(b, 1) < get_value(b, 0) &&\
+		else if (get_value(b, 1) < get_value(b, 0) && \
 		get_value(b, 0) < get_value(b, 2))
 			print_and_do(a, b, ft_split("pa sb pa sa", ' '), ords);
-		else if (get_value(b, 2) < get_value(b, 0) &&\
+		else if (get_value(b, 2) < get_value(b, 0) && \
 		get_value(b, 0) < get_value(b, 1))
 			print_and_do(a, b, ft_split("sb pa pa", ' '), ords);
-		else if (get_value(b, 1) < get_value(b, 2) &&\
+		else if (get_value(b, 1) < get_value(b, 2) && \
 		get_value(b, 2) < get_value(b, 0))
 			print_and_do(a, b, ft_split("pa sb pa", ' '), ords);
-		else if (get_value(b, 2) > get_value(b, 1) &&\
+		else if (get_value(b, 2) > get_value(b, 1) && \
 		get_value(b, 1) > get_value(b, 0))
 			print_and_do(a, b, ft_split("sb pa sb pa sa", ' '), ords);
 		else
@@ -49,25 +49,25 @@ void	le_three_sort_a(t_stack *a, t_stack *b, int count, t_order *ords)
 	{
 		if (get_count(a) > 3)
 			le_three_sort_a_p(a, b, count, ords);
-		else if (get_value(a, 0) < get_value(a, 2) &&\
+		else if (get_value(a, 0) < get_value(a, 2) && \
 		get_value(a, 2) < get_value(a, 1))
 			print_and_do(a, b, ft_split("rra sa", ' '), ords);
-		else if (get_value(a, 1) < get_value(a, 0) &&\
+		else if (get_value(a, 1) < get_value(a, 0) && \
 		get_value(a, 0) < get_value(a, 2))
 			print_and_do(a, b, ft_split("sa", ' '), ords);
-		else if (get_value(a, 2) < get_value(a, 0) &&\
+		else if (get_value(a, 2) < get_value(a, 0) && \
 		get_value(a, 0) < get_value(a, 1))
 			print_and_do(a, b, ft_split("rra", ' '), ords);
-		else if (get_value(a, 1) < get_value(a, 2) &&\
+		else if (get_value(a, 1) < get_value(a, 2) && \
 		get_value(a, 2) < get_value(a, 0))
 			print_and_do(a, b, ft_split("ra", ' '), ords);
-		else if (get_value(a, 2) < get_value(a, 1) &&\
+		else if (get_value(a, 2) < get_value(a, 1) && \
 		get_value(a, 1) < get_value(a, 0))
 			print_and_do(a, b, ft_split("ra sa", ' '), ords);
 	}
 }
 
-int		partition(int *a, int start, int end)
+int	partition(int *a, int start, int end)
 {
 	int	x;
 	int	i;
@@ -94,7 +94,7 @@ int		partition(int *a, int start, int end)
 
 void	real_quick_sort(int *a, int start, int end)
 {
-	int q;
+	int	q;
 
 	if (start < end)
 	{
@@ -104,13 +104,14 @@ void	real_quick_sort(int *a, int start, int end)
 	}
 }
 
-int		get_median(t_stack *stack, int count)
+int	get_median(t_stack *stack, int count)
 {
 	int		i;
-	int		list[count];
+	int		*list;
 	t_stack	*curr;
 
 	i = -1;
+	list = (int *)malloc(sizeof(int) * count + 1);
 	curr = stack->next;
 	while (++i < count)
 	{

@@ -3,38 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: suko <suko@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/26 17:37:39 by suko              #+#    #+#             */
-/*   Updated: 2021/06/22 00:25:06 by suko             ###   ########.fr       */
+/*   Created: 2021/07/06 17:53:09 by hyjeong           #+#    #+#             */
+/*   Updated: 2021/07/07 19:53:27 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char					*ft_itoa(int n)
+int	get_len(int n)
 {
-	char			rev[13];
-	unsigned int	i;
-	unsigned int	temp;
-	char			*result;
+	int	len;
 
-	i = 0;
-	temp = (n < 0) ? (unsigned int)n * (-1) : (unsigned int)n;
-	while (temp >= 1)
+	len = 0;
+	if (n <= 0)
+		len = 1;
+	while (n != 0)
 	{
-		rev[i++] = temp % 10 + '0';
-		temp = temp / 10;
+		n = n / 10;
+		len++;
 	}
-	result = malloc(sizeof(char) * ((n <= 0) ? i + 2 : i + 1));
+	return (len);
+}
+
+int	ft_abs(long n)
+{
 	if (n < 0)
-		rev[i++] = '-';
-	else if (n == 0)
-		rev[i++] = '0';
-	temp = 0;
-	while (result != 0 && i > 0)
-		result[temp++] = rev[(i--) - 1];
-	if (result != 0)
-		result[temp] = '\0';
-	return (result);
+		return (-n);
+	return (n);
+}
+
+char	*ft_itoa(int n)
+{
+	int		len;
+	int		sign;
+	char	*res;
+
+	sign = 1;
+	if (n < 0)
+		sign = -1;
+	len = get_len(n);
+	res = (char *)malloc(sizeof(char) * (len + 1));
+	if (!res)
+		return (0);
+	res[len] = 0;
+	len--;
+	while (len >= 0)
+	{
+		res[len] = '0' + ft_abs(n % 10);
+		n = ft_abs(n / 10);
+		len--;
+	}
+	if (sign == -1)
+		res[0] = '-';
+	return (res);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: suko <suko@stduent.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/27 15:33:44 by suko              #+#    #+#             */
-/*   Updated: 2020/12/27 15:45:43 by suko             ###   ########.fr       */
+/*   Created: 2021/07/06 18:37:04 by hyjeong           #+#    #+#             */
+/*   Updated: 2021/07/06 20:14:32 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,23 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
+	t_list	*res;
 	t_list	*temp;
-	t_list	*new;
-	t_list	*result;
 
-	if (lst == 0 || f == 0)
+	if (!lst || !f)
 		return (0);
-	temp = lst;
-	new = ft_lstnew(f(temp->content));
-	if (new == 0)
-		return (0);
-	result = new;
-	temp = temp->next;
-	while (temp != 0)
+	res = 0;
+	while (lst)
 	{
-		new = ft_lstnew(f(temp->content));
-		if (new == 0)
+		temp = ft_lstnew(f(lst->content));
+		if (!temp)
 		{
-			ft_lstclear(&result, del);
+			ft_lstclear(&res, del);
 			return (0);
 		}
-		ft_lstadd_back(&result, new);
+		ft_lstadd_back(&res, temp);
 		temp = temp->next;
+		lst = lst->next;
 	}
-	return (result);
+	return (res);
 }

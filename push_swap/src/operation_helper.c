@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   operation_helper.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 04:30:49 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/04/20 04:30:51 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/04/20 16:52:30 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		get_count(t_stack *stack)
+int	get_count(t_stack *stack)
 {
 	t_stack	*curr;
 	int		count;
@@ -27,10 +27,10 @@ int		get_count(t_stack *stack)
 	return (count);
 }
 
-int		is_sorted(t_stack *stack, int count, int type)
+int	is_sorted(t_stack *stack, int count, int type)
 {
-	t_stack *curr;
-	t_stack *next;
+	t_stack	*curr;
+	t_stack	*next;
 	int		i;
 
 	curr = stack->next;
@@ -48,9 +48,9 @@ int		is_sorted(t_stack *stack, int count, int type)
 	return (0);
 }
 
-int		get_value(t_stack *stack, int index)
+int	get_value(t_stack *stack, int index)
 {
-	t_stack *curr;
+	t_stack	*curr;
 	int		i;
 
 	curr = stack->next;
@@ -65,7 +65,7 @@ int		get_value(t_stack *stack, int index)
 	return (0);
 }
 
-int		ft_strcmp(char *a, char *b)
+int	ft_strcmp(char *a, char *b)
 {
 	int	i;
 

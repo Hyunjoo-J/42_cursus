@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 04:31:16 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/04/20 04:31:18 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/04/20 17:21:42 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		is_space(char c)
+int	is_space(char c)
 {
-	if (c == '\t' || c == '\n' || c == '\v' ||\
+	if (c == '\t' || c == '\n' || c == '\v' || \
 	c == '\f' || c == '\r' || c == ' ')
 		return (0);
 	else
@@ -47,19 +47,17 @@ void	push_swap(t_stack *a, t_stack *b, int count)
 	if (count <= 3)
 		le_three_sort_a(a, b, count, orders);
 	else
-		quick_sort_a(a, b, count, orders, -1);
+		quick_sort_a(a, b, count, orders);
 	print_orders(orders);
 	free_order(orders);
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
 	int		count;
-	int		i;
 
-	i = 0;
 	count = get_input_count(argc, argv);
 	if (count == -1)
 		ft_putstr_fd("Error\n", 1);
@@ -70,7 +68,7 @@ int		main(int argc, char **argv)
 	a->prev = 0;
 	b->prev = 0;
 	b->next = 0;
-	fill_array(a, argv, argc, i);
+	fill_array(a, argv, argc);
 	if (check_duplicate(a) == -1)
 		ft_putstr_fd("Error\n", 1);
 	else

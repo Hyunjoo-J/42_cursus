@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   order_helper.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 04:31:04 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/04/20 04:31:06 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/04/20 16:58:52 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	free_order(t_order *orders)
 
 void	store(char *str, t_order *ords)
 {
-	t_order *temp;
-	t_order *new;
+	t_order	*temp;
+	t_order	*new;
 
 	temp = ords;
 	while (temp->next != 0)
@@ -50,28 +50,29 @@ void	store(char *str, t_order *ords)
 void	merge_orders(t_order *ords)
 {
 	t_order	*curr;
-	t_order	*temp;
+	t_order	*t;
 
 	curr = ords;
-	while ((curr = curr->next) != 0)
+	curr = curr->next;
+	while (curr != 0)
 	{
-		temp = curr->next;
-		while (curr->order[0] != 'p' && temp != 0 && temp->order[0] != 'p' &&\
-		temp->order[1] == curr->order[1])
-			temp = temp->next;
-		while (curr->order[0] != 'p' && temp != 0 && temp != curr)
+		t = curr->next;
+		while (curr->order[0] != 'p' && t != 0 && t->order[0] != 'p' && \
+		t->order[1] == curr->order[1])
+			t = t->next;
+		while (curr->order[0] != 'p' && t != 0 && t != curr)
 		{
-			if (temp->order[0] == curr->order[0] &&\
-			temp->order[1] != curr->order[1])
+			if (t->order[0] == curr->order[0] && t->order[1] != curr->order[1])
 			{
 				curr->order[1] = curr->order[0];
-				temp->prev->next = temp->next;
-				temp->next->prev = temp->prev;
-				free(temp);
+				t->prev->next = t->next;
+				t->next->prev = t->prev;
+				free(t);
 				break ;
 			}
-			temp = temp->prev;
+			t = t->prev;
 		}
+		curr = curr->next;
 	}
 }
 

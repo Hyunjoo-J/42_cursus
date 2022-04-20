@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quick_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 04:31:23 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/04/20 04:31:25 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/04/20 17:53:46 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 void	quick_rec(t_stack *a, t_stack *b, int count, t_order *ords)
 {
-	int i;
-	
+	int	i;
+
 	if (is_sorted(a, count / 2 + count % 2, 0) != 0)
-		quick_sort_a(a, b, count / 2 + count % 2, ords, -1);
+		quick_sort_a(a, b, count / 2 + count % 2, ords);
 	if (is_sorted(b, count / 2, 1) != 0)
-		quick_sort_b(a, b, count / 2, ords, -1);
+		quick_sort_b(a, b, count / 2, ords);
 	else
 	{
 		i = -1;
@@ -35,38 +35,46 @@ void	le_three_sort_a_p(t_stack *a, t_stack *b, int count, t_order *ords)
 		print_and_do(a, b, ft_split("sa", ' '), ords);
 	else if (count == 3)
 	{
-		if (get_value(a, 0) < get_value(a, 2) &&\
+		if (get_value(a, 0) < get_value(a, 2) && \
 		get_value(a, 2) < get_value(a, 1))
 			print_and_do(a, b, ft_split("ra sa rra", ' '), ords);
-		else if (get_value(a, 1) < get_value(a, 0) &&\
+		else if (get_value(a, 1) < get_value(a, 0) && \
 		get_value(a, 0) < get_value(a, 2))
 			print_and_do(a, b, ft_split("sa", ' '), ords);
-		else if (get_value(a, 2) < get_value(a, 0) &&\
+		else if (get_value(a, 2) < get_value(a, 0) && \
 		get_value(a, 0) < get_value(a, 1))
 			print_and_do(a, b, ft_split("ra sa rra sa", ' '), ords);
-		else if (get_value(a, 1) < get_value(a, 2) &&\
+		else if (get_value(a, 1) < get_value(a, 2) && \
 		get_value(a, 2) < get_value(a, 0))
 			print_and_do(a, b, ft_split("sa ra sa rra", ' '), ords);
-		else if (get_value(a, 2) < get_value(a, 1) &&\
+		else if (get_value(a, 2) < get_value(a, 1) && \
 		get_value(a, 1) < get_value(a, 0))
 			print_and_do(a, b, ft_split("sa ra sa rra sa", ' '), ords);
 	}
 }
 
-void	quick_sort_b(t_stack *a, t_stack *b, int count, t_order *ords, int i)
+void	quick_sort_helper(int *i, int *rot)
+{
+	*i = -1;
+	*rot = 0;
+}
+
+void	quick_sort_b(t_stack *a, t_stack *b, int count, t_order *ords)
 {
 	int		med;
+	int		i;
 	int		rot;
-	t_stack *temp;
+	t_stack	*temp;
 	t_stack	*curr;
 
 	if (count <= 3)
 		return (le_three_sort_b(a, b, count, ords));
 	curr = b->next;
-	rot = 0;
+	quick_sort_helper(&i, &rot);
 	med = get_median(b, count);
-	while ((temp = curr) != 0 && ++i < count)
+	while (curr != 0 && ++i < count)
 	{
+		temp = curr;
 		curr = curr->next;
 		if (temp->val >= med)
 		{
@@ -80,21 +88,22 @@ void	quick_sort_b(t_stack *a, t_stack *b, int count, t_order *ords, int i)
 	quick_rec(a, b, count, ords);
 }
 
-void	quick_sort_a(t_stack *a, t_stack *b, int count, t_order *ords, int i)
+void	quick_sort_a(t_stack *a, t_stack *b, int count, t_order *ords)
 {
 	int		med;
+	int		i;
 	int		rot;
-	t_stack *temp;
+	t_stack	*temp;
 	t_stack	*curr;
 
 	if (count <= 3)
 		return (le_three_sort_a(a, b, count, ords));
 	med = get_median(a, count);
 	curr = a->next;
-	rot = 0;
-	temp = curr;
-	while (temp != 0 && ++i < count)
+	quick_sort_helper(&i, &rot);
+	while (curr != 0 && ++i < count)
 	{
+		temp = curr;
 		curr = curr->next;
 		if (temp->val < med)
 		{
@@ -102,7 +111,6 @@ void	quick_sort_a(t_stack *a, t_stack *b, int count, t_order *ords, int i)
 				print_and_do(a, b, ft_split("ra", ' '), ords);
 			print_and_do(a, b, ft_split("pb", ' '), ords);
 		}
-		temp = curr;
 	}
 	while (get_count(a) != count / 2 + count % 2 && rot-- > 0)
 		print_and_do(a, b, ft_split("rra", ' '), ords);

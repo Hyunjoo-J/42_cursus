@@ -3,54 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: suko <suko@stduent.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/26 17:35:07 by suko              #+#    #+#             */
-/*   Updated: 2020/12/27 14:37:54 by suko             ###   ########.fr       */
+/*   Created: 2021/07/05 16:06:54 by hyjeong           #+#    #+#             */
+/*   Updated: 2021/07/07 17:26:37 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	unsigned int	ft_isincluded(char const *s, char c)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	unsigned int	i;
-	unsigned int	count;
+	size_t	front;
+	size_t	rear;
+	char	*str;
 
-	i = -1;
-	count = 0;
-	while (s[++i] != '\0')
+	str = 0;
+	if (s1 != 0 && set != 0)
 	{
-		if (s[i] == c)
-			count++;
+		front = 0;
+		rear = ft_strlen(s1);
+		while (s1[front] && ft_strchr(set, s1[front]))
+			front++;
+		while (s1[rear - 1] && ft_strchr(set, s1[rear - 1]) && rear > front)
+			rear--;
+		str = (char *)malloc(sizeof(char) * (rear - front + 1));
+		if (str)
+			ft_strlcpy(str, &s1[front], rear - front + 1);
 	}
-	return (count);
-}
-
-char					*ft_strtrim(char const *s1, char const *set)
-{
-	char			*result;
-	unsigned int	start;
-	unsigned int	end;
-	unsigned int	len;
-
-	if (s1 == 0)
-		return (0);
-	len = 0;
-	while (s1[len] != '\0')
-		len++;
-	start = 0;
-	while (s1[start] != '\0' && ft_isincluded(set, s1[start]) != 0)
-		start++;
-	end = len;
-	while (end > start && ft_isincluded(set, s1[end - 1]) != 0)
-		end--;
-	result = malloc(sizeof(char) * (end - start + 1));
-	if (result == 0)
-		return (0);
-	len = 0;
-	while (start < end)
-		result[len++] = s1[start++];
-	result[len] = '\0';
-	return (result);
+	return (str);
 }
