@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 17:55:02 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/05/10 17:57:34 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/05/11 15:38:17 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,30 @@
 # define INT_MAX 2147483647
 # define INT_MIN -2147483649
 
-typedef struct	s_philo{
-	int	id;
+typedef struct s_philo{
+	int				id;
 	struct timeval	t_eat;
-	int	count;
+	int				count;
 	pthread_mutex_t	mutex;
-}	t_philo;
+}t_philo;
 
 typedef struct s_info {
-	pthread_t			*g_threads;
-	pthread_mutex_t		*g_forks;
-	pthread_mutex_t		g_mutex;
-	t_philo				*g_philos;
-	int					g_number;
-	int					g_t_die;
-	int					g_t_eat;
-	int					g_t_sleep;
-	int					g_count;
-	struct timeval		g_start;
+	pthread_t			*threads;
+	pthread_mutex_t		*forks;
+	pthread_mutex_t		mutex;
+	t_philo				*philos;
+	int					number;
+	int					die;
+	int					eat;
+	int					sleep;
+	int					count;
+	struct timeval		start;
 }				t_info;
 
 typedef struct s_arg {
 	t_info	*info;
 	int		id;
-}				t_arg;
+}t_arg;
 
 int		ft_atoi(char *str);
 double	get_time(struct timeval *start, struct timeval *end);
