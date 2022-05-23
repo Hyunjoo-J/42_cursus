@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 04:30:27 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/04/20 04:30:40 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/04/20 19:03:24 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "libft.h"
+# include "../libft/libft.h"
 
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 
-typedef struct	s_stack {
+typedef struct s_stack {
 	struct s_stack		*prev;
 	struct s_stack		*next;
 	int					val;
 }				t_stack;
 
-typedef struct	s_order {
+typedef struct s_order {
 	struct s_order		*prev;
 	struct s_order		*next;
 	char				order[5];
@@ -35,7 +35,7 @@ typedef struct	s_order {
 int				is_all_digit(char *str);
 int				check_overflow(char *str);
 int				get_input_count(int argc, char **argv);
-void			fill_array(t_stack *a, char **argv, int argc, int i);
+void			fill_array(t_stack *a, char **argv, int argc);
 int				check_duplicate(t_stack *a);
 
 int				swap(t_stack *stack);
@@ -49,15 +49,15 @@ int				ft_strcmp(char *a, char *b);
 void			print_and_do(t_stack *a, t_stack *b, char **ops, t_order *ords);
 int				is_sorted(t_stack *stack, int count, int type);
 
-void			le_three_sort_a(t_stack *a, t_stack *b, int count,\
+void			le_three_sort_a(t_stack *a, t_stack *b, int count, \
 				t_order *ords);
-void			le_three_sort_b(t_stack *a, t_stack *b, int count,\
+void			le_three_sort_b(t_stack *a, t_stack *b, int count, \
 				t_order *ords);
 int				get_median(t_stack *a, int count);
 
-void			quick_sort_a(t_stack *a, t_stack *b, int count, t_order *ords, int i);
-void			quick_sort_b(t_stack *a, t_stack *b, int count, t_order *ords, int i);
-void			le_three_sort_a_p(t_stack *a, t_stack *b, int count,\
+void			quick_sort_a(t_stack *a, t_stack *b, int count, t_order *ords);
+void			quick_sort_b(t_stack *a, t_stack *b, int count, t_order *ords);
+void			le_three_sort_a_p(t_stack *a, t_stack *b, int count, \
 				t_order *ords);
 
 void			free_order(t_order *orders);

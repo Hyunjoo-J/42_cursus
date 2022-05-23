@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: suko <suko@stduent.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/26 17:35:39 by suko              #+#    #+#             */
-/*   Updated: 2020/12/27 14:35:34 by suko             ###   ########.fr       */
+/*   Created: 2021/07/05 20:59:38 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/04/20 19:01:52 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,29 @@
 
 static	unsigned int	ft_isincluded(char const *s, char c)
 {
-	unsigned int	i;
-	unsigned int	count;
+	unsigned int	cnt;
 
-	if (s == 0)
-		return (0);
-	i = -1;
-	count = 0;
-	while (s[++i] != '\0')
+	cnt = 0;
+	while (*s)
 	{
-		if (s[i] == c)
-			count++;
+		if (*s != c)
+		{
+			++cnt;
+			while (*s && *s != c)
+				++s;
+		}
+		else
+			++s;
 	}
-	return (count);
+	return (cnt);
 }
 
-static	char			**ft_free(char ***result, unsigned int count)
+static	char	**ft_free(char ***result, unsigned int count)
 {
 	unsigned int	i;
 
+	if (*result == 0)
+		return (0);
 	i = count;
 	while (i != 0)
 	{
@@ -42,16 +46,18 @@ static	char			**ft_free(char ***result, unsigned int count)
 	return (0);
 }
 
-char					**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char			**result;
 	unsigned int	i;
 	unsigned int	count;
 	unsigned int	j;
 
-	result = malloc(sizeof(char *) * (ft_isincluded(s, c) + 2));
-	if (result == 0 || s == 0)
+	if (s == 0)
 		return (0);
+	result = malloc(sizeof(char *) * (ft_isincluded(s, c) + 1));
+	if (result == 0)
+		return (ft_free(&result, 2));
 	i = -1;
 	count = 0;
 	while (s[++i] != '\0')
@@ -62,8 +68,6 @@ char					**ft_split(char const *s, char c)
 		if (j != i)
 		{
 			result[count] = ft_substr(s, j, (i--) - j);
-			if (result[count] == 0)
-				return (ft_free(&result, count));
 			count++;
 		}
 	}

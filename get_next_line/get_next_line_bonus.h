@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 18:59:46 by hyjeong           #+#    #+#             */
-/*   Updated: 2021/09/09 19:14:48 by hyjeong          ###   ########.fr       */
+/*   Created: 2021/09/09 20:01:22 by hyjeong           #+#    #+#             */
+/*   Updated: 2021/09/09 20:02:03 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdlib.h>
 # include <unistd.h>

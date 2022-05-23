@@ -3,36 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: suko <suko@stduent.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/26 17:22:34 by suko              #+#    #+#             */
-/*   Updated: 2020/12/27 14:11:23 by suko             ###   ########.fr       */
+/*   Created: 2021/06/30 15:23:07 by hyjeong           #+#    #+#             */
+/*   Updated: 2021/07/06 20:29:19 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dst, const void *src, size_t num)
 {
+	unsigned char	*tmp_dst;
+	unsigned char	*tmp_src;
 	unsigned int	i;
 
-	if (len != 0 && dst == 0 && src == 0)
-		return (0);
+	if (!dst && !src)
+		return (dst);
+	tmp_dst = (unsigned char *)dst;
+	tmp_src = (unsigned char *)src;
 	i = 0;
-	if (src < dst)
+	if (dst < src)
 	{
-		while (i < len)
+		while (i++ < num)
 		{
-			((unsigned char *)dst)[len - i - 1] = (\
-				(unsigned char *)src)[len - i - 1];
-			i++;
+			tmp_dst[i - 1] = tmp_src[i - 1];
 		}
 	}
 	else
 	{
-		while (i < len)
+		while (i < num)
 		{
-			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			tmp_dst[num - 1 - i] = tmp_src[num - 1 - i];
 			i++;
 		}
 	}

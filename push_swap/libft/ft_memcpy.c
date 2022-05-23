@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: suko <suko@stduent.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/26 17:22:04 by suko              #+#    #+#             */
-/*   Updated: 2020/12/27 14:11:51 by suko             ###   ########.fr       */
+/*   Created: 2021/07/06 17:15:10 by hyjeong           #+#    #+#             */
+/*   Updated: 2021/07/06 17:16:38 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned int i;
+	size_t	i;
 
-	if (n != 0 && dst == 0 && src == 0)
-		return (0);
+	if (dst == 0 && src == 0)
+	{
+		return (dst);
+	}
 	i = 0;
 	while (i < n)
 	{
