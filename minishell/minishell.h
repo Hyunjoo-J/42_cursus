@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:43:01 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/05/25 03:15:32 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/05/27 01:36:38 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,21 @@
 # include <readline/history.h>
 # include <termios.h>
 # include <string.h>
+
+typedef struct s_list
+{
+	char	*key;
+	char	*value;
+	int		print;
+	struct s_list	*next;
+}	t_list;
+
+typedef struct s_info
+{
+	char	*home;
+	char	**envp;
+	t_list	*list;
+}	t_info;
 
 typedef struct s_lexer
 {

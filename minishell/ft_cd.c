@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:41:23 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/05/25 03:31:55 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/05/31 04:28:19 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*concat_path(char *curr_path, char *rel_path)
 	ft_strlen(rel_path) + 1));
 	if (new_path == 0)
 	{
-		//에러 처리
+		ft_error(0);
 		return (0);
 	}
 	i = -1;
@@ -36,18 +36,19 @@ char	*concat_path(char *curr_path, char *rel_path)
 	return (new_path);
 }
 
-static int	handle_absolute(t_lexer *curr_lexer, char *path)
+static int	handle_absolute(char *command, char *path)
 {
 	if (chdir(path) == -1)
 	{
-		//에러 처리
+		ft_print_error(2, "cd", command, \
+	strerror(errno));
 		return (1);
 	}
-	//pwd로 위치 불러오기
+	//ft_pwd(PWD);pwd로 위치 불러오기
 	return (0);
 }
 
-static int	handle_relative(t_lexer *curr_lexer)
+static int	handle_relative(char *command)
 {
 	char	*curr_path;
 	char	*new_path;
@@ -56,56 +57,50 @@ static int	handle_relative(t_lexer *curr_lexer)
 	curr_path = getcwd(NULL, 0);
 	if (!curr_path)
 	{
-		//에러 처리
+		ft_print_error(2, "cd", 0, strerror(errno));
 		return (1);
 	}
-	new_path = concat_path(curr_path, curr_lexer->str);
+	new_path = concat_path(curr_path, command);
 	if (!new_path)
 	{
 		free(curr_path);
 		return (1);
 	}
-	ret = handle_absolute(curr_lexer, new_path);
+	ret = handle_absolute(command, new_path);
 	free(curr_path);
 	free(new_path);
 	return (ret);
 }
 
-static int	handle_home(t_parser *curr_parser, t_lexer *curr_lexer)
+static int	handle_home(char **command, t_lexer *curr_lexer)
 {
 	char	*home_path;
 	int		ret;
 
-	if (get_env("HOME") == 0)
+	if (get_env("HOME") == 0) //HOME이라는 이름의 환경 변수가 없을 때
 		return (0);
-	if (curr_lexer == curr_parser->end)
+	if (command[1][0] == 0)//cmd 뒤에 들어온 것이 없음
 		home_path = concat_path(get_env("HOME")->val, "");
 	else
 		home_path = concat_path(get_env("HOME")->val, \
-		&curr_lexer->str[1]);
-	ret = handle_absolute(curr_lexer, home_path);
+		&command[1][1]);
+	ret = handle_absolute(command[1], home_path);
 	free(home_path);
 	return (ret);
 }
 
-int	ft_cd(t_parser *curr_parser)
+int	ft_cd(char **command, t_info *info)
 {
-	t_lexer	*curr_lexer;
+	t_list	*tmp;
+	//int i; 필요한가에 대한 고민
 
-	curr_lexer = curr_parser->start;
-	//OLDPWD
-	if (curr_lexer->next == curr_parser->end || \
-		(curr_lexer->next->str[0] == '~' && \
-		(curr_lexer->next->str[1] == '\0' || curr_lexer->next->str[1] == '/')))
-		return (handle_home(curr_parser, curr_lexer->next));
-	while (curr_lexer->next != 0)
-	{
-		if (curr_lexer->type != CMD)
-			break ;
-		curr_lexer = curr_lexer->next;
-	}
-	if ((curr_lexer->str)[0] == '/')
-		return (handle_absolute(curr_lexer, curr_lexer->str));
+	tmp = info->list;
+	//OLDPWD 세팅
+	if (command[1] == 0 || command[1][0] == '~' && \
+	((command[1][1] == '\0') || (command[1][1] == '/'))) //cd, cd ~, cd ~/
+		return (handle_home(command, tmp->next));
+	if(command[1][0] == '/')
+		return (handle_absolute(command[1], command[1]));
 	else
-		return (handle_relative(curr_lexer));
+		return (handle_relative(command[1]));
 }

@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:41:32 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/05/25 03:15:39 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/05/31 04:24:23 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,12 @@ static int	is_in_range(char *str)
 	return (1);
 }
 
-static int	exit_non_numeric(t_lexer *curr_lexer)
+static int	exit_non_numeric(char *str)
 {
 	printf("exit\n");
-	//에러처리
+	ft_print_error(2, "exit", str,\
+	"numeric argument required");
+	ft_error(255);
 	return (255);
 }
 
@@ -91,29 +93,23 @@ static long long	stoll(char *str)
 	return (num);
 }
 
-int	ft_exit(t_parser *curr_parser)
+int	ft_exit(char **command, t_info *info)
 {
-	t_lexer		*curr_lexer;
-	long long	status;
+	int	i;
+	int	exit_num;
 
-	status = g_uni.exit_status;
-	curr_lexer = curr_parser->start;
-	while (curr_lexer != 0)
+	exit_num = EXIT_FAILURE;
+	if (command)
 	{
-		if (curr_lexer->type != CMD)
+		if (command[2] == NULL)
 		{
-			if (!is_digit(curr_lexer->str) || !is_in_range(curr_lexer->str))
-				return (exit_non_numeric(curr_lexer));
-			status = (unsigned char)stoll(curr_lexer->str);
-			break ;
+			if (!is_digit(command[1]) || !is_in_range(command[1]))
+				return (exit_non_numeric(command[1]));
+			exit_num = (unsigned char)stroll(command[1]);
+			printf("exit\n");
+			ft_error(status);
 		}
-		curr_lexer = curr_lexer->next;
+		ft_print_error(2, "exit", 0, "too many arguments");
 	}
-	if (curr_lexer == 0 || curr_lexer->next == 0)
-	{
-		printf("exit\n");
-		//error(status);
-	}
-	//error too many arguments
 	return (1);
 }
