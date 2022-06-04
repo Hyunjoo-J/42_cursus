@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:41:32 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/05/31 04:24:23 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/06/05 02:39:17 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,15 @@ static long long	stoll(char *str)
 int	ft_exit(char **command, t_info *info)
 {
 	int	i;
-	int	exit_num;
 
-	exit_num = EXIT_FAILURE;
+	g_exit_num = EXIT_FAILURE;
 	if (command)
 	{
 		if (command[2] == NULL)
 		{
 			if (!is_digit(command[1]) || !is_in_range(command[1]))
 				return (exit_non_numeric(command[1]));
-			exit_num = (unsigned char)stroll(command[1]);
+			g_exit_num = (unsigned char)stroll(command[1]);
 			printf("exit\n");
 			ft_error(status);
 		}

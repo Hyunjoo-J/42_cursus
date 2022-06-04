@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:43:01 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/05/27 01:36:38 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/06/05 02:38:59 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,34 +59,6 @@ typedef struct s_lexer
 	struct s_lexer		*next;
 }t_lexer;
 
-typedef struct s_parser
-{
-	t_lexer			*start;
-	t_lexer			*end;
-	int				pipe[2];
-	int				fd_in;
-	int				fd_out;
-	struct s_parser	*next;
-	size_t			pid;
-}t_parser;
-
-typedef struct s_env
-{
-	char			*key;
-	char			*val;
-	int				check;
-	struct s_env	*next;
-}t_env;
-
-typedef struct s_uni
-{
-	t_lexer		*lexer_list;
-	t_parser	*parser_list;
-	int			exit_status;
-	t_env		*env_list;
-	char		*input;
-}t_uni;
-
-t_uni	g_uni;
+int	g_exit_num;
 
 #endif
