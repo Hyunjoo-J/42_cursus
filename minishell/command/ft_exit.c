@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:41:32 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/06/05 02:39:17 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/06/05 14:08:43 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 static int	is_digit(char *str)
 {
@@ -93,10 +93,8 @@ static long long	stoll(char *str)
 	return (num);
 }
 
-int	ft_exit(char **command, t_info *info)
+int	ft_exit(char **command)
 {
-	int	i;
-
 	g_exit_num = EXIT_FAILURE;
 	if (command)
 	{
@@ -104,9 +102,9 @@ int	ft_exit(char **command, t_info *info)
 		{
 			if (!is_digit(command[1]) || !is_in_range(command[1]))
 				return (exit_non_numeric(command[1]));
-			g_exit_num = (unsigned char)stroll(command[1]);
+			g_exit_num = (unsigned char)stoll(command[1]);
 			printf("exit\n");
-			ft_error(status);
+			ft_error(g_exit_num);
 		}
 		ft_print_error(2, "exit", 0, "too many arguments");
 	}

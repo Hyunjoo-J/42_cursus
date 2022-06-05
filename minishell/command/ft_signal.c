@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_signal.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 02:52:33 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/06/05 03:40:54 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/06/05 14:37:18 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void	ft_signal(int signum)
 {
