@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:41:32 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/06/05 14:08:43 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/06/08 04:44:09 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,17 +96,20 @@ static long long	stoll(char *str)
 int	ft_exit(char **command)
 {
 	g_exit_num = EXIT_FAILURE;
-	if (command)
+	if (command[1] == NULL)//exit
 	{
-		if (command[2] == NULL)
-		{
-			if (!is_digit(command[1]) || !is_in_range(command[1]))
-				return (exit_non_numeric(command[1]));
-			g_exit_num = (unsigned char)stoll(command[1]);
-			printf("exit\n");
-			ft_error(g_exit_num);
-		}
-		ft_print_error(2, "exit", 0, "too many arguments");
+		printf("exit\n");
+		exit(0);
 	}
+	else if (command[2] == NULL)//exit num
+	{
+		if (!is_digit(command[1]) || !is_in_range(command[1]))
+			return (exit_non_numeric(command[1]));
+		g_exit_num = (unsigned char)stoll(command[1]);
+		printf("exit\n");
+		ft_error(g_exit_num);
+	}
+	else//exit some some
+		ft_print_error(2, "exit", 0, "too many arguments");
 	return (1);
 }
