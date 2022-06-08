@@ -37,10 +37,10 @@ pid_t	command_execute(char **command, t_info *info)
 		info->output_file = fd[1];
 		if (builtin_command(command, info))
 		{
-			close(fd[1]);
+			close(fd[1]);//실행시키고 종료
 			exit(0);
 		}
-		else
+		else//built in 함수가 아닐때
 		{
 			set_redirection(info);
 			close(fd[1]);
@@ -62,7 +62,7 @@ pid_t	command(char **command, t_info *info) //수정 필요, 마지막 문자열
 	{
 		if (info->pipe_count)
 		{
-			printf("\033[0;32m1. %s\033[0;37m\n", command[0]);
+			printf("\033[0;32m1. %s\033[0;37m\n", command[0]);//출력하는 이유는???
 			pid = command_execute(command, info);
 		}
 		else //파이프의 마지막 문자열 실행 또는 파이프 없을 때

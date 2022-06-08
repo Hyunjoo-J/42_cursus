@@ -89,7 +89,7 @@ void	ft_export(char **command, t_info *info) //export ""
 	while (command[++i])
 	{
 		envp_item = split_equal(command[i]);
-		if (!is_key_valid(envp_item[0]))
+		if (!is_key_valid(envp_item[0]))//숫자가 오면 안될텐데....?
 		{
 			if (have_equal(command[i]))
 				list_insert(&(tmp), new_item(ft_strdup(envp_item[0]), ft_strdup(envp_item[1]), 1));
@@ -98,6 +98,7 @@ void	ft_export(char **command, t_info *info) //export ""
 		}
 		else
 		{
+			g_exit_num = 1;//에러 코드 설정 추가
 			ft_write(info, "minishell: export: ");
 			ft_write(info, command[i]);
 			ft_write(info, ": not a valid identifier\n");

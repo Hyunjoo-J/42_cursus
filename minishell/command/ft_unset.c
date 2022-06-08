@@ -36,7 +36,7 @@ void	ft_unset(char **cmd, t_info *info)
 	i = 1;
 	while (cmd[i])
 	{
-		if (is_valid(cmd[i]))
+		if (is_valid(cmd[i]))//숫자 제외
 		{
 			ft_write(info, "minishell: unset: ");
 			ft_write(info, cmd[i]);
