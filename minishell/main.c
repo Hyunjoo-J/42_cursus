@@ -6,13 +6,13 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 23:39:01 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/06/09 23:39:02 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/06/10 01:40:26 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/minishell.h"
 
-void	free_pid(t_info *info)
+void	free_pid(t_info *info) //25줄 확인!!
 {
 	int	i;
 	int	status;
@@ -22,9 +22,8 @@ void	free_pid(t_info *info)
 	e_num = -1;
 	while (i < info->have_pipe + 1)
 	{
-		if (info->pids[i] == -2)
+		if (info->pids[i++] == -2)
 		{
-			i++;
 			e_num = -1;
 			continue ;
 		}
@@ -41,7 +40,7 @@ void	free_pid(t_info *info)
 	free(info->pids);
 }
 
-void	parsing(char **bundles, t_info *info)
+void	parsing(char **bundles, t_info *info) //25줄 초과!!
 {
 	int		i;
 	char	**parts;
@@ -50,7 +49,7 @@ void	parsing(char **bundles, t_info *info)
 	i = -1;
 	while (bundles[++i])
 	{
-		info->r_in_fd = -1;
+		info->r_in_fd = -1; //init 함수 새로 만들기?
 		info->r_out_fd = -1;
 		info->r_kind = 0;
 		info->here_doc = 0;
@@ -76,7 +75,7 @@ void	minishell(char *input, t_info *info)
 	if (check_syntax(input, info))
 	{
 		ft_print_error(0, 0, "syntax error near unexpected token");
-		g_exit_num = 258;//check
+		g_exit_num = 258;//check 수정 필요할듯
 		return ;
 	}
 	info->bundles = pipe_parsing(input, info);
@@ -93,11 +92,10 @@ void	minishell(char *input, t_info *info)
 	free_str(info->bundles);
 }
 
-void	ft_readline(t_info *info)
+void	ft_readline(t_info *info) //25줄 확인!!
 {
 	char	*input;
 
-	
 	while (1)
 	{
 		init_ctrl();
@@ -109,9 +107,7 @@ void	ft_readline(t_info *info)
 			break ;
 		}
 		else if (input[0] == '\0')
-		{
 			free(input);
-		}
 		else
 		{
 			add_history(input);

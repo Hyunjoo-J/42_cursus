@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:41:23 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/06/09 23:37:06 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/06/10 01:20:41 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ int	ft_cd(char **command, t_info *info) // return exit status 설정
 
 	tmp = info->env_list;
 	path = getcwd(NULL, 0);
-	if (command[1] == 0 || (command[1][0] == '~' && ((command[1][1] == '\0') || (command[1][1] == '/')))) //cd, cd ~, cd ~/
+	if (command[1] == 0 || (command[1][0] == '~' && ((command[1][1] == '\0') \
+	|| (command[1][1] == '/')))) //cd, cd ~, cd ~/
 		return (handle_home(command, tmp->next));
 	if(command[1][0] == '/')
 		return (handle_absolute(command[1], command[1]));

@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 23:37:26 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/06/09 23:37:27 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/06/10 01:27:02 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ int	ft_unset(char **cmd, t_info *info)
 			status = 1;
 		}
 		else
-		{
 			list_remove(&(info->env_list), cmd[i]);
-		}
 		i++;
 	}
 	return (status);

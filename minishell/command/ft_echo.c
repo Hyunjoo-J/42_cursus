@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 23:37:08 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/06/09 23:37:09 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/06/10 01:21:26 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	echo_print(char **command, int i, int option, t_info *info)
 
 int	ft_echo(char **command, t_info *info)
 {
-	int		i;
-	int		j;
-	int		option;
+	int	i;
+	int	j;
+	int	option;
 
 	option = -1;
 	i = 0;

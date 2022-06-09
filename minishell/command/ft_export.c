@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 23:37:19 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/06/09 23:37:20 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/06/10 01:24:28 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ int	is_key_valid(char *str)//key 문자열 체크
 	i = 0;
 	while (str[i])
 	{
-		if (!(str[i] == '_' || ('a' <= str[i] && str[i] <= 'z') || ('A' <= str[i] && str[i] <= 'Z') || ('0'<= str[i] && str[i] <= '9')))
+		if (!(str[i] == '_' || ('a' <= str[i] && str[i] <= 'z') \
+		|| ('A' <= str[i] && str[i] <= 'Z') \
+		|| ('0'<= str[i] && str[i] <= '9')))
 			return (1);
 		i++;
 	}
@@ -82,7 +84,8 @@ void	export_print(int i, t_info *info)
 		while (list)
 		{
 			if (ft_strcmp(list->key, "_") != 0)
-				list_insert_for_export(&(set), new_item(ft_strdup(list->key), ft_strdup(list->value), 1)); //알파벳 순으로 insert 되도록
+				list_insert_for_export(&(set), new_item(ft_strdup(list->key), \
+				ft_strdup(list->value), 1)); //알파벳 순으로 insert 되도록
 			list = list->next;
 		}
 		list = set;
@@ -95,7 +98,7 @@ void	export_print(int i, t_info *info)
 	}
 }
 
-int	ft_export(char **command, t_info *info)
+int	ft_export(char **command, t_info *info)//25줄 넘어서 끊어야함!!
 {
 	char	**envp_item;
 	int		i;
@@ -118,12 +121,14 @@ int	ft_export(char **command, t_info *info)
 		{
 			if (have_equal(command[i]))
 			{
-				list_insert(&(info->env_list), new_item(ft_strdup(envp_item[0]), ft_strdup(envp_item[1]), 1));
+				list_insert(&(info->env_list), \
+				new_item(ft_strdup(envp_item[0]), ft_strdup(envp_item[1]), 1));
 				//list_insert_for_export(&(info->user_list), new_item(ft_strdup(envp_item[0]), ft_strdup(envp_item[1])));
 			}
 			else
 			{
-				list_insert(&(info->env_list), new_item(ft_strdup(envp_item[0]), 0, 0));
+				list_insert(&(info->env_list), \
+				new_item(ft_strdup(envp_item[0]), 0, 0));
 				//list_insert_for_export(&(info->user_list), new_item(ft_strdup(envp_item[0]), 0));
 			}
 		}

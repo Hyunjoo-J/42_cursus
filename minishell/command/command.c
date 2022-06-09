@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 23:37:01 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/06/09 23:37:02 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/06/10 01:25:07 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ pid_t	commands(char **command, t_info *info)
 	return (pid);
 }
 
-pid_t	command(char **command, t_info *info)
+pid_t	command(char **command, t_info *info)//25줄 확인!!
 {
 	pid_t	pid;
 

@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 23:36:52 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/06/09 23:36:53 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/06/10 01:18:23 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_builtin(char *command)
 		|| ft_strcmp(command, "exit") == 0);
 }
 
-int	builtin_command(char **command, t_info *info) // 명령어 추가
+int	builtin_command(char **command, t_info *info)
 {
 	int	status;
 

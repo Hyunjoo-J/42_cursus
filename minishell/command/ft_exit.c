@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:41:32 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/06/05 14:08:43 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/06/10 01:22:14 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ static int	is_in_range(char *str)
 static int	exit_non_numeric(char *str, t_info *info) //exit|exit kjdhfk --> exit $?
 {
 	ft_print(info, "exit\n");
-	ft_print_error("exit", str,\
-	"numeric argument required");
+	ft_print_error("exit", str, "numeric argument required");
 	g_exit_num = 255;
 	ft_error(255);
 	return (255);

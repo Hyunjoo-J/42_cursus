@@ -6,13 +6,13 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 23:38:53 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/06/09 23:38:54 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/06/10 01:42:19 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/minishell.h"
 
-void	list_insert(t_list **list, t_list *item) //key=value만 들어옴
+void	list_insert(t_list **list, t_list *item) //key=value만 들어옴 25줄 초과!
 {
 	t_list	*tmp;
 
@@ -41,7 +41,7 @@ void	list_insert(t_list **list, t_list *item) //key=value만 들어옴
 		(*list) = item;
 }
 
-void	list_insert_for_export(t_list **list, t_list *item)
+void	list_insert_for_export(t_list **list, t_list *item) //25줄 초과!!
 {
 	t_list	*tmp;
 
