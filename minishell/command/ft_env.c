@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:41:25 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/05/31 04:26:46 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/06/09 16:51:10 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,21 @@ int	ft_env(char **command, t_info *info)
 {
 	t_list	*tmp;
 
-	tmp = info->list;
+	tmp = info->env_list;
 	if (command[1] != 0)
 	{
-		printf("env: %s: No such file of directory\n", command[1]);
+		ft_print_error(command[0], command[1], "No such file or directory");
 		return (127);//명령어의 경로($PATH) 문제 혹은 명령어 오타
 	}
 	while (tmp)
 	{
-		if (tmp->print)
-			printf("%s=%s\n", tmp->key, tmp->value);
+		if (tmp->print == 1)
+		{
+			ft_print(info, tmp->key);
+			ft_print(info, "=");
+			ft_print(info, tmp->value);
+			ft_print(info, "\n");
+		}
 		tmp = tmp->next;
 	}
 	return (0);

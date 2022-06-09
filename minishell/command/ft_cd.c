@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:41:23 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/06/05 17:10:30 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/06/09 16:25:46 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*concat_path(char *curr_path, char *rel_path)
 	ft_strlen(rel_path) + 1));
 	if (new_path == 0)
 	{
-		ft_error(0);
+		ft_print_error(0, 0, strerror(errno));
 		return (0);
 	}
 	i = -1;
@@ -40,7 +40,7 @@ static int	handle_absolute(char *command, char *path)
 {
 	if (chdir(path) == -1)
 	{
-		ft_print_error(2, "cd", command, \
+		ft_print_error("cd", command, \
 	strerror(errno));
 		return (1);
 	}
@@ -54,10 +54,10 @@ static int	handle_relative(char *command)
 	char	*new_path;
 	int		ret;
 
-	curr_path = getcwd(NULL, 0);
+	curr_path = getcwd(0, 0);
 	if (!curr_path)
 	{
-		ft_print_error(2, "cd", 0, strerror(errno));
+		ft_print_error("cd", 0, strerror(errno));
 		return (1);
 	}
 	new_path = concat_path(curr_path, command);
@@ -90,19 +90,18 @@ static int	handle_home(char **command, t_list *tmp)
 	return (ret);
 }
 
-int	ft_cd(char **command, t_info *info)
+int	ft_cd(char **command, t_info *info) // return exit status 설정
 {
 	t_list	*tmp;
-	//info에 home 저장
-	//list는 환경변수
+	char *path;
 
-	tmp = info->list;//home필요
-	if (command[1] == 0 || (command[1][0] == '~' && ((command[1][1] == '\0') \
-	|| (command[1][1] == '/'))))//cd, cd ~, cd ~/... ->home으로 이동
-		return (handle_home(command, tmp));
-	if (command[1][0] == '/')// cd / 루트로 이동
+	tmp = info->env_list;
+	path = getcwd(NULL, 0);
+	if (command[1] == 0 || (command[1][0] == '~' && ((command[1][1] == '\0') || (command[1][1] == '/')))) //cd, cd ~, cd ~/
+		return (handle_home(command, tmp->next));
+	if(command[1][0] == '/')
 		return (handle_absolute(command[1], command[1]));
 	else
 		return (handle_relative(command[1]));
+	ft_oldpwd(tmp, path)
 }
-//cd ~/Desktop
