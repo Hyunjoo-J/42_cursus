@@ -1,79 +1,65 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/27 00:59:12 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/05 14:10:07 by hyjeong          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./includes/minishell.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_print_error(char *cmd, char *arg, char *msg)
 {
-	char	*str;
-	int		one;
-	int		two;
-	int		i;
+	int fd;
 
-	if (!s1 && !s2)
-		return (0);
-	one = ft_strlen(s1);
-	two = ft_strlen(s2);
-	str = (char *)malloc(sizeof(char) * (one + two + 1));
-	if (!str)
-		return (0);
-	i = -1;
-	while (++i < one)
+	fd = 2;
+	write(fd, "bash: ", 6);
+	if (cmd != 0)
 	{
-		str[i] = s1[i];
+		write(fd, cmd, ft_strlen(cmd));
+		write(fd, ": ", 2);
 	}
-	i = -1;
-	while (++i < two)
+	if (arg != 0)
 	{
-		str[one + i] = s2[i];
+		write(fd, arg, ft_strlen(arg));
+		write(fd, ": ", 2);
 	}
-	str[one + two] = '\0';
-	return (str);
+	write(fd, msg, ft_strlen(msg));
+	write(fd, "\n", 1);
 }
 
-int	ft_strcmp(const char *s1, const char *s2)
+void	ft_error(int exit_status)
 {
-	size_t	i;
+	struct termios	new_term;
 
-	i = 0;
-	while (s1[i] && s2[i])
-	{
-		if (s1[i] != s2[i])
-			break ;
-		i++;
-	}
-	if (s1[i] == '\0' && s2[i] == '\0')
-		return (0);
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	tcgetattr(0, &new_term);
+	new_term.c_lflag |= (ECHOCTL);
+	tcsetattr(0, TCSANOW, &new_term);
+	//ft_reset_uni();
+	//free_env();
+	exit(exit_status);
 }
 
-char	*ft_strdup(const char *src)
+void	ft_oldpwd(t_list *env, char *path)
 {
-	int		i;
-	int		len;
-	char	*dst;
+	char	*tmp;
+	char	*new_path;
+	t_list	*new1;
+	t_list	*new2;
 
-	if (!src)
-		return (0);
-	len = ft_strlen(src);
-	dst = (char *)malloc(sizeof(char) * (len + 1));
-	if (!dst)
-		return (0);
-	i = 0;
-	while (src[i])
+	new1 = env;
+	new_path = getcwd(NULL, 0);
+	tmp = malloc(sizeof(char) * MAXSIZE);
+	if (list_find(&new1, "OLDPWD"))
 	{
-		dst[i] = src[i];
-		i++;
+		list_insert(&(env), new_item(ft_strdup("OLDPWD"), ft_strdup(path), 1));
 	}
-	dst[i] = '\0';
-	return (dst);
-}
-
-int	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
+	if (list_find(&new2,"PWD"))
+	{
+		list_insert(&(env), new_item(ft_strdup("PWD"), ft_strdup(new_path), 1));
+	}
 }

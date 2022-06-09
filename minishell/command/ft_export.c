@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:37:19 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/09 23:37:20 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 /*
 	환경 변수 추가 명령어
@@ -45,66 +57,89 @@ int	have_equal(char *str) // 유효한 =가 있는지
 	return (0);
 }
 
-void	export_print(int i, t_list *tmp, t_info *info)
-{
-	if (i == 1)// export 입력이 들어올 경우
+void	print_declare(t_info *info, char *key, char *value)
+{//값에 큰따옴표가 있는 경우 맥에서 해결
+	ft_print(info, "declare -x ");
+	ft_print(info, key);
+	if (value)
 	{
-		while (tmp)
+		ft_print(info, "=\"");
+		ft_print(info, value);
+		ft_print(info, "\"");
+	}
+	ft_print(info, "\n");
+}
+
+void	export_print(int i, t_info *info)
+{
+	t_list	*list;
+	t_list	*set;
+
+	list = info->env_list;
+	set = NULL;
+	if (i == 1)
+	{
+		while (list)
 		{
-			ft_write(info, "declare -x ");
-			if (tmp->print)//printf("declare -x %s=\"%s\"\n", tmp->key, tmp->value);//값에 큰따옴표가 있는 경우 맥에서 해결
-			{
-				ft_write(info, tmp->key);
-				ft_write(info, "=\"");
-				ft_write(info, tmp->value);
-				ft_write(info, "\"\n");
-			}
-			else
-			{//printf("declare -x %s\n", tmp->key);
-				ft_write(info, tmp->key);
-				ft_write(info, "\n");
-			}
-			tmp = tmp->next;
+			if (ft_strcmp(list->key, "_") != 0)
+				list_insert_for_export(&(set), new_item(ft_strdup(list->key), ft_strdup(list->value), 1)); //알파벳 순으로 insert 되도록
+			list = list->next;
 		}
+		list = set;
+		while (list)
+		{
+			print_declare(info, list->key, list->value);
+			list = list->next;
+		}
+		free_list(&set);
 	}
 }
 
-void	ft_export(char **command, t_info *info) //export ""
+int	ft_export(char **command, t_info *info)
 {
-	t_list	*tmp;
 	char	**envp_item;
 	int		i;
+	int		flag;
+	int		status;
 
-	if (command[1] && command[1][0] == '-') //옵션이 들어올 경우
+	if (command[1] && command[1][0] == '-')
 	{
 		command[1][2] = 0;
-		ft_write(info, "minishell: export: ");
-		ft_write(info, command[1]);
-		ft_write(info, ": do not need options\n");
-		//printf("minishell: export: -%c: do not need options\n", command[1][1]);
-		return ;
+		ft_print_error(command[0], command[1], "invalid option");
+		return (1);
 	}
-	tmp = info->list;
 	i = 0;
+	status = 0;
 	while (command[++i])
 	{
-		envp_item = split_equal(command[i]);
-		if (!is_key_valid(envp_item[0]))//숫자가 오면 안될텐데....?
+		flag = 0;
+		envp_item = split_equal(command[i], &flag);
+		if (envp_item && !is_key_valid(envp_item[0]))
 		{
 			if (have_equal(command[i]))
-				list_insert(&(tmp), new_item(ft_strdup(envp_item[0]), ft_strdup(envp_item[1]), 1));
+			{
+				list_insert(&(info->env_list), new_item(ft_strdup(envp_item[0]), ft_strdup(envp_item[1]), 1));
+				//list_insert_for_export(&(info->user_list), new_item(ft_strdup(envp_item[0]), ft_strdup(envp_item[1])));
+			}
 			else
-				list_insert(&(tmp), new_item(ft_strdup(envp_item[0]), 0, 0));
+			{
+				list_insert(&(info->env_list), new_item(ft_strdup(envp_item[0]), 0, 0));
+				//list_insert_for_export(&(info->user_list), new_item(ft_strdup(envp_item[0]), 0));
+			}
 		}
 		else
 		{
-			g_exit_num = 1;//에러 코드 설정 추가
-			ft_write(info, "minishell: export: ");
-			ft_write(info, command[i]);
-			ft_write(info, ": not a valid identifier\n");
-			//printf("minishell: export: %s: not a valid identifier\n", command[i]);
+			status = 1;
+			if (flag == 1)
+			{
+				status = -1000;
+				break ;
+			}
+			ft_print_error(command[0], command[i], "not a valid identifier");
 		}
 		free_str(envp_item);
 	}
-	export_print(i, tmp, info);
+	if (status != -1000)
+		export_print(i, info);
+	return (status);
 }

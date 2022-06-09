@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:37:52 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/09 23:37:53 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 void	fill_word(char *str, char *res, int start, int end) //words_parsing.c의 fill_word와 동일
@@ -16,7 +28,7 @@ void	fill_word(char *str, char *res, int start, int end) //words_parsing.c의 fi
 
 void	skip_space(char *str, int *start)
 {
-	while (str[*start] && str[*start] == ' ')
+	while (str[*start] && is_space(str[*start]))
 		(*start)++;
 }
 
@@ -31,4 +43,14 @@ void	check_quote(char c, int *quote)
 int	is_quote(char c)
 {
 	return (c == '\'' || c == '\"');
+}
+
+int	is_space(char c)
+{
+	return (c == 32 || (9 <= c && c <= 13));
+}
+
+int	is_redirect(char c)
+{
+	return (c == '<' || c == '>');
 }

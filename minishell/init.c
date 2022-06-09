@@ -1,33 +1,63 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:38:50 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/09 23:38:51 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./includes/minishell.h"
 
-void	init(t_info *info, char **envp) //수정
+void	init_ctrl()
 {
-	char	*value;
-	char	**envp_item;
-	int		i;
+	struct termios	term;
 
-	value = getenv("HOME");
-	if (value)
-		info->home = value;
-	else
-	{
-		printf("ERROR\n");
-		return ;
-	}
-	info->envp = envp;
-	info->list = NULL;
+	signal(SIGINT, ft_signal);
+	signal(SIGQUIT, ft_signal);
+	tcgetattr(STDIN_FILENO, &term);
+	term.c_lflag &= ~ECHOCTL;//check
+	tcsetattr(STDIN_FILENO, TCSANOW, &term);
+}
+
+int	init_env(t_info *info, char **envp)
+{
+	int		i;
+	int		flag;
+	char	**envp_item;
+
+	g_exit_num = 0;
+	info->bundles = 0;
+	info->env_list = 0; // env를 위한 리스트
 	i = 0;
 	while (envp[i])
 	{
-		envp_item = split_equal(envp[i]);
-		/*if (!envp_item)//--->정해야함.
-			return ;*/
-		list_insert(&(info->list), new_item(envp_item[0], envp_item[1], 1));
+		envp_item = split_equal(envp[i], &flag);
+		if (!envp_item)
+			return (0);
+		list_insert(&(info->env_list), new_item(ft_strdup(envp_item[0]), ft_strdup(envp_item[1]), 1));
+		free_str(envp_item);
 		i++;
 	}
-	info->pipe_count = 0;
+	info->envp = envp;
+	return (1);
+}
+
+void	init_reset(t_info *info)
+{
+	info->bundles = 0;
+	info->pids = 0;
+	info->pipe_num = 0;
 	info->have_pipe = 0;
-	info->redirect = 0;
-	info->input_file = 0;
-	info->output_file = 1;
+	info->input_fd = 0;
+	info->output_fd = 1;
+	if (info->input_fd != 0)
+		close(info->input_fd);
+	info->input_fd = 0;
+	if (info->output_fd != 1)
+		close(info->output_fd);
+	info->exit = 0;
 }

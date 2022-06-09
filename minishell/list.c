@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:38:56 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/09 23:38:57 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./includes/minishell.h"
 
 t_list	*new_item(char *key, char *value, int print)
@@ -8,7 +20,7 @@ t_list	*new_item(char *key, char *value, int print)
 	res->key = key;
 	res->value = value;
 	res->print = print;
-	res->next = NULL;
+	res->next = 0;
 	return (res);
 }
 
@@ -16,41 +28,11 @@ void	delete_item(t_list *item)
 {
 	if (item)
 	{
-		item->next = NULL;
+		item->next = 0;
 		free(item->key);
 		free(item->value);
 		free(item);
 	}
-}
-
-void	list_insert(t_list **list, t_list *item)
-{
-	t_list	*tmp;
-	t_list	*prev;
-	t_list	*item_tmp;
-
-	tmp = (*list);
-	if (tmp)
-	{
-		prev = (*list);
-		while (tmp)
-		{
-			if (ft_strcmp(tmp->key, item->key) == 0 && item->value)
-			{
-				item_tmp = tmp;
-				prev->next = item;
-				item->next = tmp->next;
-				delete_item(item_tmp);
-				break ;
-			}
-			prev = tmp;
-			tmp = tmp->next;
-		}
-		if (!tmp)
-			prev->next = item;
-	}
-	else
-		(*list) = item;
 }
 
 void	list_remove(t_list **list, char *key)
@@ -94,13 +76,3 @@ char	*list_find(t_list **list, char *key)
 	}
 	return (0);
 }
-
-int	is_empty(t_list **list)
-{
-	if (*list)
-		return (0);
-	return (1);
-}
-
-//파이프 / 리디렉션
-//에러 / 빌트인 함수 / exe

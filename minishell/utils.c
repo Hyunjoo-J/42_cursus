@@ -1,23 +1,16 @@
-#include "./includes/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:39:11 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/09 23:39:12 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	ft_write(t_info *info, char *str)
-{
-	int		i;
-	int		fd;
-	char	c;
-	
-	i = 0;
-	while (str[i])
-	{
-		if (info->redirect_out != -1)
-			fd = info->redirect_out;
-		else
-			fd = info->output_file;
-		c = str[i];
-		write(fd, &c, 1);
-		i++;
-	}
-}
+#include "./includes/minishell.h"
 
 void	free_str(char **strs)
 {
@@ -47,21 +40,33 @@ void	init_str(char **strs, int len)
 	}
 }
 
-void	error_message(char **strs, int flag) //리턴 -1하기
+void	free_list(t_list **list)
 {
-	if (flag == 0)
-		printf("minishell: malloc error\n");
-	else if (flag == 1)
-		printf("minishell: syntax error\n");
-	else if (flag == 2)
-		printf("minishell: No such file or directory\n");
-	else if (flag == 3)
-		printf("minishell: Is a directory\n");
-	else if (flag == 4)
-		printf("minishell: pipe error\n");
-	else if (flag == 5)
-		printf("Command '' not found\n");
-	else if (flag == 6)
-		printf("minishell: command not found\n");
-	free_str(strs);
+	t_list	*item;
+
+	if (*list)
+	{
+		while (*list)
+		{
+			item = *list;
+			*list = (*list)->next;
+			delete_item(item);
+		}
+		free(*list);
+	}
+}
+
+void	free_all(t_info *info)
+{
+	if (info->bundles)
+		free(info->bundles);
+	if (info->pids)
+		free(info->pids);
+	free_list(&(info->env_list));
+}
+
+void	free_exit(t_info *info)
+{
+	free_all(info);
+	exit(1);
 }

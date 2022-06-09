@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:41:32 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/06/08 04:44:09 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/06/05 14:08:43 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,12 @@ static int	is_in_range(char *str)
 	return (1);
 }
 
-static int	exit_non_numeric(char *str)
+static int	exit_non_numeric(char *str, t_info *info) //exit|exit kjdhfk --> exit $?
 {
-	printf("exit\n");
-	ft_print_error(2, "exit", str,\
+	ft_print(info, "exit\n");
+	ft_print_error("exit", str,\
 	"numeric argument required");
+	g_exit_num = 255;
 	ft_error(255);
 	return (255);
 }
@@ -93,23 +94,26 @@ static long long	stoll(char *str)
 	return (num);
 }
 
-int	ft_exit(char **command)
+int	ft_exit(char **command, t_info *info)
 {
 	g_exit_num = EXIT_FAILURE;
-	if (command[1] == NULL)//exit
+	if (command[1] == NULL && info->have_pipe == 0)//exit
 	{
-		printf("exit\n");
+		ft_print(info, "exit\n");
 		exit(0);
 	}
 	else if (command[2] == NULL)//exit num
 	{
 		if (!is_digit(command[1]) || !is_in_range(command[1]))
-			return (exit_non_numeric(command[1]));
+			return (exit_non_numeric(command[1], info));
 		g_exit_num = (unsigned char)stoll(command[1]);
-		printf("exit\n");
-		ft_error(g_exit_num);
+		if (info->have_pipe == 0)
+		{
+			ft_print(info, "exit\n");
+			ft_error(g_exit_num);
+		}
 	}
 	else//exit some some
-		ft_print_error(2, "exit", 0, "too many arguments");
+		ft_print_error("exit", command[1], "too many arguments");
 	return (1);
 }

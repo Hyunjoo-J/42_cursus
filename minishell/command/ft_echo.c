@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:37:08 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/09 23:37:09 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 /*
 	echo [-n옵션이 연속으로 여러번 들어가도됨] 123
@@ -7,18 +19,16 @@ void	echo_print(char **command, int i, int option, t_info *info)
 {
 	while (command[i]) //문자열 출력
 	{
-		ft_write(info, command[i]);
-		//printf("%s", command[i]);
+		ft_print(info, command[i]);
 		if (command[i + 1])
-			ft_write(info, " ");
-			//printf(" ");
+			ft_print(info, " ");
 		i++;
 	}
 	if (option == -1)
-		ft_write(info, "\n");//printf("\n");
+		ft_print(info, "\n");
 }
 
-void	ft_echo(char **command, t_info *info)
+int	ft_echo(char **command, t_info *info)
 {
 	int		i;
 	int		j;
@@ -45,4 +55,5 @@ void	ft_echo(char **command, t_info *info)
 		option = i;
 	}
 	echo_print(command, i, option, info);
+	return (0);
 }
