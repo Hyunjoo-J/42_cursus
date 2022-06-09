@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:41:23 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/06/09 16:25:46 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/06/09 18:29:53 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,5 @@ int	ft_cd(char **command, t_info *info) // return exit status 설정
 		return (handle_absolute(command[1], command[1]));
 	else
 		return (handle_relative(command[1]));
-	ft_oldpwd(tmp, path)
+	ft_oldpwd(tmp, path);
 }
