@@ -6,7 +6,11 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:41:32 by hyunjoo           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/06/09 17:13:39 by hyjeong          ###   ########.fr       */
+=======
+/*   Updated: 2022/06/10 01:22:14 by hyunjoo          ###   ########.fr       */
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +67,12 @@ static int	is_in_range(char *str)
 static int	exit_non_numeric(char *str, t_info *info) //exit|exit kjdhfk --> exit $?
 {
 	ft_print(info, "exit\n");
+<<<<<<< HEAD
 	ft_print_error("exit", str,\
 	"numeric argument required");
+=======
+	ft_print_error("exit", str, "numeric argument required");
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 	g_exit_num = 255;
 	ft_error(255);
 	return (255);
@@ -99,7 +107,7 @@ int	ft_exit(char **command, t_info *info)
 	g_exit_num = EXIT_FAILURE;
 	if (command[1] == NULL && info->have_pipe == 0)//exit
 	{
-		printf("exit\n");
+		ft_print(info, "exit\n");
 		exit(0);
 	}
 	else if (command[2] == NULL)//exit num
@@ -109,7 +117,11 @@ int	ft_exit(char **command, t_info *info)
 		g_exit_num = (unsigned char)stoll(command[1]);
 		if (info->have_pipe == 0)
 		{
+<<<<<<< HEAD
 			printf("exit\n");
+=======
+			ft_print(info, "exit\n");
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 			ft_error(g_exit_num);
 		}
 	}

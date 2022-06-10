@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:38:56 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/09 23:38:57 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./includes/minishell.h"
 
 t_list	*new_item(char *key, char *value)
@@ -7,6 +19,10 @@ t_list	*new_item(char *key, char *value)
 	res = malloc(sizeof(t_list));
 	res->key = key;
 	res->value = value;
+<<<<<<< HEAD
+=======
+	res->print = print;
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 	res->next = 0;
 	return (res);
 }

@@ -1,5 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirect_parsing.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:38:05 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/09 23:38:06 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+<<<<<<< HEAD
+=======
 #include "../includes/minishell.h"
 
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 int	redirection(char *name, t_info *info)
 {
 	int	fd;
@@ -9,7 +24,19 @@ int	redirection(char *name, t_info *info)
 	else if (info->r_kind == OUTPUT_R)
 		fd = open(name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	else if (info->r_kind == HERE_DOC_R)
+<<<<<<< HEAD
 		fd = here_doc(name);
+=======
+	{
+		fd = here_doc(name, info);
+		if (g_exit_num == 1)
+		{
+			close(fd);
+			info->here_doc = 1;
+			return (0);
+		}	
+	}
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 	else if (info->r_kind == APPEND_R)
 		fd = open(name, O_WRONLY | O_CREAT | O_APPEND, 0777);
 	else
@@ -65,7 +92,11 @@ int	parsing_redirect(char *bundle, int start, t_info *info)
 	if (!name)
 	{
 		ft_print_error(0, 0, strerror(errno));
+<<<<<<< HEAD
 		return (-1);
+=======
+		free_exit(info);
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 	}
 	name[w_info.len] = '\0';
 	w_info.end = end;

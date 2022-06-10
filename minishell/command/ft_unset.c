@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:37:26 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/10 01:27:02 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 /*
 	변수명에 _를 제외한 특수 문자가 들어가면 에러 처리
@@ -31,7 +43,11 @@ int	ft_unset(char **cmd, t_info *info)
 	{
 		cmd[1][2] = 0;
 		ft_print_error(cmd[0], cmd[1], "invalid option");
+<<<<<<< HEAD
 		return (2);//check
+=======
+		return (1);
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 	}
 	i = 1;
 	status = 0;
@@ -43,11 +59,15 @@ int	ft_unset(char **cmd, t_info *info)
 			status = 1;
 		}
 		else
+<<<<<<< HEAD
 		{
 			list_remove(&(info->env_list), cmd[i]);
 			list_remove(&(info->export_list), cmd[i]);
 			list_remove(&(info->user_list), cmd[i]);
 		}
+=======
+			list_remove(&(info->env_list), cmd[i]);
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 		i++;
 	}
 	return (status);

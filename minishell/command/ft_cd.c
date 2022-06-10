@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:41:23 by hyunjoo           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/06/09 18:29:53 by hyjeong          ###   ########.fr       */
+=======
+/*   Updated: 2022/06/10 01:20:41 by hyunjoo          ###   ########.fr       */
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +48,6 @@ static int	handle_absolute(char *command, char *path)
 	strerror(errno));
 		return (1);
 	}
-	//ft_pwd(PWD);pwd로 위치 불러오기
 	return (0);
 }
 
@@ -80,7 +83,7 @@ static int	handle_home(char **command, t_list *tmp)
 	if (list_find(&tmp, "HOME") == 0) //HOME이라는 이름의 환경 변수가 없을 때
 		return (0);
 	if (command[1][0] == 0 || (command[1][0] == '~' && command[1][1] == 0) \
-	|| command[1][0] == '~' && command[1][1] == '\\' && command[1][2] == 0)//cmd 뒤에 들어온 것이 없음
+	|| (command[1][0] == '~' && command[1][1] == '/' && command[1][2] == 0))//cmd 뒤에 들어온 것이 없음
 		home_path = concat_path(list_find(&tmp, "HOME"), "");
 	else
 		home_path = concat_path(list_find(&tmp, "HOME"), \
@@ -97,7 +100,12 @@ int	ft_cd(char **command, t_info *info) // return exit status 설정
 
 	tmp = info->env_list;
 	path = getcwd(NULL, 0);
+<<<<<<< HEAD
 	if (command[1] == 0 || (command[1][0] == '~' && ((command[1][1] == '\0') || (command[1][1] == '/')))) //cd, cd ~, cd ~/
+=======
+	if (command[1] == 0 || (command[1][0] == '~' && ((command[1][1] == '\0') \
+	|| (command[1][1] == '/')))) //cd, cd ~, cd ~/
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 		return (handle_home(command, tmp->next));
 	if(command[1][0] == '/')
 		return (handle_absolute(command[1], command[1]));

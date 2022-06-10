@@ -1,3 +1,18 @@
+<<<<<<< HEAD
+=======
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   interpret_word.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:37:49 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/09 23:37:50 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 #include "../includes/minishell.h"
 
 int	have_to_change(char *part)
@@ -45,7 +60,14 @@ int	interpret_word(char **parts, t_info *info)
 		{
 			parts[i] = make_new_word(parts[i], info);
 			if (!parts[i])
+<<<<<<< HEAD
 				return (0);
+=======
+			{
+				free_str(parts);
+				free_exit(info);
+			}
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 		}
 		i++;
 	}

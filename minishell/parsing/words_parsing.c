@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   words_parsing.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:38:09 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/09 23:38:26 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 // 따옴표를 고려하여 공백을 기준으로 분리된 단어 개수
@@ -49,7 +61,11 @@ int	find_word(char *str, int *start)
 	return (i);
 }
 
+<<<<<<< HEAD
 char	**split_words(char *bundle)
+=======
+char	**split_words(char *bundle, t_info *info)
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 {
 	t_word	w_info;
 	int		i;
@@ -62,7 +78,11 @@ char	**split_words(char *bundle)
 	if (!res)
 	{
 		ft_print_error(0, 0, strerror(errno));
+<<<<<<< HEAD
 		return (0);
+=======
+		free_exit(info);
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 	}
 	init_str(res, w_info.len + 1);
 	i = 0;
@@ -75,7 +95,11 @@ char	**split_words(char *bundle)
 		{
 			ft_print_error(0, 0, strerror(errno));
 			free_str(res);
+<<<<<<< HEAD
 			return (0);
+=======
+			free_exit(info);
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 		}
 		fill_word(bundle, res[i], w_info.start, w_info.end);
 		w_info.start = w_info.end;

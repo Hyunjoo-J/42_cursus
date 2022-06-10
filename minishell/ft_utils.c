@@ -6,7 +6,11 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 00:59:12 by hyunjoo           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/06/09 16:48:53 by hyjeong          ###   ########.fr       */
+=======
+/*   Updated: 2022/06/05 14:10:07 by hyjeong          ###   ########.fr       */
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +48,18 @@ void	ft_error(int exit_status)
 	exit(exit_status);
 }
 
+<<<<<<< HEAD
 void	ft_oldpwd(t_info *info, char *path)
+=======
+void	ft_oldpwd(t_list *env, char *path)
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 {
 	char	*tmp;
 	char	*new_path;
 	t_list	*new1;
 	t_list	*new2;
 
+<<<<<<< HEAD
 	new1 = info->env_list;
 	new_path = getcwd(NULL, 0);
 	tmp = malloc(sizeof(char) * MAXSIZE);
@@ -68,3 +77,17 @@ void	ft_oldpwd(t_info *info, char *path)
 		new2->value = new_path;
 	}
 }
+=======
+	new1 = env;
+	new_path = getcwd(NULL, 0);
+	tmp = malloc(sizeof(char) * MAXSIZE);
+	if (list_find(&new1, "OLDPWD"))
+	{
+		list_insert(&(env), new_item(ft_strdup("OLDPWD"), ft_strdup(path), 1));
+	}
+	if (list_find(&new2,"PWD"))
+	{
+		list_insert(&(env), new_item(ft_strdup("PWD"), ft_strdup(new_path), 1));
+	}
+}
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35

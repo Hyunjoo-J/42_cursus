@@ -1,3 +1,18 @@
+<<<<<<< HEAD
+=======
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:36:52 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/10 01:18:23 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 #include "../includes/minishell.h"
 
 int	is_builtin(char *command)
@@ -8,10 +23,18 @@ int	is_builtin(char *command)
 		|| ft_strcmp(command, "exit") == 0);
 }
 
+<<<<<<< HEAD
 int	builtin_command(char **command, t_info *info) // 명령어 추가
 {
 	int	status;
 
+=======
+int	builtin_command(char **command, t_info *info)
+{
+	int	status;
+
+	status = 0;
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 	set_output_fd(info);
 	if (ft_strcmp(command[0], "pwd") == 0)
 		status = ft_pwd(command, info);
@@ -65,4 +88,8 @@ void	set_input_fd(t_info *info)
 	//output은 나중에 출력을 할 때 문제가 생김(빌트인 함수)
 }
 //pipe 사용하면 dup2사용하기 때문에 printf가 편함
+<<<<<<< HEAD
 //사용안하면 write를 사용해야하는
+=======
+//사용안하면 write를 사용해야하는
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35

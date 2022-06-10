@@ -28,6 +28,17 @@ void	ft_here_doc_sig(int signum)
 {
 	if (signum == SIGINT)
 	{
+<<<<<<< HEAD:minishell/ft_signal.c
 		exit(0);
 	}
+=======
+		exit(1);
+	}
+}
+
+void	ft_here_doc_sig_parent()
+{
+	printf("\n");
+	return ;
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35:minishell/command/ft_signal.c
 }

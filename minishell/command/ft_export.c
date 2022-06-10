@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:37:19 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/10 01:24:28 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 /*
 	환경 변수 추가 명령어
@@ -24,7 +36,9 @@ int	is_key_valid(char *str)//key 문자열 체크
 	i = 0;
 	while (str[i])
 	{
-		if (!(str[i] == '_' || ('a' <= str[i] && str[i] <= 'z') || ('A' <= str[i] && str[i] <= 'Z') || ('0'<= str[i] && str[i] <= '9')))
+		if (!(str[i] == '_' || ('a' <= str[i] && str[i] <= 'z') \
+		|| ('A' <= str[i] && str[i] <= 'Z') \
+		|| ('0'<= str[i] && str[i] <= '9')))
 			return (1);
 		i++;
 	}
@@ -60,6 +74,7 @@ void	print_declare(t_info *info, char *key, char *value)
 
 void	export_print(int i, t_info *info)
 {
+<<<<<<< HEAD
 	t_list	*export_list;
 	t_list	*user_list;
 
@@ -76,11 +91,37 @@ void	export_print(int i, t_info *info)
 		{
 			print_declare(info, user_list->key, user_list->value);
 			user_list = user_list->next;
+=======
+	t_list	*list;
+	t_list	*set;
+
+	list = info->env_list;
+	set = NULL;
+	if (i == 1)
+	{
+		while (list)
+		{
+			if (ft_strcmp(list->key, "_") != 0)
+				list_insert_for_export(&(set), new_item(ft_strdup(list->key), \
+				ft_strdup(list->value), 1)); //알파벳 순으로 insert 되도록
+			list = list->next;
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 		}
+		list = set;
+		while (list)
+		{
+			print_declare(info, list->key, list->value);
+			list = list->next;
+		}
+		free_list(&set);
 	}
 }
 
+<<<<<<< HEAD
 int	ft_export(char **command, t_info *info)
+=======
+int	ft_export(char **command, t_info *info)//25줄 넘어서 끊어야함!!
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 {
 	char	**envp_item;
 	int		i;
@@ -103,15 +144,29 @@ int	ft_export(char **command, t_info *info)
 		{
 			if (have_equal(command[i]))
 			{
+<<<<<<< HEAD
 				list_insert(&(info->env_list), new_item(ft_strdup(envp_item[0]), ft_strdup(envp_item[1])));
 				list_insert_for_export(&(info->user_list), new_item(ft_strdup(envp_item[0]), ft_strdup(envp_item[1])));
 			}
 			else
 				list_insert_for_export(&(info->user_list), new_item(ft_strdup(envp_item[0]), 0));
+=======
+				list_insert(&(info->env_list), \
+				new_item(ft_strdup(envp_item[0]), ft_strdup(envp_item[1]), 1));
+				//list_insert_for_export(&(info->user_list), new_item(ft_strdup(envp_item[0]), ft_strdup(envp_item[1])));
+			}
+			else
+			{
+				list_insert(&(info->env_list), \
+				new_item(ft_strdup(envp_item[0]), 0, 0));
+				//list_insert_for_export(&(info->user_list), new_item(ft_strdup(envp_item[0]), 0));
+			}
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 		}
 		else
 		{
 			status = 1;
+<<<<<<< HEAD
 			if (flag == 0)
 				ft_print_error(command[0], command[i], "not a valid identifier");
 		}
@@ -120,3 +175,18 @@ int	ft_export(char **command, t_info *info)
 	export_print(i, info);
 	return (status);
 }
+=======
+			if (flag == 1)
+			{
+				status = -1000;
+				break ;
+			}
+			ft_print_error(command[0], command[i], "not a valid identifier");
+		}
+		free_str(envp_item);
+	}
+	if (status != -1000)
+		export_print(i, info);
+	return (status);
+}
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35

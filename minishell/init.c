@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:38:50 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/09 23:38:51 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./includes/minishell.h"
 
 void	init_ctrl()
@@ -17,21 +29,32 @@ int	init_env(t_info *info, char **envp)
 	int		flag;
 	char	**envp_item;
 
+<<<<<<< HEAD
 	info->env_list = 0; // env를 위한 리스트
 	info->export_list = 0; //사용자 변수를 제외한 나머지 변수를 알파벳 순으로 정렬
+=======
+	g_exit_num = 0;
+	info->bundles = 0;
+	info->env_list = 0; // env를 위한 리스트
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 	i = 0;
 	while (envp[i])
 	{
 		envp_item = split_equal(envp[i], &flag);
 		if (!envp_item)
 			return (0);
+<<<<<<< HEAD
 		list_insert(&(info->env_list), new_item(ft_strdup(envp_item[0]), ft_strdup(envp_item[1])));// 이렇게 되면 print필요 없을 듯...?
 		if (ft_strcmp(envp_item[0], "_") != 0)
 			list_insert_for_export(&(info->export_list), new_item(ft_strdup(envp_item[0]), ft_strdup(envp_item[1]))); //알파벳 순으로 insert 되도록
+=======
+		list_insert(&(info->env_list), new_item(ft_strdup(envp_item[0]), ft_strdup(envp_item[1]), 1));
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 		free_str(envp_item);
 		i++;
 	}
 	info->envp = envp;
+<<<<<<< HEAD
 	info->user_list = 0; // 사용자 변수를 알파벳 순으로 정렬
 	return (1);
 }
@@ -48,10 +71,27 @@ void	init_reset(t_info *info)
 {
 	info->pipe_num = 0;
 	info->have_pipe = 0;
+=======
+	return (1);
+}
+
+void	init_reset(t_info *info)
+{
+	info->bundles = 0;
+	info->pids = 0;
+	info->pipe_num = 0;
+	info->have_pipe = 0;
+	info->input_fd = 0;
+	info->output_fd = 1;
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 	if (info->input_fd != 0)
 		close(info->input_fd);
 	info->input_fd = 0;
 	if (info->output_fd != 1)
 		close(info->output_fd);
+<<<<<<< HEAD
 	info->output_fd = 1;
+=======
+	info->exit = 0;
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 }

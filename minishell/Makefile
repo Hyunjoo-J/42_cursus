@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/06/09 23:39:06 by hyunjoo           #+#    #+#              #
+#    Updated: 2022/06/09 23:39:07 by hyunjoo          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = minishell
 SRC = main.c ft_split.c find_path.c utils.c list.c ft_signal.c init.c\
 	ft_utils.c list_insert.c ft_strutils.c\

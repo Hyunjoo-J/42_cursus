@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:37:35 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/09 23:37:36 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -47,6 +59,7 @@ typedef struct s_word
 
 typedef struct s_info
 {
+<<<<<<< HEAD
 	char	*home;
 	char	*pwd;
 	char	**envp;
@@ -70,12 +83,41 @@ void	ft_signal(int signum);
 void	ft_here_doc_sig(int signum);
 int		init_env(t_info *info, char **envp);
 void	init_reset(t_info *info);
+=======
+	char	**envp;
+	char	**bundles;
+	int		pipe_num;
+	int		have_pipe;
+	int		r_kind;
+	int		r_in_fd;
+	int		r_out_fd;
+	int		output_fd;
+	int		input_fd;
+	int		exit;
+	int		here_doc;
+	pid_t	*pids;
+	t_list	*env_list;
+}	t_info;
+
+void	init_ctrl();
+void	ft_signal(int signum);
+void	ft_here_doc_sig(int signum);
+void	ft_here_doc_sig_parent();
+int		init_env(t_info *info, char **envp);
+void	init_reset(t_info *info);
+void	free_exit(t_info *info);
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 
 int		check_syntax(char *input, t_info *info);
 char	**pipe_parsing(char *input, t_info *info);
 int		solve_redirect(char *bundle, t_info *info);
+<<<<<<< HEAD
 int		here_doc(char *limit);
 char	**split_words(char *bundle);
+=======
+int		here_doc(char *limit, t_info *info);
+char	**split_words(char *bundle, t_info *info);
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 int		interpret_word(char **parts, t_info *info);
 char	**split_equal(char *str, int *flag);
 
@@ -109,7 +151,11 @@ int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strdup(const char *src);
 int		ft_strlen(const char *str);
 
+<<<<<<< HEAD
 t_list	*new_item(char *key, char *value);
+=======
+t_list	*new_item(char *key, char *value, int print);
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 void	delete_item(t_list *item);
 void	list_insert(t_list **list, t_list *item);
 char	*list_find(t_list **list, char *key);
@@ -121,8 +167,15 @@ void	ft_error(int exit_status);
 void	free_str(char **en_paths);
 void	init_str(char **strs, int len);
 void	free_all(t_info *info);
+<<<<<<< HEAD
 
 char	*find_path(char *command, char **envp);
 void	ft_oldpwd(t_info *info, char *path);
+=======
+void	free_list(t_list **list);
+
+char	*find_path(char *command, char **envp);
+void	ft_oldpwd(t_list *env, char *path);
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 
 #endif

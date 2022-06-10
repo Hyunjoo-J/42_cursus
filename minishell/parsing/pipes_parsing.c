@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "../includes/minishell.h"
 
 int	find_string(char *input, int start)
@@ -5,6 +6,27 @@ int	find_string(char *input, int start)
 	int	i;
 	int quote;
 
+=======
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipes_parsing.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 23:37:57 by hyunjoo           #+#    #+#             */
+/*   Updated: 2022/06/09 23:37:58 by hyunjoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/minishell.h"
+
+int	find_string(char *input, int start)
+{
+	int	i;
+	int quote;
+
+>>>>>>> 132ce5378cc2b5ceb7d49c89c8d6abb625039c35
 	i = start;
 	quote = 0;
 	while (input[i])
