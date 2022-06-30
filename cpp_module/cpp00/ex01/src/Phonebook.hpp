@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 20:31:39 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/06/29 20:36:58 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/07/01 03:03:56 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,19 @@
 #include <iomanip>
 #include "Contact.hpp"
 
-class PhoneBoook
-{
+
+class Phonebook {
+	private: 
+		Contact contact[8];
+		int _addNum;
+		void displayColumns();
+
 	public:
-		PhoneBook(): i(0), all(0) {}
-		~PhoneBoook;
-	private:
-		Contact user[max];
-}
+		Phonebook();
+		void addContact();
+		void displayContacts();
+		void searchContact();
+};
+
 
 #endif

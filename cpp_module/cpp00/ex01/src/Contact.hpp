@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 20:26:01 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/06/29 20:31:25 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/07/01 02:43:57 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,21 @@
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 #include <iostream>
-#include <string>
+#include <iomanip>
 
 class Contact
 {
 private:
-	std::string first_name;
-	std::string last_naem;
+	std::string firstName;
+	std::string lastName;
 	std::string nickname;
-	std::string phone_number;
-	std::string secret;
+	std::string phoneNumber;
+	std::string darkestSecret;
 public:
-	Contact();
-	~Contact();
-	void	get_FirstName(std::string first);
-	void	get_LastName(std::string last);
-	void	get_NickName(std::string nick);
-	void	get_PhoneNumber(std::string phone);
-	void	get_Secret(std::string sec);
-
-	std::string	show_FirstName(void);
-	std::string	show_LastName(void);
-	std::string	show_NickName(void);
-	std::string	show_PhoneNumber(void);
-	std::string	show_Secret(void);
-
+	void	update();
+	void	calcNames(std:: string name);
+	void	showNames(int num);
+	void	showContact();
 };
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 20:25:47 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/06/29 20:31:27 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/07/01 03:04:01 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 int main()
 {
-	PhoneBook	book;
-	std::string	input;
+	std::string cmd;
+	Phonebook	phonebook;
 
-	std::cout<<"Input a command: ADD, SEARCH, EXIT\n";
-	while (true)
-	{
-		std::cin>>input;
-		if (input == "EXIT")
-			book.Exit();
-		else if(input == "SEARCH")
-			book.Search();
-		else if (input == "ADD")
-			book.Add();
-		else
-		{
-			std::cout<<"Input a command: ADD, SEARCH, EXIT\n";
-			continue ;
+	while (1){
+		std::cout<< "Enter the command 'EXIT, ADD, SEARCH >>";
+		std::getline(std::cin, cmd);
+
+		if(!cmd.compare("EXIT"))
+			exit(0);
+		else if (!cmd.compare("ADD"))
+			phonebook.addContact();
+		else if (!cmd.compare("SEARCH")){
+			phonebook.displayContacts();
+			std::cout <<"Enter the index of the contact number you wnat to see. >>";
+			phonebook.searchContact();
+			std::cin.ignore();
 		}
+		else
+			continue;
 	}
-	return (0);
 }
