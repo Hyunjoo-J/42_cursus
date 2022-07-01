@@ -5,32 +5,30 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/29 16:18:35 by hyjeong           #+#    #+#              #
-#    Updated: 2022/06/29 16:27:11 by hyjeong          ###   ########.fr        #
+#    Created: 2022/07/01 20:19:43 by hyjeong           #+#    #+#              #
+#    Updated: 2022/07/01 20:19:45 by hyjeong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY: clean, fclean, name, all, re
+SRCS = megaphone.cpp
+OBJS = $(SRCS:.cpp=.o)
+
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = megaphone
 
-SRCS = src/megaphone.cpp
-
-CC = c++
-
-FLAGS = -Wall -Wextra -Werror -std=c++98
-
-REM = rm -f
-
 all: $(NAME)
 
-$(NAME): $(SRCS)
-	$(CC) $(FLAGS) $(SRCS) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
 clean:
-	$(REM) $(NAME)
+	rm -rf $(OBJS)
 
-fclean:
-	$(REM) $(NAME)
+fclean: clean
+	rm -rf $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re

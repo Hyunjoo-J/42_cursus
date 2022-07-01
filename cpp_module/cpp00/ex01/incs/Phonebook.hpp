@@ -3,35 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   Phonebook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jihoh <jihoh@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/29 20:31:39 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/07/01 03:16:52 by hyunjoo          ###   ########.fr       */
+/*   Created: 2022/05/28 15:03:44 by jihoh             #+#    #+#             */
+/*   Updated: 2022/05/28 22:17:57 by jihoh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef PHONEBOOK_CLASS_H
+# define PHONEBOOK_CLASS_H
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+# include "Contact.hpp"
+# include <iostream>
+# include <iomanip>
+# include <string>
 
-#include <iostream>
-#include <string>
-#include <iomanip>
-#include "Contact.hpp"
+# define MaxIndex 8
 
-
-class Phonebook {
-	private: 
-		Contact contact[8];
-		int _addNum;
-		void displayColumns();
-
-	public:
-		Phonebook();
-		void addContact();
-		void displayContacts();
-		void searchContact();
+class Phonebook
+{
+private:
+	Contact	contacts[MaxIndex];
+	int		cnt;
+public:
+	Phonebook();
+	~Phonebook();
+	void	add_contact(void);
+	void	search_contact(void);
+	void	display_search_prompt(void);
 };
 
 #endif

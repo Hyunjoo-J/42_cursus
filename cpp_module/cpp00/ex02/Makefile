@@ -3,39 +3,28 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jihoh <jihoh@student.42seoul.kr>           +#+  +:+       +#+         #
+#    By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/05/21 21:44:50 by jihoh             #+#    #+#              #
-#    Updated: 2022/06/21 15:23:10 by jihoh            ###   ########.fr        #
+#    Created: 2022/07/01 20:20:16 by hyjeong           #+#    #+#              #
+#    Updated: 2022/07/01 20:20:18 by hyjeong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-SRCS = main.cpp Phonebook.cpp Contact.cpp
-SRCS := $(addprefix $(SRC_DIR), $(SRCS))
-OBJS =  $(addprefix $(OBJ_DIR), $(SRCS:.cpp=.o))
+SRCS = Account.cpp tests.cpp
+OBJS = $(SRCS:.cpp=.o)
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-INCFLAGS = -I$(INC_DIR)
 
-NAME = phonebook
-
-SRC_DIR = srcs/
-OBJ_DIR = objs/
-INC_DIR = incs/
+NAME = account
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $@ $(INCFLAGS)
-
-$(OBJ_DIR)%.o : $(SRC_DIR)%.cpp $(INC_DIR)*.hpp
-	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -c $< -o $@ $(INCFLAGS)
+	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
 clean:
-	rm -rf $(OBJ_DIR)
+	rm -rf $(OBJS)
 
 fclean: clean
 	rm -rf $(NAME)

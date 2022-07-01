@@ -5,35 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/29 16:10:29 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/06/29 16:27:52 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/07/01 20:19:49 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/07/01 20:19:51 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <iostream>
 
-int	main(int argc, char **argv)
+int main(int ac, char **av)
 {
-	std::string str;
+	char	*s;
 
-	if (argc == 1)
+	if (ac < 2)
 	{
-		std::cout<<"* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" <<std::endl;
 		return (0);
 	}
-	for (int i = 1; i < argc; i++)
+	av++;
+	while (*av)
 	{
-		for (int j = 0; argv[i][j]; j++)
+		s = *av;
+		while (*s)
 		{
-			if (isalpha(argv[i][j]))
-				std::cout<<(char)std::toupper(argv[i][j]);
-			else if (argv[i][j] == '"')
-				continue ;
-			else
-				std::cout<<argv[i][j];
+			*s = std::toupper(*s);
+			s++;
 		}
+		std::cout << *av++;
 	}
-	std::cout<<std::endl;
+	std::cout << std::endl;
 	return (0);
 }
