@@ -6,11 +6,11 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 14:33:50 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/07/03 14:36:54 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/07/03 19:19:07 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/ReplaceStr.hpp"
+#include "ReplaceStr.hpp"
 
 bool	ReplaceStr::openFile( std::string f )
 {
@@ -43,7 +43,7 @@ void	ReplaceStr::replaceStr( std::string f, std::string s1, std::string s2 )
 	this->s2 = s2;
 	while (getline(ifs, line))
 	{
-		if ((pos = line.find(this->s1)) != std::string::npos)
+		while ((pos = line.find(this->s1)) != std::string::npos)
 		{
 			line.erase(pos, s1.length());
 			line.insert(pos, this->s2);

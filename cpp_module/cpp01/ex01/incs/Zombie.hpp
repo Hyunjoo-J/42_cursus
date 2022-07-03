@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 00:49:41 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/07/03 01:45:29 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/07/03 18:27:32 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	~Zombie();
 	void	announce( void );
 	void	set_name( std::string name );
-	Zombie* zombieHorde( int N, std::string name );
 };
+Zombie* zombieHorde( int N, std::string name );
 
 #endif

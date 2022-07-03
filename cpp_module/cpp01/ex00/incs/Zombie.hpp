@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 00:49:41 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/07/03 00:59:34 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/07/03 18:16:39 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ class Zombie{
 		Zombie(std::string name);
 		~Zombie();
 		void	announce(void);
-		Zombie* newZombie(std::string name);
-		void	randomChump(std::string name);
 };
+
+Zombie*	newZombie(std::string name);
+void	randomChump(std::string name);
 
 #endif

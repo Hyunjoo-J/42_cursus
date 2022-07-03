@@ -6,7 +6,7 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 14:48:49 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/07/03 15:40:56 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/07/03 20:01:16 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,28 @@ void	Harl::error( void )
 	std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl << std::endl;
 }
 
+
 void	Harl::complainFilter(std::string level)
 {
-	std::string	levels[] = { "DEBUG", "INFO", "WARNING", "ERROR"};
-	void	(Harl::*fptr[])(void) = {
-		&Harl::debug,
-		&Harl::info,
-		&Harl::warning,
-		&Harl::error
-	};
+	std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
-	bool flag = false;
-
-	for (int i = 0; i < 4; i++)
-	{
-		if (level == levels[i])
-			flag = true;
-		if (flag == true)
-			(this->*fptr[i])();
+	int i = 0;
+	while ((i < 4) && levels[i] != level){
+		i++;
 	}
-	if (flag == false)
-	{
-		std::cout << "[ Probably complaining about insignificant problems ]" <<std::endl;
+	switch (i) {
+		case 0:
+			this->debug();
+		case 1:
+			this->info();
+		case 2:
+			this->warning();
+		case 3:{
+			this->error();
+			break;
+		}
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 	}
 }
 

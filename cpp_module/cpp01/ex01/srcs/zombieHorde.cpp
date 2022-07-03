@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 01:20:44 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/07/03 01:45:43 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/07/03 18:27:39 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/Zombie.hpp"
 
-Zombie* Zombie::zombieHorde( int N, std::string name )
+Zombie* zombieHorde( int N, std::string name )
 {
 	Zombie	*zombies = new Zombie[N];
 

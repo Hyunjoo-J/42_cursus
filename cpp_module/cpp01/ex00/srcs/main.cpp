@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 00:53:11 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/07/03 01:17:09 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/07/03 18:24:15 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 int main()
 {
 	std::string name[] = {"Mark", "Cindy", "Bob", "Hangman"};
-	Zombie	zombie;
+	Zombie*	zombie;
+
+	zombie = newZombie("Anna");
+	zombie->announce();
 
 	for (int i = 0; i < 4; i++)
-		zombie.randomChump(name[i]);
-	zombie.announce();
+		randomChump(name[i]);
+	delete	zombie;
 	return (0);
 }
