@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/03 14:32:27 by hyjeong           #+#    #+#              #
-#    Updated: 2022/07/03 15:32:35 by hyjeong          ###   ########.fr        #
+#    Created: 2022/07/03 15:30:15 by hyjeong           #+#    #+#              #
+#    Updated: 2022/07/03 15:41:16 by hyjeong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.cpp ReplaceStr.cpp
+SRCS = main.cpp Harl.cpp
 SRCS := $(addprefix $(SRC_DIR), $(SRCS))
 OBJS =  $(addprefix $(OBJ_DIR), $(SRCS:.cpp=.o))
 
@@ -18,7 +18,7 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 INCFLAGS = -I$(INC_DIR)
 
-NAME = replace
+NAME = harlFilter
 
 SRC_DIR = srcs/
 OBJ_DIR = objs/
@@ -37,7 +37,6 @@ clean:
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	rm -rf *.replace
 	rm -rf $(NAME)
 
 re: fclean all

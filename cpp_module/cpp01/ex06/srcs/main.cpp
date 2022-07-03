@@ -5,22 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/03 14:33:28 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/07/03 14:34:33 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/07/03 14:58:50 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/07/03 15:42:31 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/ReplaceStr.hpp"
+#include "../incs/Harl.hpp"
 
-int	main(int ac, char **av)
+int main(int argc, char **argv)
 {
-	ReplaceStr	rs;
+	Harl	harl;
 
-	if (ac != 4)
+	if (argc != 2)
 	{
-		std::cout << "./replace [filename] [s1] [s2]" << std::endl;
+		std::cout << "./harlFilter [level]" << std::endl;
 		return (1);
 	}
-	rs.replaceStr(av[1], av[2], av[3]);
+	harl.complainFilter(argv[1]);
 	return (0);
 }

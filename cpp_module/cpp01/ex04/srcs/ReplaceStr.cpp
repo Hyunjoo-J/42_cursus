@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   replace.cpp                                        :+:      :+:    :+:   */
+/*   ReplaceStr.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/03 02:43:59 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/07/03 03:06:15 by hyunjoo          ###   ########.fr       */
+/*   Created: 2022/07/03 14:33:50 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/07/03 14:36:54 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/replace.hpp"
+#include "../incs/ReplaceStr.hpp"
 
-bool	replace::openFile( std::string f )
+bool	ReplaceStr::openFile( std::string f )
 {
 	this->ifs.open(f, std::ifstream::in);
 	if (!this->ifs.is_open())
@@ -32,12 +32,12 @@ bool	replace::openFile( std::string f )
 	}
 }
 
-void	replace::replaceS( std::string f, std::string s1, std::string s2 )
+void	ReplaceStr::replaceStr( std::string f, std::string s1, std::string s2 )
 {
 	std::string		line;
 	std::size_t		pos;
 
-	if (replace::openFile(f) == false)
+	if (ReplaceStr::openFile(f) == false)
 		return ;
 	this->s1 = s1;
 	this->s2 = s2;
@@ -52,4 +52,12 @@ void	replace::replaceS( std::string f, std::string s1, std::string s2 )
 	}
 	ifs.close();
 	ofs.close();
+}
+
+ReplaceStr::ReplaceStr()
+{
+}
+
+ReplaceStr::~ReplaceStr()
+{
 }

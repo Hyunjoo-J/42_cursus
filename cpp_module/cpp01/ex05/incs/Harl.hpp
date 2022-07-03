@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/03 14:33:28 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/07/03 14:34:33 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/07/03 14:45:35 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/07/03 15:33:35 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/ReplaceStr.hpp"
+#ifndef HARL_CLASS_H
+# define HARL_CLASS_H
+# include <iostream>
+# include <string>
 
-int	main(int ac, char **av)
+class Harl
 {
-	ReplaceStr	rs;
+private:
+	void	debug(void);
+	void	info(void);
+	void	warning(void);
+	void	error(void);
+public:
+	Harl();
+	~Harl();
+	void	complain(std::string level);
+};
 
-	if (ac != 4)
-	{
-		std::cout << "./replace [filename] [s1] [s2]" << std::endl;
-		return (1);
-	}
-	rs.replaceStr(av[1], av[2], av[3]);
-	return (0);
-}
+#endif
