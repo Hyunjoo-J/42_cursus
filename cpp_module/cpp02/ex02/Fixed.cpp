@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 02:48:01 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/07/09 01:31:16 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/07/09 02:05:12 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ Fixed &Fixed::operator=(const Fixed &fixed) {
 	return *this;
 }
 
-Fixed::~Fixed() {
+Fixed::~Fixed(void) {
 	std::cout << "Destructor called\n";
 }
 
@@ -59,4 +59,100 @@ int Fixed::toInt(void) const {
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed) {
 	return out << fixed.toFloat();
+}
+
+bool Fixed::operator>(const Fixed& f){
+	return n > f.getRawBits();
+}
+
+bool Fixed::operator<(const Fixed& f) {
+	return n < f.getRawBits();
+}
+
+bool Fixed::operator>=(const Fixed& f) {
+	return n >= f.getRawBits();
+}
+
+bool Fixed::operator<=(const Fixed& f) {
+	return n <= f.getRawBits();
+}
+
+bool Fixed::operator==(const Fixed& f) {
+	return n == f.getRawBits();
+}
+
+bool Fixed::operator!=(const Fixed& f) {
+	return n != f.getRawBits();
+}
+
+Fixed Fixed::operator+(const Fixed& f) {
+  Fixed temp(this->toFloat() + f.toFloat());
+
+  return temp;
+}
+
+Fixed Fixed::operator-(const Fixed& f) {
+  Fixed temp(this->toFloat() - f.toFloat());
+
+  return temp;
+}
+
+Fixed Fixed::operator*(const Fixed& f) {
+  Fixed temp(this->toFloat() * f.toFloat());
+
+  return temp;
+}
+
+Fixed Fixed::operator/(const Fixed& f) {
+  Fixed temp(this->toFloat() / f.toFloat());
+
+  return temp;
+}
+
+Fixed& Fixed::operator++(void) {
+	++n;
+	return *this;
+}
+
+Fixed& Fixed::operator--(void) {
+	--n;
+	return *this;
+}
+
+Fixed Fixed::operator++(int) {
+	Fixed temp = *this;
+
+	++n;
+	return temp;
+}
+
+Fixed Fixed::operator--(int) {
+	Fixed temp = *this;
+
+	--n;
+	return temp;
+}
+
+Fixed* Fixed::fmin(Fixed* lhs, Fixed* rhs) {
+	if ((*lhs).getRawBits() < (*rhs).getRawBits())
+		return lhs;
+	return rhs;
+}
+
+Fixed* Fixed::fmax(Fixed* lhs, Fixed* rhs) {
+	if ((*lhs).getRawBits() > (*rhs).getRawBits())
+		return lhs;
+	return rhs;
+}
+
+const Fixed& Fixed::fmin(const Fixed& lhs, const Fixed& rhs) {
+	if (lhs.getRawBits() < rhs.getRawBits())
+		return lhs;
+	return rhs;
+}
+
+const Fixed& Fixed::fmax(const Fixed& lhs, const Fixed& rhs) {
+	if (lhs.getRawBits() > rhs.getRawBits())
+		return lhs;
+	return rhs;
 }

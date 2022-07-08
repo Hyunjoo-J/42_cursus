@@ -6,29 +6,22 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 00:51:48 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/07/09 00:52:41 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/07/09 02:05:35 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
 int main(void) {
-	Fixed a;
-	Fixed const b(10);
-	Fixed const c(42.42f);
-	Fixed const d(b);
+  Fixed a;
+  Fixed const b(Fixed(5.05f) * Fixed(2));
 
-	a = Fixed(1234.4321f);
-
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
-	 std::cout << "c is " << c << std::endl;
-	 std::cout << "d is " << d << std::endl;
-
-	 std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-	 std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
-
-	return (0);
+  std::cout << a << std::endl;  // 0
+  std::cout << ++a << std::endl;  // 0.00390625
+  std::cout << a << std::endl;  // 0.00390625
+  std::cout << a++ << std::endl;  // 0.00390625
+  std::cout << a << std::endl;  // 0.0078125
+  std::cout << b << std::endl;  // 10.1016
+  std::cout << Fixed::fmax(a, b) << std::endl;  // 10.1016
+  return 0;
 }

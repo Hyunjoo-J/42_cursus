@@ -6,7 +6,7 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 02:45:37 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/07/09 01:10:04 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/07/09 02:00:35 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,34 @@ public:
 	float toFloat(void) const;
 	int toInt(void) const;
 
+	bool operator>(const Fixed& f);
+	bool operator<(const Fixed& f);
+	bool operator>=(const Fixed& f);
+	bool operator<=(const Fixed& f);
+	bool operator==(const Fixed& f);
+	bool operator!=(const Fixed& f);
+
+	Fixed operator+(const Fixed& f);
+	Fixed operator-(const Fixed& f);
+	Fixed operator*(const Fixed& f);
+	Fixed operator/(const Fixed& f);
+
+	Fixed& operator++(void);
+	Fixed& operator--(void);
+	Fixed operator++(int);
+	Fixed operator--(int);
+
 	Fixed& operator=(const Fixed& f);
 	Fixed(void);
 	explicit Fixed(const int v);
 	explicit Fixed(const float v);
 	Fixed(const Fixed& f);
 	~Fixed(void);
+
+	static Fixed* fmin(Fixed* lhs, Fixed* rhs);
+	static Fixed* fmax(Fixed* lhs, Fixed* rhs);
+	static const Fixed& fmin(const Fixed& lhs, const Fixed& rhs);
+	static const Fixed& fmax(const Fixed& lhs, const Fixed& rhs);
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);

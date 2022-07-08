@@ -6,28 +6,26 @@
 /*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 02:22:05 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/07/08 02:36:10 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/07/09 01:23:56 by hyunjoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-#include <iostream>
 
-const int Fixed::bits = 8;
-
-Fixed::Fixed() : n(0) {
+Fixed::Fixed(void) : n(0) {
 	std::cout << "Default constructor called\n";
 }
 
-Fixed::Fixed(const Fixed &fixed) : n(fixed.n) {
+Fixed::Fixed(const Fixed &fixed) {
 	std::cout << "Copy constructor called\n";
 	*this = fixed;
 }
 
 Fixed &Fixed::operator=(const Fixed &fixed) {
 	std::cout << "Copy assignment operator called\n";
-	this->n = fixed.getRawBits();
-	return (*this);
+	if (this != &fixed)
+		n = fixed.getRawBits();
+	return *this;
 }
 
 Fixed::~Fixed() {
@@ -36,9 +34,10 @@ Fixed::~Fixed() {
 
 int Fixed::getRawBits(void) const {
 	std::cout << "getRawBits member function called" << std::endl;
-	return (this->n);
+	return n;
 }
 
 void Fixed::setRawBits(int const raw) {
-	this->n = raw;
+	std::cout << "setRawBits member function called" << std::endl;
+	n = raw;
 }
