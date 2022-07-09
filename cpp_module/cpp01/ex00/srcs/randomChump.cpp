@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/03 01:00:41 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/07/03 17:40:33 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/07/03 01:00:41 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/07/09 17:27:54 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "../incs/Zombie.hpp"
 
 void	randomChump(std::string name)
 {

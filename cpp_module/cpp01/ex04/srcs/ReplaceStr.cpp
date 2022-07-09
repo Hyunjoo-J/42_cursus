@@ -6,11 +6,11 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 14:33:50 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/07/03 19:19:07 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/07/09 17:51:45 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ReplaceStr.hpp"
+#include "../incs/ReplaceStr.hpp"
 
 bool	ReplaceStr::openFile( std::string f )
 {

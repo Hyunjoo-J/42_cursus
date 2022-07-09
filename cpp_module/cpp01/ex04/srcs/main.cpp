@@ -6,11 +6,11 @@
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 14:33:28 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/07/03 19:19:29 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/07/09 17:51:51 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ReplaceStr.hpp"
+#include "../incs/ReplaceStr.hpp"
 
 int	main(int ac, char **av)
 {
