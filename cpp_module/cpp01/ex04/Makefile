@@ -3,43 +3,54 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+         #
+#    By: hyjeong <hyjeong@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/03 14:32:27 by hyjeong           #+#    #+#              #
-#    Updated: 2022/07/03 15:32:35 by hyjeong          ###   ########.fr        #
+#    Updated: 2022/07/11 15:22:36 by hyjeong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.cpp ReplaceStr.cpp
-SRCS := $(addprefix $(SRC_DIR), $(SRCS))
-OBJS =  $(addprefix $(OBJ_DIR), $(SRCS:.cpp=.o))
+NAME				:=	replace
 
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-INCFLAGS = -I$(INC_DIR)
+CXX					:=	c++
 
-NAME = replace
+SRCS				:=	main.cpp
+OBJS				:=	$(SRCS:.cpp=.o)
 
-SRC_DIR = srcs/
-OBJ_DIR = objs/
-INC_DIR = incs/
+INCLUDES		:=
 
-all: $(NAME)
+RM					:=	rm -f
 
-$(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $@ $(INCFLAGS)
+DEBUG				:=	0
 
-$(OBJ_DIR)%.o : $(SRC_DIR)%.cpp $(INC_DIR)*.hpp
-	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -c $< -o $@ $(INCFLAGS)
+ifeq ($(DEBUG), 1)
+	CXXFLAGS 	:=	-std=c++98 -g
+else
+	CXXFLAGS	:=	-std=c++98 -Wall -Wextra -Werror
+endif
 
-clean:
-	rm -rf $(OBJ_DIR)
+.PHONY			:		all
+all					:		$(NAME)
 
-fclean: clean
-	rm -rf *.replace
-	rm -rf $(NAME)
+$(NAME)			:		$(OBJS) $(INCLUDES)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $@
 
-re: fclean all
+.PHONY			:		debug
+debug				:		fclean
+	make DEBUG=1 all
 
-.PHONY: all clean fclean re
+%.o					:		%.cpp
+	$(CXX) $(CXXFLAGS) -c $^ -o $@
+
+.PHONY			:		clean
+clean				:
+	$(RM) $(OBJS)
+
+.PHONY			:		fclean
+fclean			:		clean
+	$(RM) $(NAME)
+
+.PHONY			:		re
+re					:
+	make fclean
+	make all

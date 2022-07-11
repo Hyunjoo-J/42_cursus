@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyjeong <hyjeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/03 00:54:56 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/07/03 17:38:16 by hyjeong          ###   ########.fr       */
+/*   Created: 2022/07/03 00:54:56 by hyjeong           #+#    #+#             */
+/*   Updated: 2022/07/09 17:28:02 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "../incs/Zombie.hpp"
 
 Zombie::Zombie()
 {
