@@ -1,0 +1,6 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/hyunjoo/git/42_cursus'
+make: Leaving directory '/home/hyunjoo/git/42_cursus'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
