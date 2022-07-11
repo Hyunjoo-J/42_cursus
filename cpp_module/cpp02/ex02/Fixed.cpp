@@ -3,42 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 02:48:01 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/07/09 02:05:12 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/07/11 19:32:04 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
 Fixed::Fixed(void) : n(0) {
-	std::cout << "Default constructor called\n";
+	//std::cout << "Default constructor called\n";
 }
 
 Fixed::Fixed(const Fixed &fixed) {
-	std::cout << "Copy constructor called\n";
+	//std::cout << "Copy constructor called\n";
 	*this = fixed;
 }
 
 Fixed::Fixed(const int num) : n(num << Fixed::bits) {
-	std::cout << "Int constructor called\n";
+	//std::cout << "Int constructor called\n";
 }
 
 Fixed::Fixed(const float num)
 	: n(static_cast<int>(roundf(num * (1 << Fixed::bits)))) {
-	std::cout << "Float constructor called" << std::endl;
+	//std::cout << "Float constructor called" << std::endl;
 }
 
 Fixed &Fixed::operator=(const Fixed &fixed) {
-	std::cout << "Copy assignment operator called\n";
+	//std::cout << "Copy assignment operator called\n";
 	if (this != &fixed)
 		n = fixed.getRawBits();
 	return *this;
 }
 
 Fixed::~Fixed(void) {
-	std::cout << "Destructor called\n";
+	//std::cout << "Destructor called\n";
 }
 
 int Fixed::getRawBits(void) const {

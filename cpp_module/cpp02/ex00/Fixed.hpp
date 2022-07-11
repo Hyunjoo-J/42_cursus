@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyunjoo <hyunjoo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 02:22:07 by hyunjoo           #+#    #+#             */
-/*   Updated: 2022/07/09 01:18:16 by hyunjoo          ###   ########.fr       */
+/*   Updated: 2022/07/11 19:28:05 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	Fixed(const Fixed &Fixed);
 	Fixed &operator=(const Fixed &fixed);
 	~Fixed(void);
-	
+
 	int  getRawBits(void) const;
 	void setRawBits(int const raw);
 };
