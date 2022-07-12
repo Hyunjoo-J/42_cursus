@@ -1,50 +1,65 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed(void) : n(0) {
-	std::cout << "Default constructor called\n";
+const int	Fixed::_bits = 8;
+
+Fixed::Fixed(void) {
+	_value = 0;
+	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &fixed) {
-	std::cout << "Copy constructor called\n";
-	*this = fixed;
+Fixed::Fixed(const int value)
+{
+	_value = value << _bits;
+	std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const int num) : n(num << Fixed::bits) {
-	std::cout << "Int constructor called\n";
-}
-
-Fixed::Fixed(const float num)
-	: n(static_cast<int>(roundf(num * (1 << Fixed::bits)))) {
+Fixed::Fixed(const float value)
+{
+	_value = roundf(value * (1 << _bits));
 	std::cout << "Float constructor called" << std::endl;
 }
 
-Fixed &Fixed::operator=(const Fixed &fixed) {
-	std::cout << "Copy assignment operator called\n";
-	if (this != &fixed)
-		n = fixed.getRawBits();
-	return *this;
+Fixed::Fixed(const Fixed &src)
+{
+	std::cout << "Copy constructor called" << std::endl;
+	*this = src;
 }
 
-Fixed::~Fixed() {
-	std::cout << "Destructor called\n";
+Fixed::~Fixed(void)
+{
+	std::cout << "Destrutor called" << std::endl;
 }
 
-int Fixed::getRawBits(void) const {
-	return n;
+Fixed&	Fixed::operator=(const Fixed &src)
+{
+	std::cout << "Copy assignment operator called" << std::endl;
+
+	_value = src._value;
+	return (*this);
 }
 
-void Fixed::setRawBits(const int raw) {
-	n = raw;
+int	Fixed::getRawBits(void) const
+{
+	return (_value);
 }
 
-float Fixed::toFloat(void) const {
-	return (static_cast<float>(n) / (1 << bits));
+void	Fixed::setRawBits(int const raw)
+{
+	_value = raw;
 }
 
-int Fixed::toInt(void) const {
-	return n >> Fixed::bits;
+int	Fixed::toInt(void) const
+{
+	return (_value >> _bits);
 }
 
-std::ostream &operator<<(std::ostream &out, const Fixed &fixed) {
-	return out << fixed.toFloat();
+float	Fixed::toFloat(void) const
+{
+	return (float(_value) / (1 << _bits));
+}
+
+std::ostream&	operator<<(std::ostream &out, const Fixed &fixed)
+{
+	out << fixed.toFloat();
+	return out;
 }

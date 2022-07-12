@@ -1,4 +1,4 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/home/hyunjoo/git/42_cursus/cpp_module'
 make: Leaving directory '/home/hyunjoo/git/42_cursus/cpp_module'
  
