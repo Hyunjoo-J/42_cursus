@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyjeong <hyjeong@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyjeong <hyjeong@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 03:24:54 by hyjeong           #+#    #+#             */
-/*   Updated: 2022/07/12 03:24:56 by hyjeong          ###   ########.fr       */
+/*   Updated: 2022/07/12 19:00:55 by hyjeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	clean_exit(t_data *data)
 	i = -1;
 	while (++i < data->num_of_philos)
 		kill(data->philos[i].id, SIGKILL);
-	sem_close(data->forks);
-	sem_close(data->main);
-	sem_close(data->print);
-	sem_close(data->twoforks);
 	sem_unlink("forks");
 	sem_unlink("twoforks");
 	sem_unlink("main");
 	sem_unlink("print");
 	sem_unlink("eat");
 	free(data->philos);
+	sem_close(data->forks);
+	sem_close(data->main);
+	sem_close(data->print);
+	sem_close(data->twoforks);
 	exit(EXIT_SUCCESS);
 }
 
