@@ -1,9 +1,9 @@
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main(void)
 {
 	{
-		ScavTrap s("Alice");
+		FragTrap s("Alice");
 
 		std::cout << "name: " << s.getName() << std::endl;
 		std::cout << "hit point: " << s.getHitPoint() << std::endl;
@@ -13,6 +13,7 @@ int main(void)
 		s.beRepaired(30);
 		s.takeDamage(50);
 		s.takeDamage(50);
+		s.highFivesGuys();
 	}
 	std::cout << std::endl;
 	{
@@ -23,14 +24,10 @@ int main(void)
 	}
 	std::cout << std::endl;
 	{
-		ScavTrap s("Bob");
+		FragTrap s("Bob");
 
 		s.attack("Trudy3");
-		s.guardGate();
+		s.highFivesGuys();
 		s.beRepaired(10);
-	}
-	{
-		ClapTrap *c = new ScavTrap("s");
-		c->attack("Boo");
 	}
 }

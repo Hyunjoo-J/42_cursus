@@ -8,7 +8,7 @@ public:
 	ScavTrap();
 	ScavTrap(const ScavTrap &ref);
 	ScavTrap& operator=(const ScavTrap& ref);
-	~ScavTrap();
+	virtual ~ScavTrap();
 
 	ScavTrap(std::string _name);
 
