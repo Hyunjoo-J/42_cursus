@@ -1,80 +1,82 @@
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
+#include "Base.hpp"
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 Base * generate(void)
 {
-	Base * p;
+	std::srand(std::time(NULL));
+	int	nb = rand() % 3;
 
-	srand(time(NULL));
-	int num = rand() % 3;
-	if (num == 0)
+	if (!nb)
 	{
-		p = new A;
-		std::cout << "A is generated" << std::endl;
+		std::cout << "Generate class A" << std::endl;
+		return (new A);
 	}
-	else if (num == 1)
+	else if (nb == 1)
 	{
-		p = new B;
-		std::cout << "B is generated" << std::endl;
-	}
-	else if (num == 2)
-	{
-		p = new C;
-		std::cout << "C is generated" << std::endl;
+		std::cout << "Generate class B" << std::endl;
+		return (new B);
 	}
 	else
 	{
-		p = NULL;
-		std::cout << "Nothing generated" << std::endl;
+		std::cout << "Generate class C" << std::endl;
+		return (new C);
 	}
-	return (p);
 }
 
-void identify(Base* p)
+void	identify_from_pointer(Base *p)
 {
-	A * a = dynamic_cast<A *>(p);
-	if (a != NULL)
-		std::cout << "A is identified(pointer)" << std::endl;
-	B * b = dynamic_cast<B *>(p);
-	if (b != NULL)
-		std::cout << "B is identified(pointer)" << std::endl;
-	C * c = dynamic_cast<C *>(p);
-	if (c != NULL)
-		std::cout << "C is identified(pointer)" << std::endl;
+	A	*ptr_a = dynamic_cast<A *>(p);
+	B	*ptr_b = dynamic_cast<B *>(p);
+	C	*ptr_c = dynamic_cast<C *>(p);
+
+	if (ptr_a)
+		std::cout << "A" << std::endl;
+	else if (ptr_b)
+		std::cout << "B" << std::endl;
+	else if (ptr_c)
+		std::cout << "C" << std::endl;
 }
 
-void identify(Base &p)
+void	identify_from_reference(Base & p)
 {
 	try
 	{
-		(void)dynamic_cast<A &>(p);
-		std::cout << "A is identified(reference)" << std::endl;
+		A	&ref_a = dynamic_cast<A &>(p);
+		(void)ref_a;
+		std::cout << "A" << std::endl;
+		return ;
 	}
-	catch(const std::exception& e)
-	{}
+	catch (std::exception &bc) {}
+
 	try
 	{
-		(void)dynamic_cast<B &>(p);
-		std::cout << "B is identified(reference)" << std::endl;
+		B	&ref_b = dynamic_cast<B &>(p);
+		(void)ref_b;
+		std::cout << "B" << std::endl;
+		return ;
 	}
-	catch(const std::exception& e)
-	{}
+	catch (std::exception &bc) {}
+
 	try
 	{
-		(void)dynamic_cast<C &>(p);
-		std::cout << "C is identified(reference)" << std::endl;
+		C	&ref_c = dynamic_cast<C &>(p);
+		(void)ref_c;
+		std::cout << "C" << std::endl;
+		return ;
 	}
-	catch(const std::exception& e)
-	{}
+	catch (std::exception &bc) {}
 }
 
-int main()
+int main(void)
 {
-	Base * base = generate();
-	identify(base);
-	identify(*base);
-	if (base)
-		delete base;
+	Base	*ptr = generate();
+
+	identify_from_pointer(ptr);
+	identify_from_reference(*ptr);
+
+	delete ptr;
+
 	return (0);
 }

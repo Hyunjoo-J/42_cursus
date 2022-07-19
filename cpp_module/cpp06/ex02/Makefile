@@ -1,26 +1,29 @@
 NAME = identify
-SRC = main.cpp Base.cpp A.cpp B.cpp C.cpp
-OBJ = $(SRC:%.cpp=%.o)
-INC = ./
-
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-RM = rm -rf
+SRCS = main.cpp
+OBJS = $(SRCS:.cpp=.o)
 
-all: $(NAME)
+%.o : %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(NAME): $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
+all : $(NAME)
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
+$(NAME) : $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
-clean:
-	$(RM) $(OBJ)
+clean :
+	rm -f $(OBJS)
 
-fclean: clean
-	$(RM) $(NAME)
+fclean :
+	rm -f $(OBJS) $(NAME)
 
-re: fclean all
+re :
+	make fclean
+	make all
 
-.PHONY: all clean fclean re
+.PHONY :
+	all
+	clean
+	fclean
+	re
