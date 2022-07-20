@@ -65,7 +65,7 @@ void Static::printFloat()
 void Static::printDouble()
 {
 	if (std::isnan(this->getNum()) || std::isinf(this->getNum()))
-		std::cout << "float: " << this->getNum() << std::endl;
+		std::cout << "double: " << this->getNum() << std::endl;
 	else if (this->getNum() > DBL_MAX)
 	{
 		std::cout << "double: impossible" << std::endl;
