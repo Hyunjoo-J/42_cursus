@@ -1,5 +1,5 @@
 #ifndef ARRAY_HPP
-# define ARRAT_HPP
+# define ARRAY_HPP
 
 # include <iostream>
 
